@@ -36,7 +36,7 @@
 @if(isset($noticia->Imagen))
 <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$noticia->Imagen }}" alt="" width="300" > 
 @endif
-<input type="file" class="form-control" name="Imagen" value="" id="Imagen">
+<input type="file" class="form-control" name="Imagen" value="{{isset($noticia->Imagen)?$noticia->Imagen:old('Imagen')}}" id="Imagen">
 
 </div>
 
@@ -50,6 +50,6 @@
 
 <input class="btn btn-success" type="submit" value="{{$modo}} datos" >
 
-<a class="btn btn-primary" href="{{ url('banner')}}"> Regresar </a>
+<a class="btn btn-primary" href="{{ url('noticia')}}"> Regresar </a>
 
 <br>

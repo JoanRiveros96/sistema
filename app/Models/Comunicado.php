@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Noticia extends Model
+class Comunicado extends Model
 {
     public $fillable = [
-        'Usuario','Fecha','Titulo','Contenido','Imagen','Link',
+        'Fecha','Usuario','Titulo','Contenido','Imagen'
         
     ];
     public $timestamps = true;

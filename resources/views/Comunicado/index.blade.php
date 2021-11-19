@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('noticia/create')}}" class="btn btn-success"> Registrar noticia </a>
+<a href="{{ url('comunicado/create')}}" class="btn btn-success"> Registrar Comunicado </a>
 <br>
 <br>
 <table class="table table-light">
@@ -33,35 +33,35 @@
             <th>Titulo</th>
             <th>Contenido</th>
             <th>Imagen</th>
-            <th>Link</th>
+            
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($noticias as $noticia)
+        @foreach($comunicados as $comunicado)
         <tr>
             
-            <td>{{$noticia ->id}}</td>
-            <th>{{$noticia ->Fecha}}</th>
-            <td>{{$noticia ->Titulo}}</td>
-            <td>{{$noticia ->Contenido}}</td>
+            <td>{{$comunicado ->id}}</td>
+            <th>{{$comunicado ->Fecha}}</th>
+            <td>{{$comunicado ->Titulo}}</td>
+            <td>{{$comunicado ->Contenido}}</td>
 
             <td>
-                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$noticia->Imagen }}"  width="200" alt="">
+                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$comunicado->Imagen }}"  width="200" alt="">
                 
             </td>
 
             
-            <td>{{$noticia ->Link}}</td>
+            
             
             <td>
                 
-            <a href="{{url('/noticia/'.$noticia->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/comunicado/'.$comunicado->id.'/edit')}}" class="btn btn-warning">
             Editar
             </a>
             
 
-            <form action="{{url('/noticia/'.$noticia->id)}}" class="d-inline" method="post">
+            <form action="{{url('/comunicado/'.$comunicado->id)}}" class="d-inline" method="post">
             @csrf
             {{method_field('DELETE')}}
         
@@ -73,6 +73,6 @@
     </tbody>
 
 </table>
-{!! $noticias->links() !!}
+{!! $comunicados->links() !!}
 </div>
 @endsection

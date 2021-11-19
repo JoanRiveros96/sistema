@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\NoticiaController;
+use App\Http\Controllers\ComunicadoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,18 +28,21 @@ Route::get('empleado/create',[EmpleadoController::class,'create']);
 Route::resource('empleado', EmpleadoController::class)->middleware('auth');
 Route::resource('banner', BannerController::class)->middleware('auth');
 Route::resource('noticia', NoticiaController::class)->middleware('auth');
+Route::resource('comunicado', ComunicadoController::class)->middleware('auth');
 
 Auth::routes();
 
 Route::get('/home', [EmpleadoController::class, 'index'])->name('home');
 Route::get('/home', [BannerController::class, 'index'])->name('home');
 Route::get('/home', [NoticiaController::class, 'index'])->name('home');
+Route::get('/home', [ComunicadoController::class, 'index'])->name('home');
 
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/', [EmpleadoController::class,'index'])->name('home');
     Route::get('/', [BannerController::class,'index'])->name('home');
     Route::get('/', [NoticiaController::class,'index'])->name('home');
+    Route::get('/', [ComunicadoController::class,'index'])->name('home');
 });
 
 

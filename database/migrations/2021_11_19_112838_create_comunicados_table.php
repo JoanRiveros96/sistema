@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNoticiasTable extends Migration
+class CreateComunicadosTable extends Migration
 {
     public $timestamps = true;
     /**
@@ -14,15 +14,14 @@ class CreateNoticiasTable extends Migration
      */
     public function up()
     {
-        Schema::create('noticias', function (Blueprint $table) {
+        Schema::create('comunicados', function (Blueprint $table) {
             $table->id();
 
-            $table->string('Usuario');
             $table->date('Fecha');
+            $table->string('Usuario');
             $table->string('Titulo');
             $table->string('Contenido');
             $table->string('Imagen');
-            $table->string('Link');
 
             $table->timestamps();
         });
@@ -35,6 +34,6 @@ class CreateNoticiasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('noticias');
+        Schema::dropIfExists('comunicados');
     }
 }

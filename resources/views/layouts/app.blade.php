@@ -35,8 +35,9 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"></li>
                         <a class="nav-link" href="{{ route('empleado.index') }}">{{ __('Empleados') }}</a>
-                        <a class="nav-link" href="{{ route('banner.index') }}">{{ __('Banner') }}</a>
-                        <a class="nav-link" href="{{ route('noticia.index') }}">{{ __('Noticia') }}</a>
+                        <a class="nav-link" href="{{ route('banner.index') }}">{{ __('Banners') }}</a>
+                        <a class="nav-link" href="{{ route('noticia.index') }}">{{ __('Noticias') }}</a>
+                        <a class="nav-link" href="{{ route('comunicado.index') }}">{{ __('Comunicados') }}</a>
 
                     </ul>
 

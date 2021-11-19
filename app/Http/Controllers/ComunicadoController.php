@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Noticia;
+use App\Models\Comunicado;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 
-class NoticiaController extends Controller
+class ComunicadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +17,8 @@ class NoticiaController extends Controller
     public function index()
     {
         //
-        $datos['noticias']=Noticia::paginate(5);
-        return view('noticia.index',$datos);
+        $datos['comunicados']=Comunicado::paginate(5);
+        return view('comunicado.index',$datos);
     }
 
     /**
@@ -29,7 +28,8 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        return view('noticia.create');
+        //
+        return view('comunicado.create');
     }
 
     /**
@@ -40,14 +40,13 @@ class NoticiaController extends Controller
      */
     public function store(Request $request)
     {
-        
         //
         $campos=[
             'Fecha'=>'required|date',
             'Titulo'=>'required|string|max:100',
             'Contenido'=> 'required|string|max:1000',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=> 'string|max:100',
+            
             
         
 
@@ -61,54 +60,56 @@ class NoticiaController extends Controller
 
         $this->validate($request,$campos,$mensaje);
         
-        $datosNoticia=request()->except('_token');
+        $datosComunicado=request()->except('_token');
         
 
         if($request->hasFile('Imagen')){
-            $datosNoticia['Imagen']=$request->file('Imagen')->store('uploads','public');
+            $datosComunicado['Imagen']=$request->file('Imagen')->store('uploads','public');
         }
         else{
-            $datosNoticia['Imagen'] = '';
+            $datosComunicado['Imagen'] = '';
         }
         
-        $datosNoticia['Usuario'] = auth()->user()->name; 
+        $datosComunicado['Usuario'] = auth()->user()->name; 
         
-        Noticia::create($datosNoticia);
+        
+        Comunicado::create($datosComunicado);
         
        
-       return redirect('noticia')->with('mensaje','Noticia agregada con exito');
+       return redirect('comunicado')->with('mensaje','Comunicado agregado con exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Noticia  $noticia
+     * @param  \App\Models\Comunicado  $comunicado
      * @return \Illuminate\Http\Response
      */
-    public function show(Noticia $noticia)
+    public function show(Comunicado $comunicado)
     {
         //
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Noticia  $noticia
+     * @param  \App\Models\Comunicado  $comunicado
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $noticia = Noticia::findOrFail($id);
+        $comunicado = Comunicado::findOrFail($id);
 
-        return view('noticia.edit',compact('noticia'));
+        return view('comunicado.edit',compact('comunicado'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Noticia  $noticia
+     * @param  \App\Models\Comunicado  $comunicado
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -120,7 +121,7 @@ class NoticiaController extends Controller
             'Titulo'=>'required|string|max:100',
             'Contenido'=> 'required|string|max:1000',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=>'string|max:100',
+            
             
         ];
         $mensaje=[
@@ -136,39 +137,39 @@ class NoticiaController extends Controller
 
         $this->validate($request,$campos,$mensaje);
 
-        $datosNoticia=request()->except(['_token','_method']);
+        $datosComunicado=request()->except(['_token','_method']);
 
         if($request->hasFile('Imagen')){
-            $noticia = Noticia::findOrFail($id);
-            Storage::delete('public/'.$noticia->Imagen);
-            $datosNoticia['Imagen']=$request->file('Imagen')->store('uploads','public');
+            $comunicado = Comunicado::findOrFail($id);
+            Storage::delete('public/'.$comunicado->Imagen);
+            $datosComunicado['Imagen']=$request->file('Imagen')->store('uploads','public');
         }
 
 
-        Noticia::where('id','=',$id)->update($datosNoticia);
+        Comunicado::where('id','=',$id)->update($datosComunicado);
 
-        $noticia = Noticia::findOrFail($id);
+        $comunicado = Comunicado::findOrFail($id);
         //return view('empleado.edit',compact('empleado'));
-        return redirect('noticia')->with('mensaje','Noticia modificada');
+        return redirect('comunicado')->with('mensaje','Comunicado modificado');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Noticia  $noticia
+     * @param  \App\Models\Comunicado  $comunicado
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        $noticia = Noticia::findOrFail($id);
+        $comunicado = Comunicado::findOrFail($id);
         
-        if(Storage::delete('public/'.$noticia->Imagen)){
-            Noticia::destroy($id);
-            return redirect('noticia')->with('mensaje','Noticia borrada');
+        if(Storage::delete('public/'.$comunicado->Imagen)){
+            Comunicado::destroy($id);
+            return redirect('comunicado')->with('mensaje','Comunicado borrado');
         }
         
         
-        return redirect('noticia');
+        return redirect('comunicado');
     }
 }
