@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Noticia;
+use App\Models\Footer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 
-class NoticiaController extends Controller
+class FooterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +17,8 @@ class NoticiaController extends Controller
     public function index()
     {
         //
-        $datos['noticias']=Noticia::paginate(5);
-        return view('noticia.index',$datos);
+        $datos['footers']=Footer::paginate(5);
+        return view('footer.index',$datos);
     }
 
     /**
@@ -29,7 +28,8 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        return view('noticia.create');
+        //
+        return view('footer.create');
     }
 
     /**
@@ -40,52 +40,45 @@ class NoticiaController extends Controller
      */
     public function store(Request $request)
     {
-        
         //
         $campos=[
-            'Fecha'=>'required|date',
-            'Titulo'=>'required|string|max:100',
+            
+            'TipoFoot'=>'required',
             'Contenido'=> 'required|string|max:1000',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=> 'string|max:100',
-            
-        
-
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
-            'Fecha.date'=> 'el :attribute debe ser una fecha',
-
         ];
 
 
         $this->validate($request,$campos,$mensaje);
         
-        $datosNoticia=request()->except('_token');
-        
+        $datosFooter=request()->except('_token'); 
 
         if($request->hasFile('Imagen')){
-            $datosNoticia['Imagen']=$request->file('Imagen')->store('uploads','public');
+            $datosFooter['Imagen']=$request->file('Imagen')->store('uploads','public');
         }
         else{
-            $datosNoticia['Imagen'] = '';
+            $datosFooter['Imagen'] = '';
         }
         
-        $datosNoticia['Usuario'] = auth()->user()->name; 
+        $datosFooter['Usuario'] = auth()->user()->name; 
         
-        Noticia::create($datosNoticia);
+        
+        Footer::create($datosFooter);
         
        
-       return redirect('noticia')->with('mensaje','Noticia agregada con exito');
+       return redirect('footer')->with('mensaje','Footer agregado con exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Noticia  $noticia
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function show(Noticia $noticia)
+    public function show(Footer $footer)
     {
         //
     }
@@ -93,22 +86,22 @@ class NoticiaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Noticia  $noticia
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $noticia = Noticia::findOrFail($id);
+        $footer = Footer::findOrFail($id);
 
-        return view('noticia.edit',compact('noticia'));
+        return view('footer.edit',compact('footer'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Noticia  $noticia
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -116,11 +109,9 @@ class NoticiaController extends Controller
         //
         $campos=[
             
-            'Fecha'=>'required|date',
-            'Titulo'=>'required|string|max:100',
+            'TipoFoot'=>'required',
             'Contenido'=> 'required|string|max:1000',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=>'string|max:100',
             
         ];
         $mensaje=[
@@ -136,39 +127,39 @@ class NoticiaController extends Controller
 
         $this->validate($request,$campos,$mensaje);
 
-        $datosNoticia=request()->except(['_token','_method']);
+        $datosFooter=request()->except(['_token','_method']);
 
         if($request->hasFile('Imagen')){
-            $noticia = Noticia::findOrFail($id);
-            Storage::delete('public/'.$noticia->Imagen);
-            $datosNoticia['Imagen']=$request->file('Imagen')->store('uploads','public');
+            $footer = Footer::findOrFail($id);
+            Storage::delete('public/'.$footer->Imagen);
+            $datosFooter['Imagen']=$request->file('Imagen')->store('uploads','public');
         }
 
 
-        Noticia::where('id','=',$id)->update($datosNoticia);
+        Footer::where('id','=',$id)->update($datosFooter);
 
-        $noticia = Noticia::findOrFail($id);
+        $footer = Footer::findOrFail($id);
         //return view('empleado.edit',compact('empleado'));
-        return redirect('noticia')->with('mensaje','Noticia modificada');
+        return redirect('footer')->with('mensaje','Footer modificado');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Noticia  $noticia
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        $noticia = Noticia::findOrFail($id);
+        $footer = Footer::findOrFail($id);
         
-        if(Storage::delete('public/'.$noticia->Imagen)){
-            Noticia::destroy($id);
-            
-        }else{Noticia::destroy($id);}
+        if(Storage::delete('public/'.$footer->Imagen)){     
+            Footer::destroy($id);            
+        }else{Footer::destroy($id);          
+        }
         
         
-        return redirect('noticia')->with('mensaje','Noticia borrada');
+        return redirect('footer')->with('mensaje','Footer borrado');
     }
 }

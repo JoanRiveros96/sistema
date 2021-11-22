@@ -5,6 +5,10 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\ComunicadoController;
+use App\Http\Controllers\SocialController;
+use App\Http\Controllers\FooterController;
+use App\Http\Controllers\HistoriaController;
+use App\Http\Controllers\ColegioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,20 +33,24 @@ Route::resource('empleado', EmpleadoController::class)->middleware('auth');
 Route::resource('banner', BannerController::class)->middleware('auth');
 Route::resource('noticia', NoticiaController::class)->middleware('auth');
 Route::resource('comunicado', ComunicadoController::class)->middleware('auth');
+Route::resource('social', SocialController::class)->middleware('auth');
+Route::resource('footer', FooterController::class)->middleware('auth');
+Route::resource('historia', HistoriaController::class)->middleware('auth');
+Route::resource('historia', colegioController::class)->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', [EmpleadoController::class, 'index'])->name('home');
-Route::get('/home', [BannerController::class, 'index'])->name('home');
-Route::get('/home', [NoticiaController::class, 'index'])->name('home');
-Route::get('/home', [ComunicadoController::class, 'index'])->name('home');
-
+// Route::get('/home', [EmpleadoController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/', [EmpleadoController::class,'index'])->name('home');
-    Route::get('/', [BannerController::class,'index'])->name('home');
-    Route::get('/', [NoticiaController::class,'index'])->name('home');
-    Route::get('/', [ComunicadoController::class,'index'])->name('home');
+    Route::get('/', [EmpleadoController::class,'index']);
+    Route::get('/home', [BannerController::class,'index'])->name('home');
+    Route::get('/', [NoticiaController::class,'index']);
+    Route::get('/', [ComunicadoController::class,'index']);
+    Route::get('/', [SocialController::class,'index']);
+    Route::get('/', [FooterController::class,'index']);
+    Route::get('/', [HistoriaController::class,'index']);
+    Route::get('/', [ColegioController::class,'index']);
 });
 
 

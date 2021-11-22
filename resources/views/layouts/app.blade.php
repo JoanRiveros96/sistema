@@ -38,6 +38,12 @@
                         <a class="nav-link" href="{{ route('banner.index') }}">{{ __('Banners') }}</a>
                         <a class="nav-link" href="{{ route('noticia.index') }}">{{ __('Noticias') }}</a>
                         <a class="nav-link" href="{{ route('comunicado.index') }}">{{ __('Comunicados') }}</a>
+                        <a class="nav-link" href="{{ route('social.index') }}">{{ __('Redes sociales') }}</a>
+                        <a class="nav-link" href="{{ route('footer.index') }}">{{ __('Footer') }}</a>
+                        <a class="nav-link" href="{{ route('historia.index') }}">{{ __('Trayectoria') }}</a>
+                        <a class="nav-link" href="{{ route('colegio.index') }}">{{ __('Trayectoria') }}</a>
+                        
+
 
                     </ul>
 

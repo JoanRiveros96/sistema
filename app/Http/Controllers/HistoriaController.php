@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Noticia;
+use App\Models\Historia;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 
-class NoticiaController extends Controller
+class HistoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +17,8 @@ class NoticiaController extends Controller
     public function index()
     {
         //
-        $datos['noticias']=Noticia::paginate(5);
-        return view('noticia.index',$datos);
+        $datos['historias']=Historia::paginate(5);
+        return view('historia.index',$datos);
     }
 
     /**
@@ -29,7 +28,8 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        return view('noticia.create');
+        //
+        return view('historia.create');
     }
 
     /**
@@ -40,52 +40,45 @@ class NoticiaController extends Controller
      */
     public function store(Request $request)
     {
-        
         //
         $campos=[
-            'Fecha'=>'required|date',
-            'Titulo'=>'required|string|max:100',
-            'Contenido'=> 'required|string|max:1000',
-            'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=> 'string|max:100',
             
-        
-
+            'Año'=>'required|string|max:4',
+            'Informacion'=> 'required|string|max:1000',
+            'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
-            'Fecha.date'=> 'el :attribute debe ser una fecha',
-
         ];
 
 
         $this->validate($request,$campos,$mensaje);
         
-        $datosNoticia=request()->except('_token');
-        
+        $datosHistoria=request()->except('_token'); 
 
         if($request->hasFile('Imagen')){
-            $datosNoticia['Imagen']=$request->file('Imagen')->store('uploads','public');
+            $datosHistoria['Imagen']=$request->file('Imagen')->store('uploads','public');
         }
         else{
-            $datosNoticia['Imagen'] = '';
+            $datosHistoria['Imagen'] = '';
         }
         
-        $datosNoticia['Usuario'] = auth()->user()->name; 
+        $datosHistoria['Usuario'] = auth()->user()->name; 
         
-        Noticia::create($datosNoticia);
+        
+        Historia::create($datosHistoria);
         
        
-       return redirect('noticia')->with('mensaje','Noticia agregada con exito');
+       return redirect('historia')->with('mensaje','Historia agregada con exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Noticia  $noticia
+     * @param  \App\Models\Historia  $historia
      * @return \Illuminate\Http\Response
      */
-    public function show(Noticia $noticia)
+    public function show(Historia $historia)
     {
         //
     }
@@ -93,22 +86,22 @@ class NoticiaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Noticia  $noticia
+     * @param  \App\Models\Historia  $historia
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $noticia = Noticia::findOrFail($id);
+        $historia = Historia::findOrFail($id);
 
-        return view('noticia.edit',compact('noticia'));
+        return view('historia.edit',compact('historia'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Noticia  $noticia
+     * @param  \App\Models\Historia  $historia
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -116,11 +109,9 @@ class NoticiaController extends Controller
         //
         $campos=[
             
-            'Fecha'=>'required|date',
-            'Titulo'=>'required|string|max:100',
-            'Contenido'=> 'required|string|max:1000',
+            'Año'=>'required|string|max:4',
+            'Informacion'=> 'required|string|max:1000',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=>'string|max:100',
             
         ];
         $mensaje=[
@@ -136,39 +127,39 @@ class NoticiaController extends Controller
 
         $this->validate($request,$campos,$mensaje);
 
-        $datosNoticia=request()->except(['_token','_method']);
+        $datosHistoria=request()->except(['_token','_method']);
 
         if($request->hasFile('Imagen')){
-            $noticia = Noticia::findOrFail($id);
-            Storage::delete('public/'.$noticia->Imagen);
-            $datosNoticia['Imagen']=$request->file('Imagen')->store('uploads','public');
+            $historia = Historia::findOrFail($id);
+            Storage::delete('public/'.$historia->Imagen);
+            $datosHistoria['Imagen']=$request->file('Imagen')->store('uploads','public');
         }
 
 
-        Noticia::where('id','=',$id)->update($datosNoticia);
+        Historia::where('id','=',$id)->update($datosHistoria);
 
-        $noticia = Noticia::findOrFail($id);
+        $historia = Hstoria::findOrFail($id);
         //return view('empleado.edit',compact('empleado'));
-        return redirect('noticia')->with('mensaje','Noticia modificada');
-    }
+        return redirect('historia')->with('mensaje','Historia modificada');
+     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Noticia  $noticia
+     * @param  \App\Models\Historia  $historia
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        $noticia = Noticia::findOrFail($id);
+        $historia = Historia::findOrFail($id);
         
-        if(Storage::delete('public/'.$noticia->Imagen)){
-            Noticia::destroy($id);
-            
-        }else{Noticia::destroy($id);}
+        if(Storage::delete('public/'.$historia->Imagen)){     
+            Historia::destroy($id);            
+        }else{Historia::destroy($id);          
+        }
         
         
-        return redirect('noticia')->with('mensaje','Noticia borrada');
+        return redirect('historia')->with('mensaje','Historia borrada');
     }
 }
