@@ -26,7 +26,7 @@
 </div>
 
 <div class="form-group">
-<label for="Imagen"></label>
+<label for="Imagen">Imagen</label>
 
 @if(isset($historia->Imagen))
 <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$historia->Imagen }}" alt="" width="300" > 

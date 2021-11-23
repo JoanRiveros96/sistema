@@ -9,6 +9,7 @@ use App\Http\Controllers\SocialController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HistoriaController;
 use App\Http\Controllers\ColegioController;
+use App\Http\Controllers\PlataformaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +37,8 @@ Route::resource('comunicado', ComunicadoController::class)->middleware('auth');
 Route::resource('social', SocialController::class)->middleware('auth');
 Route::resource('footer', FooterController::class)->middleware('auth');
 Route::resource('historia', HistoriaController::class)->middleware('auth');
-Route::resource('historia', colegioController::class)->middleware('auth');
+Route::resource('colegio', ColegioController::class)->middleware('auth');
+Route::resource('plataforma', PlataformaController::class)->middleware('auth');
 
 Auth::routes();
 
@@ -51,6 +53,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/', [FooterController::class,'index']);
     Route::get('/', [HistoriaController::class,'index']);
     Route::get('/', [ColegioController::class,'index']);
+    Route::get('/', [PlataformaController::class,'index']);
 });
 
 

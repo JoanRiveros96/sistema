@@ -31,7 +31,7 @@
 
 
 <div class="form-group">
-<label for="Imagen"></label>
+<label for="Imagen">Imagen</label>
 
 @if(isset($noticia->Imagen))
 <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$noticia->Imagen }}" alt="" width="300" > 

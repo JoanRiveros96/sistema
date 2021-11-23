@@ -41,7 +41,8 @@
                         <a class="nav-link" href="{{ route('social.index') }}">{{ __('Redes sociales') }}</a>
                         <a class="nav-link" href="{{ route('footer.index') }}">{{ __('Footer') }}</a>
                         <a class="nav-link" href="{{ route('historia.index') }}">{{ __('Trayectoria') }}</a>
-                        <a class="nav-link" href="{{ route('colegio.index') }}">{{ __('Trayectoria') }}</a>
+                        <a class="nav-link" href="{{ route('colegio.index') }}">{{ __('InformacionColegio') }}</a>
+                        <a class="nav-link" href="{{ route('plataforma.index') }}">{{ __('Plataformas') }}</a>
                         
 
 

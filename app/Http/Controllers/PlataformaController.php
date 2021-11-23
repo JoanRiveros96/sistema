@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Colegio;
+use App\Models\Plataforma;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ColegioController extends Controller
+class PlataformaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class ColegioController extends Controller
     public function index()
     {
         //
-        $datos['colegios']=Colegio::paginate(5);
-        return view('colegio.index',$datos);
+        $datos['plataformas']=Plataforma::paginate(5);
+        return view('plataforma.index',$datos);
     }
 
     /**
@@ -29,7 +29,7 @@ class ColegioController extends Controller
     public function create()
     {
         //
-        return view('colegio.create');
+        return view('plataforma.create');
     }
 
     /**
@@ -41,13 +41,11 @@ class ColegioController extends Controller
     public function store(Request $request)
     {
         //
-
         $campos=[
             
-            'TipoInfo'=>'required',
-            'Informacion'=> 'required|string|max:1000',
-            'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=> 'nullable|string|max:1000',
+            'Titulo'=>'required',
+            'Descripcion'=> 'required|string|max:1000',
+            'Link'=> 'required|string|max:1000',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -56,31 +54,24 @@ class ColegioController extends Controller
 
         $this->validate($request,$campos,$mensaje);
         
-        $datosColegio=request()->except('_token'); 
-
-        if($request->hasFile('Imagen')){
-            $datosColegio['Imagen']=$request->file('Imagen')->store('uploads','public');
-        }
-        else{
-            $datosColegio['Imagen'] = '';
-        }
-        
-        $datosColegio['Usuario'] = auth()->user()->name; 
+        $datosPlataforma=request()->except('_token'); 
+                
+        $datosPlataforma['Usuario'] = auth()->user()->name; 
         
         
-        Colegio::create($datosColegio);
+        Plataforma::create($datosPlataforma);
         
        
-       return redirect('colegio')->with('mensaje','Informacion del Colegio agregada con exito');
+       return redirect('plataforma')->with('mensaje','Plataforma agregada con exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Colegio  $colegio
+     * @param  \App\Models\Plataforma  $plataforma
      * @return \Illuminate\Http\Response
      */
-    public function show(Colegio $colegio)
+    public function show(Plataforma $plataforma)
     {
         //
     }
@@ -88,22 +79,22 @@ class ColegioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Colegio  $colegio
+     * @param  \App\Models\Plataforma  $plataforma
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $colegio = Colegio::findOrFail($id);
+        $plataforma = Plataforma::findOrFail($id);
 
-        return view('colegio.edit',compact('colegio'));
+        return view('plataforma.edit',compact('plataforma'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Colegio  $colegio
+     * @param  \App\Models\Plataforma  $plataforma
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -113,55 +104,36 @@ class ColegioController extends Controller
             
             'TipoInfo'=>'required',
             'Informacion'=> 'required|string|max:1000',
-            'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             'Link'=> 'nullable|string|max:1000',
             
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
 
-        ];
-
-        if($request->hasFile('Imagen')){
-            $campos=['Imagen' =>'max:10000|mimes:jpeg,png,jpg'];
-            //$mensaje=['Imagen.required'=>'La foto es requerida'];
-        }
+        ];      
         
 
         $this->validate($request,$campos,$mensaje);
 
-        $datosColegio=request()->except(['_token','_method']);
+        $datosPlataforma=request()->except(['_token','_method']);
 
-        if($request->hasFile('Imagen')){
-            $colegio = Colegio::findOrFail($id);
-            Storage::delete('public/'.$colegio->Imagen);
-            $datosColegio['Imagen']=$request->file('Imagen')->store('uploads','public');
-        }
+        Plataforma::where('id','=',$id)->update($datosPlataforma);
 
-
-        Colegio::where('id','=',$id)->update($datosColegio);
-
-        $colegio = Colegio::findOrFail($id);
+        $plataforma = Plataforma::findOrFail($id);
         //return view('empleado.edit',compact('empleado'));
-        return redirect('colegio')->with('mensaje','Informacion del Colegio modificada');
+        return redirect('plataforma')->with('mensaje','Plataforma modificada');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Colegio  $colegio
+     * @param  \App\Models\Plataforma  $plataforma
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {       
         $colegio = Colegio::findOrFail($id);
-        
-        if(Storage::delete('public/'.$colegio->Imagen)){     
-            Colegio::destroy($id);            
-        }else{Colegio::destroy($id);          
-        }
-        
+        Colegio::destroy($id);    
         
         return redirect('colegio')->with('mensaje','Informacion del Colegio borrada');
     }
