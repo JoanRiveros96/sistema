@@ -28,7 +28,7 @@
 			
     <thead class="thead-light">
         <tr>
-            <th>#</th>      
+                 
             <th>TipoInfo</th>               
             <th>Informacion</th>
             <th>Imagen</th>
@@ -40,7 +40,7 @@
         @foreach($colegios as $colegio)
         <tr>
             
-            <td>{{$colegio ->id}}</td>
+            
             <th>{{$colegio ->TipoInfo}}</th>
             <td>{{$colegio ->Informacion}}</td>
             

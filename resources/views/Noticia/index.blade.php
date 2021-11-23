@@ -28,7 +28,7 @@
 			
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            
             <th>Fecha</th>
             <th>Titulo</th>
             <th>Contenido</th>
@@ -41,7 +41,7 @@
         @foreach($noticias as $noticia)
         <tr>
             
-            <td>{{$noticia ->id}}</td>
+            
             <th>{{$noticia ->Fecha}}</th>
             <td>{{$noticia ->Titulo}}</td>
             <td>{{$noticia ->Contenido}}</td>

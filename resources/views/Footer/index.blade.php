@@ -28,7 +28,7 @@
 			
     <thead class="thead-light">
         <tr>
-            <th>#</th>      
+                 
             <th>TipoFoot</th>               
             <th>Contenido</th>
             <th>Imagen</th>
@@ -39,7 +39,7 @@
         @foreach($footers as $footer)
         <tr>
             
-            <td>{{$footer ->id}}</td>
+            
             <th>{{$footer ->TipoFoot}}</th>
             <td>{{$footer ->Contenido}}</td>
             

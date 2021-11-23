@@ -47,7 +47,7 @@ class NoticiaController extends Controller
             'Titulo'=>'required|string|max:100',
             'Contenido'=> 'required|string|max:1000',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=> 'string|max:100',
+            'Link'=> 'nullable|string|max:100',
             
         
 
@@ -120,7 +120,7 @@ class NoticiaController extends Controller
             'Titulo'=>'required|string|max:100',
             'Contenido'=> 'required|string|max:1000',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=>'string|max:100',
+            'Link'=>'nullable|string|max:100',
             
         ];
         $mensaje=[

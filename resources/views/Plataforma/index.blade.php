@@ -28,7 +28,7 @@
 			
     <thead class="thead-light">
         <tr>
-            <th>#</th>      
+               
             <th>Titulo</th>               
             <th>Descripcion</th>
             <th>Link</th>
@@ -39,7 +39,7 @@
         @foreach($plataformas as $plataforma)
         <tr>
             
-            <td>{{$plataforma ->id}}</td>
+            
             <th>{{$plataforma ->Titulo}}</th>
             <td>{{$plataforma ->Descripcion}}</td>        
             <td>{{$plataforma ->Link}}</td>

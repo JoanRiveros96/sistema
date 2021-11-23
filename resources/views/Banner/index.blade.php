@@ -26,7 +26,7 @@
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            
             <th>Imagen</th>
             <th>Link</th>
             <th>Acciones</th>
@@ -35,7 +35,7 @@
     <tbody>
         @foreach($banners as $banner)
         <tr>
-            <td>{{$banner ->id}}</td>
+            
 
             <td>
                 <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$banner->Imagen }}"  width="200" alt="">

@@ -28,7 +28,7 @@
 			
     <thead class="thead-light">
         <tr>
-            <th>#</th>      
+                  
             <th>Año</th>               
             <th>Informacion</th>
             <th>Imagen</th>
@@ -39,7 +39,7 @@
         @foreach($historias as $historia)
         <tr>
             
-            <td>{{$historia ->id}}</td>
+            
             <th>{{$historia ->Año}}</th>
             <td>{{$historia ->Informacion}}</td>
             

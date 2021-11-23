@@ -26,7 +26,7 @@
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+       
             <th>Foto</th>
             <th>Nombre</th>
             <th>Apellido Paterno</th>
@@ -39,13 +39,14 @@
     <tbody>
         @foreach($empleados as $empleado)
         <tr>
-            <td>{{$empleado ->id}}</td>
+        
 
             <td>
                 <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$empleado->Foto }}"  width="200" alt="">
                 
             </td>
 
+            
             <td>{{$empleado ->Nombre}}</td>
             <td>{{$empleado ->ApellidoPaterno}}</td>
             <td>{{$empleado ->ApellidoMaterno}}</td>
