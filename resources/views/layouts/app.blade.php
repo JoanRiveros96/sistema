@@ -43,6 +43,8 @@
                         <a class="nav-link" href="{{ route('historia.index') }}">{{ __('Trayectoria') }}</a>
                         <a class="nav-link" href="{{ route('colegio.index') }}">{{ __('InformacionColegio') }}</a>
                         <a class="nav-link" href="{{ route('plataforma.index') }}">{{ __('Plataformas') }}</a>
+                        <a class="nav-link" href="{{ route('cuenta.index') }}">{{ __('Rendicion de cuentas') }}</a>
+                        <a class="nav-link" href="{{ route('egresado.index') }}">{{ __('Egresados') }}</a>
                         
 
 

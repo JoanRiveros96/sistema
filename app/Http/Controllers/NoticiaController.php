@@ -87,30 +87,16 @@ class NoticiaController extends Controller
      */
     public function show(Noticia $noticia)
     {
-        //
+        
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Noticia  $noticia
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
-        //
         $noticia = Noticia::findOrFail($id);
 
         return view('noticia.edit',compact('noticia'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Noticia  $noticia
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //

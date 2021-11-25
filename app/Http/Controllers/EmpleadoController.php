@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empleado;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 class EmpleadoController extends Controller
@@ -41,19 +42,21 @@ class EmpleadoController extends Controller
     {
     
         //
+        
 
         $campos=[
             
-            'Nombre'=>'required|string|max:100',
-            'ApellidoPaterno' =>'required|string|max:100',
-            'ApellidoMaterno' =>'required|string|max:100',
-            'Dependencia' =>'required|string|max:100',
-            'Correo' =>'required|email',
+            'Nombre'=>'required|string|max:250',            
+            'Dependencia' =>'required',
+            'Descripcion' =>'required|string|max:150',
+            'Correo' => 'required_if:Dependencia,Docente Secundaria',
             'Foto' =>'required|max:10000|mimes:jpeg,png,jpg',
         
 
         ];
         $mensaje=[
+
+            'Correo.required_if'=>'El correo es requerido si es un docente de secundaria',
             'required'=>'El :attribute es requerido',
             'Foto.required'=>'La foto es requerida'
 
@@ -113,11 +116,10 @@ class EmpleadoController extends Controller
 
         $campos=[
             
-            'Nombre'=>'required|string|max:100',
-            'ApellidoPaterno' =>'required|string|max:100',
-            'ApellidoMaterno' =>'required|string|max:100',
-            'Dependencia' =>'required|string|max:100',
-            'Correo' =>'required|email',
+            'Nombre'=>'required|string|max:250',            
+            'Dependencia' =>'required',
+            'Descripcion' =>'required|string|max:150',
+            'Correo' => 'required_if:Dependencia,Docente Secundaria',
             
         
 

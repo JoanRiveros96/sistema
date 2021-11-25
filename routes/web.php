@@ -10,6 +10,8 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HistoriaController;
 use App\Http\Controllers\ColegioController;
 use App\Http\Controllers\PlataformaController;
+use App\Http\Controllers\CuentaController;
+use App\Http\Controllers\EgresadoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +41,8 @@ Route::resource('footer', FooterController::class)->middleware('auth');
 Route::resource('historia', HistoriaController::class)->middleware('auth');
 Route::resource('colegio', ColegioController::class)->middleware('auth');
 Route::resource('plataforma', PlataformaController::class)->middleware('auth');
+Route::resource('cuenta', CuentaController::class)->middleware('auth');
+Route::resource('egresado', EgresadoController::class)->middleware('auth');
 
 Auth::routes();
 
@@ -54,6 +58,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/', [HistoriaController::class,'index']);
     Route::get('/', [ColegioController::class,'index']);
     Route::get('/', [PlataformaController::class,'index']);
+    Route::get('/', [CuentaController::class,'index']);
+    Route::get('docs/{id}/download', [CuentaController::class, 'download'])->name('docs.download');
+    Route::get('/', [EgresadoController::class,'index']);
 });
 
 

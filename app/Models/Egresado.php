@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Empleado extends Model
+class Egresado extends Model
 {
     public $fillable = [
-        'Usuario','Nombre','Dependencia','Descripcion','Foto','Correo',
+        'Usuario','Status','AñoGrado','Nombre','Afinidad','Descripcion','Foto'
         
     ];
     public $timestamps = true;
-    
-    
 }

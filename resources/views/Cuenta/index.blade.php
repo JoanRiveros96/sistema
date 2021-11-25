@@ -20,44 +20,46 @@
 
 
 <br>
-<a href="{{ url('empleado/create')}}" class="btn btn-success"> Registro nuevo </a>
+<a href="{{ url('cuenta/create')}}" class="btn btn-success"> Registrar Rendicion de cuentas </a>
 <br>
 <br>
 <table class="table table-light">
+
+			
     <thead class="thead-light">
         <tr>
-       
-            <th>Foto</th>
-            <th>Nombre</th>            
-            <th>Dependencia</th>
-            <th>Descripcion</th>
-            <th>Correo</th>
+                  
+            <th>Fecha</th>               
+            <th>Titulo</th>
+            <th>Contenido</th>
+            <th>Imagen</th>
+            <th>Documento</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($empleados as $empleado)
+        @foreach($cuentas as $cuenta)
         <tr>
-        
-
+            
+            
+            <th>{{$cuenta ->Fecha}}</th>
+            <td>{{$cuenta ->Titulo}}</td>
+            <td>{{$cuenta ->Contenido}}</td>
+            
             <td>
-                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$empleado->Foto }}"  width="200" alt="">
+                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$cuenta->Imagen }}"  width="200" alt="">
                 
             </td>
-
+            <td><a href="{{route('docs.download', $cuenta->id)}}">{{$cuenta->Documento}}</a></td>
             
-            <td>{{$empleado ->Nombre}}</td>            
-            <td>{{$empleado ->Dependencia}}</td>
-            <td>{{$empleado ->Descripcion}}</td>
-            <td>{{$empleado ->Correo}}</td>
             <td>
                 
-            <a href="{{url('/empleado/'.$empleado->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/cuenta/'.$cuenta->id.'/edit')}}" class="btn btn-warning">
             Editar
             </a>
             
 
-            <form action="{{url('/empleado/'.$empleado->id)}}" class="d-inline" method="post">
+            <form action="{{url('/cuenta/'.$cuenta->id)}}" class="d-inline" method="post">
             @csrf
             {{method_field('DELETE')}}
         
@@ -67,7 +69,8 @@
         </tr>
         @endforeach
     </tbody>
+
 </table>
-{!! $empleados->links() !!}
+{!! $cuentas->links() !!}
 </div>
 @endsection
