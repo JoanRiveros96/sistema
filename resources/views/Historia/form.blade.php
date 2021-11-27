@@ -20,7 +20,7 @@
 
 
 <div class="form-group">
-<label for="Contenido"> Informacion </label>
+<label for="Informacion"> Informacion </label>
 <input type="text" class="form-control" name="Informacion" value="{{isset($historia->Informacion)?$historia->Informacion:old('Informacion')}}" id="Informacion">
 
 </div>

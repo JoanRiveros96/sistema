@@ -46,7 +46,7 @@ class BannerController extends Controller
             
             
             'Imagen' =>'required|max:10000|mimes:jpeg,png,jpg',
-            'Link'=>'string|max:100',
+            'Link'=>'nullable|string|max:100',
         
 
         ];

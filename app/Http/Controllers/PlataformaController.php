@@ -132,9 +132,9 @@ class PlataformaController extends Controller
      */
     public function destroy($id)
     {       
-        $colegio = Colegio::findOrFail($id);
-        Colegio::destroy($id);    
+        $plataforma = Plataforma::findOrFail($id);
+        Plataforma::destroy($id);    
         
-        return redirect('colegio')->with('mensaje','Informacion del Colegio borrada');
+        return redirect('plataforma')->with('mensaje','Plataforma borrada');
     }
 }

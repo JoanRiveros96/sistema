@@ -32,18 +32,12 @@ class HistoriaController extends Controller
         return view('historia.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
         $campos=[
             
-            'Año'=>'required|string|max:4',
+            'Año'=>'required|integer|max:2021',
             'Informacion'=> 'required|string|max:1000',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
         ];
@@ -72,23 +66,12 @@ class HistoriaController extends Controller
        return redirect('historia')->with('mensaje','Historia agregada con exito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Historia  $historia
-     * @return \Illuminate\Http\Response
-     */
     public function show(Historia $historia)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Historia  $historia
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //
@@ -97,25 +80,20 @@ class HistoriaController extends Controller
         return view('historia.edit',compact('historia'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Historia  $historia
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
         $campos=[
             
-            'Año'=>'required|string|max:4',
+            'Año'=>'required|integer|max:2021',
             'Informacion'=> 'required|string|max:1000',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
+            
 
         ];
 
@@ -138,17 +116,12 @@ class HistoriaController extends Controller
 
         Historia::where('id','=',$id)->update($datosHistoria);
 
-        $historia = Hstoria::findOrFail($id);
+        $historia = Historia::findOrFail($id);
         //return view('empleado.edit',compact('empleado'));
         return redirect('historia')->with('mensaje','Historia modificada');
      }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Historia  $historia
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         //

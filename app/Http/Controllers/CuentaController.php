@@ -47,14 +47,14 @@ class CuentaController extends Controller
             'Titulo'=>'required|string|max:100',
             'Contenido'=> 'required|string|max:1000',
             'Imagen' =>'required|max:10000|mimes:jpeg,png,jpg',
-            'Documento'=> 'nullable|max:10000|mimes:docx,pdf',
+            'Documento'=> 'nullable|max:10000|mimes:docx,pdf,php',
             
         
 
         ];
         $mensaje=[
-            'required'=>'El :attribute es requerido',
-            'Fecha.date'=> 'el :attribute debe ser una fecha',
+            'required'=>'El campo :attribute es requerido',
+            'Fecha.date'=> 'el campo :attribute debe ser una fecha',
             'Imagen.required'=>'La foto es requerida'
 
         ];
@@ -110,14 +110,14 @@ class CuentaController extends Controller
             'Titulo'=>'required|string|max:100',
             'Contenido'=> 'required|string|max:1000',
             'Imagen' =>'required|max:10000|mimes:jpeg,png,jpg',
-            'Documento'=> 'nullable|max:10000|mimes:docx,pdf',
+            'Documento'=> 'nullable|max:10000|mimes:docx,pdf,php',
             
         
 
         ];
         $mensaje=[
-            'required'=>'El :attribute es requerido',
-            'Fecha.date'=> 'el :attribute debe ser una fecha',
+            'required'=>'El campo :attribute es requerido',
+            'Fecha.date'=> 'el campo :attribute debe ser una fecha',
             'Imagen.required'=>'La foto es requerida'
 
         ];
@@ -127,7 +127,7 @@ class CuentaController extends Controller
             //$mensaje=['Imagen.required'=>'La foto es requerida'];
         }
         if($request->hasFile('Documento')){
-            $campos=['Documento' =>'max:10000|mimes:docx,pdf'];
+            $campos=['Documento' =>'max:10000|mimes:docx,pdf,php'];
             //$mensaje=['Imagen.required'=>'La foto es requerida'];
         }
 

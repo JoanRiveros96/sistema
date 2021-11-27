@@ -40,10 +40,6 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-    
-        //
-        
-
         $campos=[
             
             'Nombre'=>'required|string|max:250',            
@@ -72,7 +68,8 @@ class EmpleadoController extends Controller
         if($request->hasFile('Foto')){
             $datosEmpleado['Foto']=$request->file('Foto')->store('uploads','public');
         }
-        
+        $datosEmpleado['Usuario'] = auth()->user()->name;
+
         Empleado::create($datosEmpleado);
         
        //return response()->json($datosEmpleado);

@@ -12,6 +12,8 @@ use App\Http\Controllers\ColegioController;
 use App\Http\Controllers\PlataformaController;
 use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\EgresadoController;
+use App\Http\Controllers\EventoController;
+use App\Http\Controllers\AdmisionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +45,8 @@ Route::resource('colegio', ColegioController::class)->middleware('auth');
 Route::resource('plataforma', PlataformaController::class)->middleware('auth');
 Route::resource('cuenta', CuentaController::class)->middleware('auth');
 Route::resource('egresado', EgresadoController::class)->middleware('auth');
+Route::resource('evento', EventoController::class)->middleware('auth');
+Route::resource('admision', AdmisionController::class)->middleware('auth');
 
 Auth::routes();
 
@@ -61,6 +65,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/', [CuentaController::class,'index']);
     Route::get('docs/{id}/download', [CuentaController::class, 'download'])->name('docs.download');
     Route::get('/', [EgresadoController::class,'index']);
+    Route::get('/', [EventoController::class,'index']);
+    Route::get('/', [AdmisionController::class,'index']);
+    
+
 });
 
 

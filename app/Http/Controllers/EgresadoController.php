@@ -3,83 +3,127 @@
 namespace App\Http\Controllers;
 
 use App\Models\Egresado;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EgresadoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $datos['egresados']=Egresado::paginate(5);
+        return view('egresado.index',$datos);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('egresado.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $campos=[
+            'AñoGrado'=>'required|string|max:4',
+            'Nombre'=>'required|string|max:150',
+            'Afinidad'=> 'required|string|max:100',
+            'Descripcion'=> 'required|string|max:200',
+            'Foto' =>'max:10000|mimes:jpeg,png,jpg',
+            
+            
+        
+
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido',
+            
+
+        ];
+
+
+        $this->validate($request,$campos,$mensaje);
+        
+        $datosEgresado=request()->except('_token');
+        
+
+        if($request->hasFile('Foto')){
+            $datosEgresado['Foto']=$request->file('Foto')->store('uploads','public');
+        }
+        else{
+            $datosEgresado['Foto'] = '';
+        }
+        
+        $datosEgresado['Usuario'] = auth()->user()->name; 
+        
+        Egresado::create($datosEgresado);
+        
+       
+       return redirect('egresado')->with('mensaje','Egresado agregado con exito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Egresado  $egresado
-     * @return \Illuminate\Http\Response
-     */
     public function show(Egresado $egresado)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Egresado  $egresado
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Egresado $egresado)
+    public function edit($id)
     {
-        //
+        
+        $egresado = Egresado::findOrFail($id);
+
+        return view('egresado.edit',compact('egresado'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Egresado  $egresado
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Egresado $egresado)
+    public function update(Request $request, $id)
     {
-        //
+        $campos=[
+            
+            'AñoGrado'=>'required|string|max:4',
+            'Nombre'=>'required|string|max:150',
+            'Afinidad'=> 'required|string|max:100',
+            'Descripcion'=> 'required|string|max:200',
+            'Foto' =>'max:10000|mimes:jpeg,png,jpg',
+            
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido',
+
+        ];
+
+        if($request->hasFile('Foto')){
+            $campos=['Foto' =>'max:10000|mimes:jpeg,png,jpg'];
+            //$mensaje=['Imagen.required'=>'La foto es requerida'];
+        }
+        
+
+        $this->validate($request,$campos,$mensaje);
+
+        $datosEgresado=request()->except(['_token','_method']);
+
+        if($request->hasFile('Foto')){
+            $egresado = Egresado::findOrFail($id);
+            Storage::delete('public/'.$egresado->Foto);
+            $datosEgresado['Foto']=$request->file('Foto')->store('uploads','public');
+        }
+
+
+        Egresado::where('id','=',$id)->update($datosEgresado);
+
+        $egresado = Egresado::findOrFail($id);
+        //return view('empleado.edit',compact('empleado'));
+        return redirect('egresado')->with('mensaje','Egresado modificado');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Egresado  $egresado
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Egresado $egresado)
+    public function destroy($id)
     {
-        //
+        
+        $egresado = Egresado::findOrFail($id);
+        
+        if(Storage::delete('public/'.$egresado->Foto)){     
+            Egresado::destroy($id);            
+        }else{Egresado::destroy($id);          
+        }
+        
+        
+        return redirect('egresado')->with('mensaje','Egresado borrado');
     }
 }
