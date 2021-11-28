@@ -53,6 +53,8 @@
                         <a class="nav-link" href="{{ route('egresado.index') }}">{{ __('Egresados') }}</a>
                         <a class="nav-link" href="{{ route('evento.index') }}">{{ __('Eventos') }}</a>
                         <a class="nav-link" href="{{ route('admision.index') }}">{{ __('Admisiones') }}</a>
+                        <a class="nav-link" href="{{ route('matricula.index') }}">{{ __('Matriculas') }}</a>
+                        <a class="nav-link" href="{{ route('programador.index') }}">{{ __('Programador') }}</a>
                         
 
 

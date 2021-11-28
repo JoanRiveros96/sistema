@@ -21,7 +21,7 @@
 
 <div class="form-group">
 <label for="Requisito"> Requisito </label>
-<input type="text" class="form-control" name="Requisito" value="{{isset($historia->Requisito)?$historia->Requisito:old('Requisito')}}" id="Requisito">
+<input type="text" class="form-control" name="Requisito" value="{{isset($admision->Requisito)?$admision->Requisito:old('Requisito')}}" id="Requisito">
 
 </div>
 
@@ -34,6 +34,6 @@
 
 <input class="btn btn-success" type="submit" value="{{$modo}} datos" >
 
-<a class="btn btn-primary" href="{{ url('adfmision')}}"> Regresar </a>
+<a class="btn btn-primary" href="{{ url('admision')}}"> Regresar </a>
 
 <br>

@@ -14,6 +14,9 @@ use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\EgresadoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\AdmisionController;
+use App\Http\Controllers\MatriculaController;
+use App\Http\Controllers\ProgramadorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +50,8 @@ Route::resource('cuenta', CuentaController::class)->middleware('auth');
 Route::resource('egresado', EgresadoController::class)->middleware('auth');
 Route::resource('evento', EventoController::class)->middleware('auth');
 Route::resource('admision', AdmisionController::class)->middleware('auth');
+Route::resource('matricula', MatriculaController::class)->middleware('auth');
+Route::resource('programador', ProgramadorController::class)->middleware('auth');
 
 Auth::routes();
 
@@ -67,6 +72,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/', [EgresadoController::class,'index']);
     Route::get('/', [EventoController::class,'index']);
     Route::get('/', [AdmisionController::class,'index']);
+    Route::get('/', [MatriculaController::class,'index']);
+    Route::get('/', [ProgramadorController::class,'index']);
     
 
 });

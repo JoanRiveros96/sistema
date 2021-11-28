@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class AdmisionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
         $datos['admisiones']=Admision::paginate(5);
@@ -94,12 +90,7 @@ class AdmisionController extends Controller
         return redirect('admision')->with('mensaje','Admision modificada');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admision  $admision
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
         $admision = Admision::findOrFail($id);
