@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('banner/create')}}" class="btn btn-success"> Registrar banner </a>
+<a href="{{ url('banner/create')}}" class="btn btn-primary btn-lg"> Registrar banner </a>
 <br>
 <br>
 <table class="table table-light">
@@ -47,7 +47,7 @@
             
             <td>
                 
-            <a href="{{url('/banner/'.$banner->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/banner/'.$banner->id.'/edit')}}" class="btn btn-outline-warning btn-lg">
             Editar
             </a>
             
@@ -56,7 +56,7 @@
             @csrf
             {{method_field('DELETE')}}
         
-            <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
+            <input class="btn btn-outline-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
             </form>
             </td>
         </tr>

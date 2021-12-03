@@ -15,7 +15,7 @@
 
 <div class="form-group">
 <label for="Imagen">Imagen</label>
-
+<br>
 @if(isset($banner->Imagen))
 <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$banner->Imagen }}" alt="" width="300" > 
 @endif
