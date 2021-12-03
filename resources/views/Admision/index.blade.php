@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('admision/create')}}" class="btn btn-success"> Registrar Admision </a>
+<a href="{{ url('admision/create')}}" class="btn btn-primary btn-lg"> Registrar Admision </a>
 <br>
 <br>
 <table class="table table-light">
@@ -48,7 +48,7 @@
             
             <td>
                 
-            <a href="{{url('/admision/'.$admision->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/admision/'.$admision->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('social/create')}}" class="btn btn-success"> Registrar Red Social </a>
+<a href="{{ url('social/create')}}" class="btn btn-primary btn-lg"> Registrar Red Social </a>
 <br>
 <br>
 <table class="table table-light">
@@ -45,7 +45,7 @@
               
             <td>
                 
-            <a href="{{url('/social/'.$social->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/social/'.$social->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

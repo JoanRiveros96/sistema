@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('historia/create')}}" class="btn btn-success"> Registrar Historia </a>
+<a href="{{ url('historia/create')}}" class="btn btn-primary btn-lg"> Registrar Historia </a>
 <br>
 <br>
 <table class="table table-light">
@@ -50,7 +50,7 @@
             
             <td>
                 
-            <a href="{{url('/historia/'.$historia->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/historia/'.$historia->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

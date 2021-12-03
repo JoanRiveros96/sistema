@@ -47,7 +47,7 @@
             
             <td>
                 
-            <a href="{{url('/banner/'.$banner->id.'/edit')}}" class="btn btn-outline-warning btn-lg">
+            <a href="{{url('/banner/'.$banner->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

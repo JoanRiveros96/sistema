@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('programador/create')}}" class="btn btn-success"> Registrar Programador </a>
+<a href="{{ url('programador/create')}}" class="btn btn-primary btn-lg"> Registrar Programador </a>
 <br>
 <br>
 <table class="table table-light">
@@ -50,7 +50,7 @@
             
             <td>
                 
-            <a href="{{url('/programador/'.$programador->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/programador/'.$programador->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('empleado/create')}}" class="btn btn-success"> Registro nuevo </a>
+<a href="{{ url('empleado/create')}}" class="btn btn-primary btn-lg"> Registro nuevo </a>
 <br>
 <br>
 <table class="table table-light">
@@ -52,7 +52,7 @@
             <td>{{$empleado ->Correo}}</td>
             <td>
                 
-            <a href="{{url('/empleado/'.$empleado->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/empleado/'.$empleado->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

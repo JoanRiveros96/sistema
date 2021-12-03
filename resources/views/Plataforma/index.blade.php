@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('plataforma/create')}}" class="btn btn-success"> Registrar Plataforma </a>
+<a href="{{ url('plataforma/create')}}" class="btn btn-primary btn-lg"> Registrar Plataforma </a>
 <br>
 <br>
 <table class="table table-light">
@@ -46,7 +46,7 @@
             
             <td>
                 
-            <a href="{{url('/plataforma/'.$plataforma->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/plataforma/'.$plataforma->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('matricula/create')}}" class="btn btn-success"> Registrar Matricula </a>
+<a href="{{ url('matricula/create')}}" class="btn btn-primary btn-lg"> Registrar Matricula </a>
 <br>
 <br>
 <table class="table table-light">
@@ -54,7 +54,7 @@
             
             <td>
                 
-            <a href="{{url('/matricula/'.$matricula->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/matricula/'.$matricula->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

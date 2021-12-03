@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('cuenta/create')}}" class="btn btn-success"> Registrar Rendicion de cuentas </a>
+<a href="{{ url('cuenta/create')}}" class="btn btn-primary btn-lg"> Registrar Rendicion de cuentas </a>
 <br>
 <br>
 <table class="table table-light">
@@ -54,7 +54,7 @@
             
             <td>
                 
-            <a href="{{url('/cuenta/'.$cuenta->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/cuenta/'.$cuenta->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

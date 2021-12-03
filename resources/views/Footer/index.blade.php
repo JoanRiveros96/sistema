@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('footer/create')}}" class="btn btn-success"> Registrar Footer </a>
+<a href="{{ url('footer/create')}}" class="btn btn-primary btn-lg"> Registrar Footer </a>
 <br>
 <br>
 <table class="table table-light">
@@ -50,7 +50,7 @@
             
             <td>
                 
-            <a href="{{url('/footer/'.$footer->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/footer/'.$footer->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

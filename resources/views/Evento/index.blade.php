@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('evento/create')}}" class="btn btn-success"> Registrar Evento </a>
+<a href="{{ url('evento/create')}}" class="btn btn-primary btn-lg"> Registrar Evento </a>
 <br>
 <br>
 <table class="table table-light">
@@ -57,7 +57,7 @@
             
             <td>
                 
-            <a href="{{url('/evento/'.$evento->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/evento/'.$evento->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

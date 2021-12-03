@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('comunicado/create')}}" class="btn btn-success"> Registrar Comunicado </a>
+<a href="{{ url('comunicado/create')}}" class="btn btn-primary btn-lg"> Registrar Comunicado </a>
 <br>
 <br>
 <table class="table table-light">
@@ -56,7 +56,7 @@
             
             <td>
                 
-            <a href="{{url('/comunicado/'.$comunicado->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/comunicado/'.$comunicado->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

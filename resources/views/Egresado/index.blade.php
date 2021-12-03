@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('egresado/create')}}" class="btn btn-success"> Registrar Egresado </a>
+<a href="{{ url('egresado/create')}}" class="btn btn-primary btn-lg"> Registrar Egresado </a>
 <br>
 <br>
 <table class="table table-light">
@@ -55,7 +55,7 @@
             
             <td>
                 
-            <a href="{{url('/egresado/'.$egresado->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/egresado/'.$egresado->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             

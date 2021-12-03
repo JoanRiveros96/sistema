@@ -20,7 +20,7 @@
 
 
 <br>
-<a href="{{ url('colegio/create')}}" class="btn btn-success"> Registrar Colegio Informacion </a>
+<a href="{{ url('colegio/create')}}" class="btn btn-primary btn-lg"> Registrar Colegio Informacion </a>
 <br>
 <br>
 <table class="table table-light">
@@ -53,7 +53,7 @@
             
             <td>
                 
-            <a href="{{url('/colegio/'.$colegio->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{url('/colegio/'.$colegio->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
             Editar
             </a>
             
