@@ -28,7 +28,43 @@ section .title{
   
 
 }
+section .circulares{
+  text-align: center;
+  font-size:50px;
+  color: white;
+  background:#00477e;
+  letter-spacing: 20px;
+  text-shadow: 2px 2px 15px #ffffff;
+  padding: 25px;
+  
 
+}
+
+.formex {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background:#00477e;
+  display: flex;
+  color:white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.formex input {
+  width: 90%;
+  height: 50px;
+  margin: 5px;
+}
+
+.formex button {
+  padding: 0.5em 1em;
+  border: none;
+  background: rgb(100, 200, 255);
+  cursor: pointer;
+}
 .navdep{
   
   background:#00477e ;
@@ -43,7 +79,40 @@ section .title{
   
 
 }
+.redes{
+  width: 70px;
+  height: 70px;
+  
+}
 
+.fa {
+  padding: 10px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 20px;
+}
+.fa:hover {
+  opacity: 0.7;
+}
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
 
 /* INICIO NAVBAR */
   
@@ -90,13 +159,13 @@ section .title{
   
   .subnav-content {
     display: none;
-    position:relative;
-    
-    left: 0;
-    
-    
-    
+    position:fixed;
     z-index: 1;
+    background: #00477e;
+    
+    width: 266px;
+    border-radius: 20px;
+    
   }
   
   .subnav-content a {
@@ -255,7 +324,11 @@ section .header2 .navbar{
         width:150px; height:150px;border-radius:200px;background: #00477e
     }
     header .navbar{
-        position: absolute;position:fixed; left: 543px; top: 100px; z-index: 2;border-radius:10px;background: #00477e;
+        position: absolute;position:fixed; left: 535px; top: 75px; z-index: 1;border-radius:10px;background: #00477e;
+    }
+    header .redes{
+      position: absolute;position:fixed; left: 1820px; top: 150px; z-index: 2;
+
     }
     
     
@@ -270,6 +343,9 @@ section .header2 .navbar{
     header .navbar{
         position: absolute;position:fixed; left: 243px; top: 100px; z-index: 2;border-radius:10px;background: #00477e;
     }
+    header .redes{
+      position: absolute;position:fixed; left: 1250px; top: 200px; z-index: 2;
+  }
     
 }
 @media(max-width:726px){}

@@ -62,7 +62,12 @@
 
   <div class="logo" ><img alt="" src="../public/storage/web/escudo.png">
  </div>
- 
+ <div class="redes"><ul>
+ <a href="https://www.facebook.com/coinsda?_rdc=2&_rdr" class="fa fa-facebook"></a>
+ <a href="https://twitter.com/coinsda" class="fa fa-twitter"></a>
+ <a href="https://www.instagram.com/coinsda/" class="fa fa-instagram"></a>
+ <a href="https://www.instagram.com/coinsda/" class="fa fa-youtube"></a>
+</ul></div>
 <div class="navbar">
 
   <a href="http://localhost/sistema/user/">INICIO</a>

@@ -2,7 +2,7 @@
     include("conexion.php");
     
     //SQL para conocer los ultimos 3 registros modificados de las noticias en la base de datos
-    $filo ="SELECT * FROM `colegios` WHERE TipoInfo='Filosofía';";
+    $admision ="SELECT * FROM `admisions` ORDER by updated_at asc";
 
 
 
@@ -117,63 +117,48 @@
     </div>
 </section>
 
-<nav class="navbar navbar-expand-sm bg-light justify-content-center navcol" >
-  <ul class="navbar-nav navcol">
-    <li class="nav-item itemcol" >
-      <a class="nav-link linkcol" href="mision.php">MISION</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="vision.php">VISION</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="filosofia.php">FILOSOFIA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="simbolos.php">SIMBOLOS</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="org.php">ORGANIGRAMA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="finob.php">FINES Y OBJETIVOS</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="valores.php">VALORES</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="estped.php">ESTRATEGIA PEDAGOGICA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="mancon.php">MANUAL DE CONVIVENCIA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="gescal.php">GESTION DE CALIDAD</a>
-    </li>
-
-  </ul>
-</nav>
-
 <section>
-<?php $filo = mysqli_query($mysqli,$filo); 
-
-  while($rowNot=mysqli_fetch_assoc($filo)){?>
-
-
-  <div class="title"><?php echo $rowNot["TipoInfo"]?></div>
-  <div style="padding-left:70px;padding-right:70px;background:#00477e;">
-  <div style="height:100%; width:100%;background:#00477e;">
-  <p class ="text">
-  <?php echo $rowNot["Informacion"]?>
-  </p>
-  </div></div>
-  <div class="imgCol"> <img class="img-fluid imgCol" src="../public/storage/<?php echo $rowNot["Imagen"]?>" style=" height:600px; width:600px; "></div>
-  <?php 
-  }?>
+  <div class="title">ADMISIONES</div>
   </section>
+  
+<!-- Seccion de historias en incio -->
+<section style="background:#00477e;">
+  
+  <div class="w3-container">
+    
+    <?php $admision = mysqli_query($mysqli,$admision); 
+  
+  while($rowNot=mysqli_fetch_assoc($admision)){?>
+    
+    <div class="w3-row w3-margin" >
+    
+     
+    <div class="w3-twothird w3-container " style="height:100%; width:100%;background:#00477e;">
+      <h2 class ="Año" ><?php echo $rowNot["Fecha"]?></h2>
+  <p class ="text"  >
+  <?php echo $rowNot["Requisito"]?>
+  </p>
+  <div style="padding:10px"></div>
+  <?php if($rowNot["Link"]!=null){?>
+    <a  href=<?php echo $rowNot["Link"]?> style="border-radius:50px;background-color:  #41a0d6;padding:15px;">VISITAR</a>
 
+<?php
+  }?>
+  <div style="padding:10px"></div>
+</div>
+  </div>
+<?php 
+    }
+    ?>
+    
+  
+</div>
+  
+</div>
+  
+</section>
 
-
-  <footer  id="footer">
+<footer  id="footer">
     <div class="w3-row-padding">
 
       <div class="w3-col s4 w3-justify w3-left"   style="margin-left:30%">
@@ -193,3 +178,8 @@
 
 
 </html>
+
+
+
+
+

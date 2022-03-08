@@ -1,12 +1,9 @@
 <?php 
     include("conexion.php");
     
-    //SQL para conocer los ultimos 3 registros modificados de las noticias en la base de datos
-    $filo ="SELECT * FROM `colegios` WHERE TipoInfo='Filosofía';";
-
-
-
-
+    
+    $comunicados ="SELECT * FROM `comunicados` ORDER by updated_at desc";
+    
 ?>
 
 <!DOCTYPE html>
@@ -110,67 +107,67 @@
 
 </section>
 
-
 <section>
 <div >
       <img class="img-fluid" src="../public/storage/uploads/WBVuvVTvAABKwWBmwRm3l3lACK4VJII46gXJglcE.jpg" alt="" width="2000" height="1500">
     </div>
 </section>
 
-<nav class="navbar navbar-expand-sm bg-light justify-content-center navcol" >
-  <ul class="navbar-nav navcol">
-    <li class="nav-item itemcol" >
-      <a class="nav-link linkcol" href="mision.php">MISION</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="vision.php">VISION</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="filosofia.php">FILOSOFIA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="simbolos.php">SIMBOLOS</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="org.php">ORGANIGRAMA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="finob.php">FINES Y OBJETIVOS</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="valores.php">VALORES</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="estped.php">ESTRATEGIA PEDAGOGICA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="mancon.php">MANUAL DE CONVIVENCIA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="gescal.php">GESTION DE CALIDAD</a>
-    </li>
-
-  </ul>
-</nav>
-
 <section>
-<?php $filo = mysqli_query($mysqli,$filo); 
-
-  while($rowNot=mysqli_fetch_assoc($filo)){?>
-
-
-  <div class="title"><?php echo $rowNot["TipoInfo"]?></div>
-  <div style="padding-left:70px;padding-right:70px;background:#00477e;">
-  <div style="height:100%; width:100%;background:#00477e;">
-  <p class ="text">
-  <?php echo $rowNot["Informacion"]?>
-  </p>
-  </div></div>
-  <div class="imgCol"> <img class="img-fluid imgCol" src="../public/storage/<?php echo $rowNot["Imagen"]?>" style=" height:600px; width:600px; "></div>
-  <?php 
-  }?>
+  <div class="circulares">CIRCULARES Y COMUNICADOS</div>
   </section>
+<section>
+  
+  <div class="w3-container">
+    
+    <?php $comunicados = mysqli_query($mysqli,$comunicados); 
+  $i=0; 
+  while($rowNot=mysqli_fetch_assoc($comunicados)){
+    if($i%2==0){?>
+    <div class="w3-row w3-margin">
+      <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../public/storage/<?php echo $rowNot["Imagen"]?>"  ></div>
+    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
+      <h2 class ="wrapper dep"><?php echo $rowNot["Titulo"]?></h2>
+  <p class ="wrapper" style="padding:15px;">
+  <?php echo $rowNot["Contenido"]?>
+  </p>
+  <?php if($rowNot["Link"]!=null){?>
+    <a href=<?php echo $rowNot["Link"]?> class="wrapper">Conoce más</a>
 
+<?php
+  }?>
+  
+  
+
+</div>
+
+  </div>
+    
+<?php $i=$i+1;
+    }
+    else{?>
+    <div class="w3-row w3-margin">
+      
+    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
+      <h2 class ="wrapper dep"><?php echo $rowNot["Titulo"]?></h2>
+  <p class ="wrapper" style="padding:15px;">  <?php echo $rowNot["Contenido"]?>  </p>
+  <?php if($rowNot["Link"]!=null){?>
+    <a href=<?php echo $rowNot["Link"]?> style="border-radius:60px;background-color:#41a0d6;padding:5px;">Conoce más</a>
+
+<?php
+  }?>
+
+</div>
+  <div class="w3-third"  style="height:300px; width:300px" > <img class="img-fluid" src="../public/storage/<?php echo $rowNot["Imagen"]?>"  ></div>
+
+  </div>
+<?php $i=$i+1;
+    }
+    
+   }?>
+</div>
+  
+</section>
 
 
   <footer  id="footer">

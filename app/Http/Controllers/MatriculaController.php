@@ -31,7 +31,7 @@ class MatriculaController extends Controller
             'Requisito'=> 'required|string|max:1000',
             'Link' =>'required|string|max:100',
             'Costos' =>'required|string|max:250',
-            'Utiles' =>'required|string|max:250',
+            'Utiles' =>'required|string|max:2000',
             'Uniformes' =>'required|string|max:200',
         ];
         $mensaje=[
@@ -76,7 +76,7 @@ class MatriculaController extends Controller
             'Requisito'=> 'required|string|max:1000',
             'Link' =>'required|string|max:100',
             'Costos' =>'required|string|max:250',
-            'Utiles' =>'required|string|max:250',
+            'Utiles' =>'required|string|max:2000',
             'Uniformes' =>'required|string|max:200',
         ];
         $mensaje=[

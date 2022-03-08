@@ -2,7 +2,8 @@
     include("conexion.php");
     
     //SQL para conocer los ultimos 3 registros modificados de las noticias en la base de datos
-    $filo ="SELECT * FROM `colegios` WHERE TipoInfo='Filosofía';";
+    $exalumno ="SELECT * FROM `egresados` ORDER by updated_at desc";
+    
 
 
 
@@ -110,68 +111,104 @@
 
 </section>
 
-
 <section>
 <div >
       <img class="img-fluid" src="../public/storage/uploads/WBVuvVTvAABKwWBmwRm3l3lACK4VJII46gXJglcE.jpg" alt="" width="2000" height="1500">
     </div>
 </section>
 
-<nav class="navbar navbar-expand-sm bg-light justify-content-center navcol" >
-  <ul class="navbar-nav navcol">
-    <li class="nav-item itemcol" >
-      <a class="nav-link linkcol" href="mision.php">MISION</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="vision.php">VISION</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="filosofia.php">FILOSOFIA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="simbolos.php">SIMBOLOS</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="org.php">ORGANIGRAMA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="finob.php">FINES Y OBJETIVOS</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="valores.php">VALORES</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="estped.php">ESTRATEGIA PEDAGOGICA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="mancon.php">MANUAL DE CONVIVENCIA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="gescal.php">GESTION DE CALIDAD</a>
-    </li>
-
-  </ul>
-</nav>
-
 <section>
-<?php $filo = mysqli_query($mysqli,$filo); 
-
-  while($rowNot=mysqli_fetch_assoc($filo)){?>
-
-
-  <div class="title"><?php echo $rowNot["TipoInfo"]?></div>
-  <div style="padding-left:70px;padding-right:70px;background:#00477e;">
-  <div style="height:100%; width:100%;background:#00477e;">
-  <p class ="text">
-  <?php echo $rowNot["Informacion"]?>
-  </p>
-  </div></div>
-  <div class="imgCol"> <img class="img-fluid imgCol" src="../public/storage/<?php echo $rowNot["Imagen"]?>" style=" height:600px; width:600px; "></div>
-  <?php 
-  }?>
+  <div class="title">EGRESADOS</div>
   </section>
+<section>
+  
+  <div class="w3-container">
+    
+    <?php $exalumno = mysqli_query($mysqli,$exalumno); 
+  $i=0; 
+  while($rowNot=mysqli_fetch_assoc($exalumno)){
+    if($i%2==0){?>
+    <div class="w3-row w3-margin">
+      <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../public/storage/<?php echo $rowNot["Foto"]?>"  ></div>
+    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
+      <h2 class ="wrapper dep"><?php echo $rowNot["Nombre"]?></h2>
+      <h5 class="wrapper">AÑO DE GRADUACION</h5>
+      <div style="padding:2px"></div>
+  <p class ="wrapper">
+  <?php echo $rowNot["AñoGrado"]?>
+  </p><div style="padding:2px"></div>
+  <h5 class="wrapper">AFINIDAD</h5>
+  <div style="padding:2px"></div>
+  <p class ="wrapper">
+  <?php echo $rowNot["Afinidad"]?>
+  </p><div style="padding:2px"></div>
+  <h5 class="wrapper">EXPERIENCIA</h5>
+  <div style="padding:2px"></div>
+  <p class ="wrapper">
+  <?php echo $rowNot["Descripcion"]?>
+  </p><div style="padding:2px"></div>
+  
+  
 
+</div>
 
+  </div>
+    
+<?php $i=$i+1;
+    }
+    else{?>
+    <div class="w3-row w3-margin">
+      
+    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
+      <h2 class ="wrapper dep"><?php echo $rowNot["Nombre"]?></h2>
+      <p class ="wrapper"> 
+      <h5 class="wrapper">AÑO DE GRADUACION</h5>
+      <div style="padding:2px"></div>
+  <p class ="wrapper">
+  <?php echo $rowNot["AñoGrado"]?>
+  </p><div style="padding:2px"></div>
+  <h5 class="wrapper">AFINIDAD</h5>
+  <div style="padding:2px"></div>
+  <p class ="wrapper">
+  <?php echo $rowNot["Afinidad"]?>
+  </p><div style="padding:2px"></div>
+  <h5 class="wrapper">EXPERIENCIA</h5>
+  <div style="padding:2px"></div>
+  <p class ="wrapper">
+  <?php echo $rowNot["Descripcion"]?>
+  </p><div style="padding:2px"></div>
+</div>
+  <div class="w3-third"  style="height:300px; width:300px" > <img class="img-fluid" src="../public/storage/<?php echo $rowNot["Foto"]?>"  ></div>
+
+  </div>
+<?php $i=$i+1;
+    }
+    
+   }?>
+</div>
+  
+</section>
+
+<section class=""style="background:rgb(100, 200, 255);text-align:center;" >
+<h2 style="color:black;">¿Hiciste parte de nosotros?, Cuentanos tu experiencia</h2>
+<div style="text-align:center;">
+
+<form class="formex" action="/action_page.php">
+  <label for="fname">¿en qué año te graduaste?</label><br>
+  <input type="text" id="fname" name="fname"><br>
+  <label for="lname">¿Cúal es tu nombre?</label><br>
+  <input type="text" id="lname" name="lname"><br><br>
+  <label for="lname">¿Cúal es tu afinidad?</label><br>
+  <input type="text" id="lname" name="lname"><br><br>
+  <label for="lname">Cuentanos sobre ti y tu experiencia</label><br>
+  <input type="text" id="lname" name="lname"><br><br>
+  <label for="lname">¿Deseas subir alguna foto?</label><br>
+  <input type="file" id="lname" name="lname"><br><br>
+  <button type="submit">Enviar</button>
+</form>
+</div>
+
+</section>
 
   <footer  id="footer">
     <div class="w3-row-padding">
