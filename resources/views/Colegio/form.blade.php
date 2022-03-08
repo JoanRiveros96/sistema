@@ -19,13 +19,19 @@
                 <input type="radio" name="TipoInfo" id="TipoInfo" value="Misión"> Misión <br>
                 <input type="radio" name="TipoInfo" id="TipoInfo" value="Visión"> Visión <br>
                 <input type="radio" name="TipoInfo" id="TipoInfo" value="Filosofía"> Filosofía <br>
-                <input type="radio" name="TipoInfo" id="TipoInfo" value="Símbolos"> Símbolos <br>
-                <input type="radio" name="TipoInfo" id="TipoInfo" value="Organigrama"> Email <br>
-                <input type="radio" name="TipoInfo" id="TipoInfo" value="Fines y Objetivos"> Fines y Objetivos <br>
-                <input type="radio" name="TipoInfo" id="TipoInfo" value="Valores"> Valores <br>
+                <input type="radio" name="TipoInfo" id="TipoInfo" value="HIMNO DEL COLEGIO INTEGRADO NUESTRA SEÑORA DEL DIVINO AMOR"> HIMNO DEL COLEGIO INTEGRADO NUESTRA SEÑORA DEL DIVINO AMOR <br>
+                <input type="radio" name="TipoInfo" id="TipoInfo" value="Bandera del Colegio"> Bandera del colegio <br>
+                <input type="radio" name="TipoInfo" id="TipoInfo" value="Escudo del Colegio"> Escudo del Colegio <br>
+                <input type="radio" name="TipoInfo" id="TipoInfo" value="Organigrama"> Organigrama <br>
+                <input type="radio" name="TipoInfo" id="TipoInfo" value="Fines y Objetivos Institucionales"> Fines y Objetivos Institucionales <br>
+                <input type="radio" name="TipoInfo" id="TipoInfo" value="Valores y Principios pedagógicos"> Valores y Principios pedagógicos <br>
                 <input type="radio" name="TipoInfo" id="TipoInfo" value="Estrategia Pedagógica"> Estrategia Pedagógica <br>
                 <input type="radio" name="TipoInfo" id="TipoInfo" value="Manual de Convivencia"> Manual de Convivencia <br>
-                <input type="radio" name="TipoInfo" id="TipoInfo" value="Gestión de calidad"> Gestión de calidad <br>
+                <input type="radio" name="TipoInfo" id="TipoInfo" value="Gestión y Política de calidad"> Gestión y Política de calidad <br>
+                <input type="radio" name="TipoInfo" id="TipoInfo" value="Perfil del estudiante"> Perfil del estudiante <br>
+                <input type="radio" name="TipoInfo" id="TipoInfo" value="Perfil Docente"> Perfil Docente <br>
+                <input type="radio" name="TipoInfo" id="TipoInfo" value="Fundamentos Evaluativos"> Fundamentos Evaluativos <br>
+                <input type="radio" name="TipoInfo" id="TipoInfo" value="Horario de atención a Padres"> Horario de atención a Padres <br>
            
 </div>
 

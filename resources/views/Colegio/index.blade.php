@@ -48,8 +48,8 @@
                 <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$colegio->Imagen }}"  width="200" alt="">
                 
             </td>
-
-            <td>{{$colegio ->Link}}</td>
+            <td><a href="{{$colegio->Link}}">{{$colegio->Link}}</a></td>
+            
             
             <td>
                 

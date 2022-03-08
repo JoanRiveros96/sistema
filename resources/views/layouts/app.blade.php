@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>COINSDA</title>
+    <title>ADMIN COINSDA</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="http://localhost/sistema/storage/app/public/web/escudo.png" type="image/x-icon" />
+<link rel="icon" href="{{asset('storage/web/escudo.png')}}" type="image/x-icon" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -104,7 +104,7 @@ img{
 
   <div class="w3-display-container w3-highway-blue" style="height:300px;">
   <div class="w3-display-topleft"><button id="openNav" class="w3-button w3-highway-blue w3-xlarge" onclick="w3_open()">&#9776;</button></div>
-      <div class="w3-display-left" style="margin-left:10%"><img class="img-thumbnail img-fluid w3-highway-blue w3-border-0" alt="" src="http://localhost/sistema/storage/app/public/web/escudo.png"></div>
+      <div class="w3-display-left" style="margin-left:10%"><img class="img-thumbnail img-fluid w3-highway-blue w3-border-0" alt="" src="{{asset('storage/web/escudo.png')}}"></div>
       <div class="w3-display-middle"><h1 class="w3-center " style="font:bold">Colegio Integrado Nuestra Señora del Divino Amor </h1></div>
   </div> 
 

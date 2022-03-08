@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comunicado extends Model
 {
     public $fillable = [
-        'Fecha','Usuario','Titulo','Contenido','Imagen'
+        'Fecha','Usuario','Titulo','Contenido','Imagen','Link',
         
     ];
     public $timestamps = true;

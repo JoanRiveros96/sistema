@@ -39,10 +39,8 @@
     <tbody>
         @foreach($programadors as $programador)
         <tr>
-            
-            
-            
-            <td>{{$programador ->Link}}</td>
+
+            <td><a href="{{$programador->Link}}">{{$programador->Link}}</a></td>
             <td>{{$programador ->Descripcion}}</td>
             
             

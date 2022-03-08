@@ -17,7 +17,7 @@ class HistoriaController extends Controller
     public function index()
     {
         //
-        $datos['historias']=Historia::paginate(5);
+        $datos['historias']=Historia::paginate(10);
         return view('historia.index',$datos);
     }
 
@@ -38,7 +38,7 @@ class HistoriaController extends Controller
         $campos=[
             
             'Año'=>'required|integer|max:2021',
-            'Informacion'=> 'required|string|max:1000',
+            'Informacion'=> 'required|string|max:2000',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
         ];
         $mensaje=[
@@ -87,7 +87,7 @@ class HistoriaController extends Controller
         $campos=[
             
             'Año'=>'required|integer|max:2021',
-            'Informacion'=> 'required|string|max:1000',
+            'Informacion'=> 'required|string|max:2000',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             
         ];

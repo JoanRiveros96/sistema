@@ -45,7 +45,7 @@
             
             <th>{{$matricula ->Fecha}}</th>
             <td>{{$matricula ->Requisito}}</td>
-            <td>{{$matricula ->Link}}</td>
+            <td><a href="{{$matricula->Link}}">{{$matricula->Link}}</a></td>
             <th>{{$matricula ->Costos}}</th>
             <td>{{$matricula ->Utiles}}</td>
             <td>{{$matricula ->Uniformes}}</td>

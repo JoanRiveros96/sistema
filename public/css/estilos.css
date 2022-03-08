@@ -1,0 +1,275 @@
+*{margin:0;padding: 0;
+box-sizing: border-box;}
+
+body{
+background: #fffffa;
+
+
+}
+section div .w3-third img{
+  width: 100%;
+  height: auto;
+}
+@supports(object-fit: cover){
+  section div .w3-third img{
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+section .title{
+  text-align: center;
+  font-size:50px;
+  color: white;
+  background:#00477e;
+  letter-spacing: 50px;
+  text-shadow: 2px 2px 15px #ffffff;
+  padding: 25px;
+  
+
+}
+
+.navdep{
+  
+  background:#00477e ;
+  
+  width: 100%;
+}
+
+.navcol{
+  background:#00477e;
+  height: 100%;
+  width: 100%;
+  
+
+}
+
+
+/* INICIO NAVBAR */
+  
+.navbar {
+    overflow: hidden;
+    background-color: #333; 
+    font-weight: bold;
+  }
+  
+  .navbar a {
+    float: left;
+    font-size: 18px;
+    
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    /* margin-left: 150px; */
+  }
+  
+  .subnav {
+    float: left;
+    overflow: hidden;
+    font-weight: bold;
+    /* margin-left: 120PX; */
+  }
+  
+  .subnav .subnavbtn {
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+  
+  .navbar a:hover, .subnav:hover .subnavbtn {
+    background-color:  #41a0d6;
+    border-radius: 100px;
+    color: white;
+  }
+  
+  .subnav-content {
+    display: none;
+    position:relative;
+    
+    left: 0;
+    
+    
+    
+    z-index: 1;
+  }
+  
+  .subnav-content a {
+    
+    float: left;
+    color: white;
+    text-decoration: none;
+    
+    
+    /* z-index:2; */
+  }
+  
+  .subnav-content li{
+    list-style: none;
+  }
+  .subnav-content a:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    
+    
+  }
+  
+  .subnav:hover .subnav-content {
+    display: block;
+    
+  }
+  /* FIN NAVBAR */
+
+
+
+
+.dep{
+  text-align: center;
+}
+
+.wrapper{
+    width: 100%;
+    max-width: 10000px;
+    margin:auto;
+    overflow: hidden;
+    color: black;
+}
+.plataforma{
+  width: 100%;
+  max-width: 10000px;
+  margin:auto;
+  overflow: hidden;
+  
+  
+}
+
+.Año{
+  width: 100%;
+  max-width: 10000px;
+  font-weight: bold;
+  padding:5px;
+  margin:auto;
+  overflow: hidden;
+  color: white;
+}
+
+.text{
+ 
+  background: #00477e;
+  font-size: 20px;
+  width: 100%;
+  max-width: 10000px;
+  padding:7px;
+  padding-bottom: 15px;
+  margin:auto;
+  overflow: hidden;
+  color: white;
+}
+
+
+.imgCol{
+  background: #00477e;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 15px;
+  
+}
+
+
+footer{
+  padding-top: 15px;
+    background: #1a1f29;
+    color:#ffffff;
+    
+}
+
+
+
+header div a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 40px 20px;
+    line-height: normal;
+    font-size: 20px;
+    font-weight: bold;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.header2 .logo{
+    left: 0px; top: 0px; z-index: 3;
+}
+.header2 .logo img{
+    width:150px; height:150px; 
+}
+/* .header2 .menu{
+    
+    left: 0px; top: 0px; z-index: 2;width: 100%;
+    
+    
+
+} */
+.header2 .navbar{
+    
+    left: 0px; top: 0px; z-index: 2;width: 100%;
+    padding-left: 200px;
+    font-weight: bold;
+    
+    
+}
+
+.header2.navbar a {
+    
+    margin-left: 250px;
+  }
+  
+  .header2 .subnav {
+    
+    margin-left: 0PX;
+  }
+section .header2 .navbar{
+    
+    float:left;
+    line-height: 0px;
+    margin-left: 0px;
+    
+    
+   
+}
+
+
+
+
+@media(max-width:1920px){
+    header .logo{
+        position: absolute;position:fixed; left: 400px; top: 40px; z-index: 2;
+    }
+    header .logo img{
+        width:150px; height:150px;border-radius:200px;background: #00477e
+    }
+    header .navbar{
+        position: absolute;position:fixed; left: 543px; top: 100px; z-index: 2;border-radius:10px;background: #00477e;
+    }
+    
+    
+}
+@media(max-width:1400px){
+    header .logo{
+        position: absolute;position:fixed; left: 100px; top: 40px; z-index: 2;
+    }
+    header .logo img{
+        width:150px; height:150px;border-radius:200px;background: #00477e
+    }
+    header .navbar{
+        position: absolute;position:fixed; left: 243px; top: 100px; z-index: 2;border-radius:10px;background: #00477e;
+    }
+    
+}
+@media(max-width:726px){}

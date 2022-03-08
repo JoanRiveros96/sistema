@@ -33,7 +33,7 @@
             <th>Titulo</th>
             <th>Contenido</th>
             <th>Imagen</th>
-            
+            <th>Link</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -51,7 +51,7 @@
                 
             </td>
 
-            
+            <td><a href="{{$comunicado->Link}}">{{$comunicado->Link}}</a></td>
             
             
             <td>

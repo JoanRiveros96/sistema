@@ -22,6 +22,7 @@ class CreateComunicadosTable extends Migration
             $table->string('Titulo');
             $table->string('Contenido');
             $table->string('Imagen');
+            $table->string('Link');
 
             $table->timestamps();
         });

@@ -42,7 +42,8 @@
             
             <th>{{$admision ->Fecha}}</th>
             <td>{{$admision ->Requisito}}</td>
-            <td>{{$admision ->Link}}</td>
+            <td><a href="{{$admision->Link}}">{{$admision->Link}}</a></td>
+            
             
            
             

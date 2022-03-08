@@ -50,8 +50,8 @@
                 <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$evento->Imagen }}"  width="200" alt="">
                 
             </td>
-
-            <td>{{$evento ->Link}}</td>
+            <td><a href="{{$evento->Link}}">{{$evento->Link}}</a></td>
+            
             
             
             

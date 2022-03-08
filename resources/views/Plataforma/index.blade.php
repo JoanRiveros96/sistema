@@ -41,8 +41,9 @@
             
             
             <th>{{$plataforma ->Titulo}}</th>
-            <td>{{$plataforma ->Descripcion}}</td>        
-            <td>{{$plataforma ->Link}}</td>
+            <td>{{$plataforma ->Descripcion}}</td>
+            <td><a href="{{$plataforma->Link}}">{{$plataforma->Link}}</a></td>        
+            
             
             <td>
                 

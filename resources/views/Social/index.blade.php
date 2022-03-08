@@ -41,7 +41,8 @@
             
            
             <th>{{$social ->TipoRed}}</th>
-            <td>{{$social ->Link}}</td>
+            <td><a href="{{$social->Link}}">{{$social->Link}}</a></td>
+           
               
             <td>
                 

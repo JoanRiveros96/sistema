@@ -40,6 +40,12 @@
 
 </div>
 
+<div class="form-group">
+<label for="Link"> Link </label>
+<input type="text" class="form-control" name="Link" value="{{isset($comunicado->Link)?$comunicado->Link:old('Link')}}" id="Link">
+
+</div>
+
 <input class="btn btn-success" type="submit" value="{{$modo}} datos" >
 
 <a class="btn btn-primary" href="{{ url('comunicado')}}"> Regresar </a>

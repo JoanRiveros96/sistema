@@ -51,8 +51,8 @@
                 
             </td>
 
+            <td><a href="{{$noticia->Link}}">{{$noticia->Link}}</a></td>
             
-            <td>{{$noticia ->Link}}</td>
             
             <td>
                 

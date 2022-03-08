@@ -45,7 +45,7 @@ class ColegioController extends Controller
         $campos=[
             
             'TipoInfo'=>'required',
-            'Informacion'=> 'required|string|max:1000',
+            'Informacion'=> 'required|string|max:2000',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             'Link'=> 'nullable|string|max:1000',
         ];
