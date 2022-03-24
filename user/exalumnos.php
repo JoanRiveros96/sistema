@@ -3,11 +3,7 @@
     
     //SQL para conocer los ultimos 3 registros modificados de las noticias en la base de datos
     $exalumno ="SELECT * FROM `egresados` ORDER by updated_at desc";
-    
-
-
-
-
+  
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +23,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
 
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src ="../public/js/header.js"></script>
@@ -90,7 +91,7 @@
       
     </div>
   </div> 
-  <a href="#contact">EVENTOS</a>
+  <a href="eventos.php">EVENTOS</a>
   <div class="subnav">
     <button class="subnavbtn">ADMISIONES & MATRICULAS <i class="fa fa-caret-down"></i></button>
     <div class="subnav-content">
@@ -189,23 +190,26 @@
   
 </section>
 
-<section class=""style="background:rgb(100, 200, 255);text-align:center;" >
+<section class=""style="background:rgb(0, 142, 204);text-align:center;" >
 <h2 style="color:black;">¿Hiciste parte de nosotros?, Cuentanos tu experiencia</h2>
 <div style="text-align:center;">
 
-<form class="formex" action="/action_page.php">
-  <label for="fname">¿en qué año te graduaste?</label><br>
-  <input type="text" id="fname" name="fname"><br>
-  <label for="lname">¿Cúal es tu nombre?</label><br>
-  <input type="text" id="lname" name="lname"><br><br>
-  <label for="lname">¿Cúal es tu afinidad?</label><br>
-  <input type="text" id="lname" name="lname"><br><br>
-  <label for="lname">Cuentanos sobre ti y tu experiencia</label><br>
-  <input type="text" id="lname" name="lname"><br><br>
-  <label for="lname">¿Deseas subir alguna foto?</label><br>
-  <input type="file" id="lname" name="lname"><br><br>
+
+    <form class="formex" action="enviar.php" method="post" enctype="multipart/form-data">
+  <label for="AñoGrado">¿en qué año te graduaste?</label><br>
+  <input type="text" id="AñoGrado" name="AñoGrado"><br>
+  <label for="Nombre">¿Cúal es tu nombre?</label><br>
+  <input type="text" id="Nombre" name="Nombre"><br><br>
+  <label for="Afinidad">¿Cúal es tu afinidad?</label><br>
+  <input type="text" id="Afinidad" name="Afinidad"><br><br>
+  <label for="Descripcion">Cuentanos sobre ti y tu experiencia</label><br>
+  <input type="text" id="Descripcion" name="Descripcion"><br><br>
+  <label for="Foto">¿Deseas subir alguna foto?</label><br>
+  <input type="file" id="Foto" name="Foto"><br><br>
   <button type="submit">Enviar</button>
 </form>
+
+</div>
 </div>
 
 </section>

@@ -90,7 +90,7 @@
       
     </div>
   </div> 
-  <a href="#contact">EVENTOS</a>
+  <a href="eventos.php">EVENTOS</a>
   <div class="subnav">
     <button class="subnavbtn">ADMISIONES & MATRICULAS <i class="fa fa-caret-down"></i></button>
     <div class="subnav-content">

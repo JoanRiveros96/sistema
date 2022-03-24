@@ -156,11 +156,13 @@ class ColegioController extends Controller
     {
         //
         $colegio = Colegio::findOrFail($id);
+        Colegio::where('id','=',$id)->update(['Activo'=>0]);
         
-        if(Storage::delete('public/'.$colegio->Imagen)){     
-            Colegio::destroy($id);            
-        }else{Colegio::destroy($id);          
-        }
+        
+        // if(Storage::delete('public/'.$colegio->Imagen)){     
+        //     Colegio::destroy($id);            
+        // }else{Colegio::destroy($id);          
+        // }
         
         
         return redirect('colegio')->with('mensaje','Informacion del Colegio borrada');

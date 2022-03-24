@@ -92,7 +92,7 @@
       
     </div>
   </div> 
-  <a href="#contact">EVENTOS</a>
+  <a href="eventos.php">EVENTOS</a>
   <div class="subnav">
     <button class="subnavbtn">ADMISIONES & MATRICULAS <i class="fa fa-caret-down"></i></button>
     <div class="subnav-content">
@@ -155,23 +155,64 @@
 
   </ul>
 </nav>
-
 <section>
-<?php $filo = mysqli_query($mysqli,$filo); 
+  <div class="title">SIMBOLOS</div>
+  </section>
+<section >
+  
+<div id="simbolos" style="width:50%; height:1031px;float:left;">
+<?php
+    $himno = mysqli_query($mysqli,$himno);
 
-  while($rowNot=mysqli_fetch_assoc($filo)){?>
+    while($row=mysqli_fetch_assoc($himno)){?>
+    <h2 id="simbolos" style=";padding:50px 50px;" ><?php echo $row["TipoInfo"]?></h2>
+      
+      <p id="simbolos"style="padding:10px 240px;"> <?php echo $row["Informacion"]?></p>
+
+      <?php
+    }
 
 
-  <div class="title"><?php echo $rowNot["TipoInfo"]?></div>
-  <div style="padding-left:70px;padding-right:70px;background:#00477e;">
-  <div style="height:100%; width:100%;background:#00477e;">
-  <p class ="text">
-  <?php echo $rowNot["Informacion"]?>
-  </p>
-  </div></div>
-  <div class="imgCol"> <img class="img-fluid imgCol" src="../public/storage/<?php echo $rowNot["Imagen"]?>" style=" height:600px; width:600px; "></div>
-  <?php 
-  }?>
+?>
+</div>
+
+
+<div id="simbolos" style="width:50%; height:1031px;float:left;">
+<?php
+    $bandera = mysqli_query($mysqli,$bandera);
+
+    while($row=mysqli_fetch_assoc($bandera)){?>
+    <h2 id="simbolos" style="padding:50px 50px;" ><?php echo $row["TipoInfo"]?></h2>
+      
+      <p id="simbolos" > <?php echo $row["Informacion"]?></p>
+  <div id="simbolos"> <img id="simbolos" class="img-fluid imgCol" src="../public/storage/<?php echo $row["Imagen"]?>" style="width:200px; height:200px; "></div>
+      
+      <?php
+    }
+
+
+?>
+
+<?php
+    $escudo = mysqli_query($mysqli,$escudo);
+
+    while($row=mysqli_fetch_assoc($escudo)){?>
+    <h2 id="simbolos" style="padding:50px 50px;" ><?php echo $row["TipoInfo"]?></h2>
+      
+      <p id="simbolos"> <?php echo $row["Informacion"]?></p>
+  <div > <img id="simbolos" class="img-fluid imgCol" src="../public/storage/<?php echo $row["Imagen"]?>" style="width:200px; height:200px; "></div>
+      
+      <?php
+    }
+
+
+?>
+
+
+
+</div>
+
+
   </section>
 
 

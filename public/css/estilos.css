@@ -250,6 +250,17 @@ section .circulares{
   
 }
 
+#simbolos{
+  background: rgb(1, 109, 197);
+  font-size: 20px;
+  width: 100%;
+  max-width: 10000px;
+  padding:7px;
+  padding-bottom: 15px;
+  margin:auto;
+  overflow: hidden;
+  color: white;
+}
 
 footer{
   padding-top: 15px;
@@ -312,7 +323,51 @@ section .header2 .navbar{
     
    
 }
+ 
+.pagination{
+  display:flex;
+  justify-content: center;
+}
 
+ .pagination a {
+  color: black;
+  
+  float: left;
+  padding: 8px 16px ;
+  border: 1px solid black;
+  
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+ 
+
+ .pagination a:hover:not(.active) {background-color: #00477e;}
+
+
+ .eventos {
+   padding: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse:separate;
+  width: 100%;
+}
+
+.eventos td, .eventos th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.eventos tr:nth-child(even){background-color: #f2f2f2;}
+
+.eventos tr:hover {background-color: #ddd;}
+
+.eventos th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #00477e;
+  color: white;
+}
 
 
 

@@ -89,7 +89,7 @@
       
     </div>
   </div> 
-  <a href="#contact">EVENTOS</a>
+  <a href="eventos.php">EVENTOS</a>
   <div class="subnav">
     <button class="subnavbtn">ADMISIONES & MATRICULAS <i class="fa fa-caret-down"></i></button>
     <div class="subnav-content">
@@ -166,6 +166,7 @@
   <?php echo $rowNot["Informacion"]?>
   </p>
   </div></div>
+  
   <div class="imgCol"> <img class="img-fluid imgCol" src="../public/storage/<?php echo $rowNot["Imagen"]?>" style=" height:600px; width:600px; "></div>
   <?php 
   }?>
