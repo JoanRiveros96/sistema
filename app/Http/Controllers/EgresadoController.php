@@ -12,21 +12,21 @@ class EgresadoController extends Controller
     public function index()
     {
         $datos['egresados']=Egresado::paginate(5);
-        return view('egresado.index',$datos);
+        return view('Egresado.index',$datos);
     }
 
     public function create()
     {
-        return view('egresado.create');
+        return view('Egresado.create');
     }
 
     public function store(Request $request)
     {
         $campos=[
             'AñoGrado'=>'required|string|max:4',
-            'Nombre'=>'required|string|max:150',
-            'Afinidad'=> 'required|string|max:100',
-            'Descripcion'=> 'required|string|max:200',
+            'Nombre'=>'required|string',
+            'Afinidad'=> 'required|string',
+            'Descripcion'=> 'required|string',
             'Foto' =>'max:10000|mimes:jpeg,png,jpg',
             
             
@@ -70,7 +70,7 @@ class EgresadoController extends Controller
         
         $egresado = Egresado::findOrFail($id);
 
-        return view('egresado.edit',compact('egresado'));
+        return view('Egresado.edit',compact('egresado'));
     }
 
     public function update(Request $request, $id)
@@ -78,9 +78,9 @@ class EgresadoController extends Controller
         $campos=[
             
             'AñoGrado'=>'required|string|max:4',
-            'Nombre'=>'required|string|max:150',
-            'Afinidad'=> 'required|string|max:100',
-            'Descripcion'=> 'required|string|max:200',
+            'Nombre'=>'required|string',
+            'Afinidad'=> 'required|string',
+            'Descripcion'=> 'required|string',
             'Foto' =>'max:10000|mimes:jpeg,png,jpg',
             
         ];
@@ -115,15 +115,19 @@ class EgresadoController extends Controller
 
     public function destroy($id)
     {
-        
+
         $egresado = Egresado::findOrFail($id);
+        Egresado::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('egresado')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
         
-        if(Storage::delete('public/'.$egresado->Foto)){     
-            Egresado::destroy($id);            
-        }else{Egresado::destroy($id);          
-        }
+        // $egresado = Egresado::findOrFail($id);
+        
+        // if(Storage::delete('public/'.$egresado->Foto)){     
+        //     Egresado::destroy($id);            
+        // }else{Egresado::destroy($id);          
+        // }
         
         
-        return redirect('egresado')->with('mensaje','Egresado borrado');
+        // return redirect('egresado')->with('mensaje','Egresado borrado');
     }
 }

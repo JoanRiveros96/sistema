@@ -7,7 +7,7 @@
 @csrf
 {{method_field('PATCH')}}
 
-@include('comunicado.form',['modo'=>'Editar'])
+@include('Comunicado.form',['modo'=>'Editar'])
 
 </form>
 </div>

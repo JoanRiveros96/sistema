@@ -41,7 +41,7 @@
         
 
             <td>
-                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$empleado->Foto }}"  width="200" alt="">
+                <img class="img-thumbnail img-fluid" src="../storage/app/public/{{$empleado->Foto}}"  width="200" alt="">
                 
             </td>
 

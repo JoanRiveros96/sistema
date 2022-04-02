@@ -13,12 +13,12 @@ class AdmisionController extends Controller
     public function index()
     {
         $datos['admisiones']=Admision::paginate(5);
-        return view('admision.index',$datos);
+        return view('Admision.index',$datos);
     }
 
     public function create()
     {
-        return view('admision.create');
+        return view('Admision.create');
     }
 
     
@@ -27,8 +27,8 @@ class AdmisionController extends Controller
         $campos=[
             
             'Fecha'=>'required|date',
-            'Requisito'=> 'required|string|max:1000',
-            'Link' =>'required|string|max:100',
+            'Requisito'=> 'required|string',
+            'Link' =>'required|string',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -61,7 +61,7 @@ class AdmisionController extends Controller
     {
         $admision = Admision::findOrFail($id);
 
-        return view('admision.edit',compact('admision'));
+        return view('Admision.edit',compact('admision'));
     }
 
     
@@ -70,8 +70,8 @@ class AdmisionController extends Controller
         $campos=[
             
             'Fecha'=>'required|date',
-            'Requisito'=> 'required|string|max:1000',
-            'Link' =>'required|string|max:100',
+            'Requisito'=> 'required|string',
+            'Link' =>'required|string',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -93,8 +93,12 @@ class AdmisionController extends Controller
    
     public function destroy($id)
     {
+
         $admision = Admision::findOrFail($id);
-        Admision::destroy($id);
-        return redirect('admision')->with('mensaje','Admision borrada');
+        Admision::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('admision')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+        // $admision = Admision::findOrFail($id);
+        // Admision::destroy($id);
+        
     }
 }

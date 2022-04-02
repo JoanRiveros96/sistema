@@ -113,11 +113,13 @@ img{
   <main class="py-4">
             @yield('content')
         </main>
+
+        <iframe src="../resources/views/footer.php" style ="width:100%; height:850px"></iframe>
         
         <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
     <div class="w3-row-padding">
 
-      <div class="w3-col s4 w3-justify w3-left"   style="margin-left:30%">
+      <div class="w3-col s4 w3-justify w3-left">
         <h3>COINSDA</h3>
         <p><i class="fa fa-fw fa-map-marker"></i> Colegio Integrado Nuestra Señora del Divino Amor</p>
         <p><i class="fa fa-fw fa-phone"></i> Tel 644 9178 </p>

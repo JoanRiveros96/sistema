@@ -7,7 +7,7 @@
 <form action="{{url('/banner')}}" method="post"enctype="multipart/form-data">
 @csrf 
 
-@include('banner.form',['modo'=>'Crear'])
+@include('Banner.form',['modo'=>'Crear'])
 
 
 

@@ -12,21 +12,21 @@ class EventoController extends Controller
     public function index()
     {
         $datos['eventos']=Evento::paginate(10);
-        return view('evento.index',$datos);
+        return view('Evento.index',$datos);
     }
 
     public function create()
     {
-        return view('evento.create');
+        return view('Evento.create');
     }
 
     public function store(Request $request)
     {
         $campos=[
             'Fecha'=>'required|date',
-            'Titulo'=>'required|string|max:100',
-            'Descripcion'=> 'required|string|max:200',
-            'Link'=>'nullable|string|max:100',
+            'Titulo'=>'required|string',
+            'Descripcion'=> 'required|string',
+            'Link'=>'nullable|string',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -70,7 +70,7 @@ class EventoController extends Controller
     {
         $evento = Evento::findOrFail($id);
 
-        return view('evento.edit',compact('evento'));
+        return view('Evento.edit',compact('evento'));
     }
 
     
@@ -78,9 +78,9 @@ class EventoController extends Controller
     {
         $campos=[
             'Fecha'=>'required|date',
-            'Titulo'=>'required|string|max:100',
-            'Descripcion'=> 'required|string|max:200',
-            'Link'=>'nullable|string|max:100',
+            'Titulo'=>'required|string',
+            'Descripcion'=> 'required|string',
+            'Link'=>'nullable|string',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -113,14 +113,19 @@ class EventoController extends Controller
 
     public function destroy($id)
     {
+
         $evento = Evento::findOrFail($id);
+        Evento::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('evento')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+
+        // $evento = Evento::findOrFail($id);
         
-        if(Storage::delete('public/'.$evento->Imagen)){     
-            Evento::destroy($id);            
-        }else{Evento::destroy($id);          
-        }
+        // if(Storage::delete('public/'.$evento->Imagen)){     
+        //     Evento::destroy($id);            
+        // }else{Evento::destroy($id);          
+        // }
         
         
-        return redirect('evento')->with('mensaje','Evento borrado');
+        // return redirect('evento')->with('mensaje','Evento borrado');
     }
 }

@@ -18,7 +18,7 @@ class BannerController extends Controller
     {
         //
         $datos['banners']=Banner::paginate(5);
-        return view('banner.index',$datos);
+        return view('Banner.index',$datos);
     }
 
     /**
@@ -29,7 +29,7 @@ class BannerController extends Controller
     public function create()
     {
         //
-        return view('banner.create');
+        return view('Banner.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class BannerController extends Controller
             
             
             'Imagen' =>'required|max:10000|mimes:jpeg,png,jpg',
-            'Link'=>'nullable|string|max:100',
+            'Link'=>'nullable|string',
         
 
         ];
@@ -94,7 +94,7 @@ class BannerController extends Controller
         //
         $banner = Banner::findOrFail($id);
 
-        return view('banner.edit',compact('banner'));
+        return view('Banner.edit',compact('banner'));
     }
 
     /**
@@ -109,7 +109,7 @@ class BannerController extends Controller
         //
         $campos=[
             
-            'Link'=>'required|string|max:100',
+            'Link'=>'required|string',
             
         ];
         $mensaje=[
@@ -149,13 +149,15 @@ class BannerController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $banner = Banner::findOrFail($id);
 
-        if(Storage::delete('public/'.$banner->Imagen)){
-            Banner::destroy($id);
-        }
-        
-        return redirect('banner')->with('mensaje','Banner borrado');
+        $banner = Banner::findOrFail($id);
+        Banner::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('banner')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+        //
+        // $banner = Banner::findOrFail($id);
+        // if(Storage::delete('public/'.$banner->Imagen)){
+        //     Banner::destroy($id);
+        // }
+        // return redirect('banner')->with('mensaje','Banner borrado');
     }
 }

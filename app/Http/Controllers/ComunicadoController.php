@@ -18,7 +18,7 @@ class ComunicadoController extends Controller
     {
         //
         $datos['comunicados']=Comunicado::paginate(5);
-        return view('comunicado.index',$datos);
+        return view('Comunicado.index',$datos);
     }
 
     /**
@@ -29,7 +29,7 @@ class ComunicadoController extends Controller
     public function create()
     {
         //
-        return view('comunicado.create');
+        return view('Comunicado.create');
     }
 
     /**
@@ -43,10 +43,10 @@ class ComunicadoController extends Controller
         //
         $campos=[
             'Fecha'=>'required|date',
-            'Titulo'=>'required|string|max:100',
-            'Contenido'=> 'required|string|max:1000',
+            'Titulo'=>'required|string',
+            'Contenido'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=> 'nullable|string|max:100',
+            'Link'=> 'nullable|string',
             
         
 
@@ -102,7 +102,7 @@ class ComunicadoController extends Controller
         //
         $comunicado = Comunicado::findOrFail($id);
 
-        return view('comunicado.edit',compact('comunicado'));
+        return view('Comunicado.edit',compact('comunicado'));
     }
 
     /**
@@ -118,10 +118,10 @@ class ComunicadoController extends Controller
         $campos=[
             
             'Fecha'=>'required|date',
-            'Titulo'=>'required|string|max:100',
-            'Contenido'=> 'required|string|max:1000',
+            'Titulo'=>'required|string',
+            'Contenido'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=>'nullable|string|max:100',
+            'Link'=>'nullable|string',
             
         ];
         $mensaje=[
@@ -161,15 +161,19 @@ class ComunicadoController extends Controller
      */
     public function destroy($id)
     {
-        //
+
         $comunicado = Comunicado::findOrFail($id);
+        Comunicado::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('comunicado')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+        //
+        // $comunicado = Comunicado::findOrFail($id);
         
-        if(Storage::delete('public/'.$comunicado->Imagen)){
-            Comunicado::destroy($id);
-            return redirect('comunicado')->with('mensaje','Comunicado borrado');
-        }
+        // if(Storage::delete('public/'.$comunicado->Imagen)){
+        //     Comunicado::destroy($id);
+        //     return redirect('comunicado')->with('mensaje','Comunicado borrado');
+        // }
         
         
-        return redirect('comunicado');
+        // return redirect('comunicado');
     }
 }

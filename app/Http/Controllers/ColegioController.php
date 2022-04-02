@@ -18,7 +18,7 @@ class ColegioController extends Controller
     {
         //
         $datos['colegios']=Colegio::paginate(5);
-        return view('colegio.index',$datos);
+        return view('Colegio.index',$datos);
     }
 
     /**
@@ -29,7 +29,7 @@ class ColegioController extends Controller
     public function create()
     {
         //
-        return view('colegio.create');
+        return view('Colegio.create');
     }
 
     /**
@@ -45,9 +45,9 @@ class ColegioController extends Controller
         $campos=[
             
             'TipoInfo'=>'required',
-            'Informacion'=> 'required|string|max:2000',
+            'Informacion'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=> 'nullable|string|max:1000',
+            'Link'=> 'nullable|string',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -96,7 +96,7 @@ class ColegioController extends Controller
         //
         $colegio = Colegio::findOrFail($id);
 
-        return view('colegio.edit',compact('colegio'));
+        return view('Colegio.edit',compact('colegio'));
     }
 
     /**
@@ -112,9 +112,9 @@ class ColegioController extends Controller
         $campos=[
             
             'TipoInfo'=>'required',
-            'Informacion'=> 'required|string|max:1000',
+            'Informacion'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=> 'nullable|string|max:1000',
+            'Link'=> 'nullable|string',
             
         ];
         $mensaje=[

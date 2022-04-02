@@ -18,7 +18,7 @@ class FooterController extends Controller
     {
         //
         $datos['footers']=Footer::paginate(5);
-        return view('footer.index',$datos);
+        return view('Footer.index',$datos);
     }
 
     /**
@@ -29,7 +29,7 @@ class FooterController extends Controller
     public function create()
     {
         //
-        return view('footer.create');
+        return view('Footer.create');
     }
 
     /**
@@ -44,7 +44,7 @@ class FooterController extends Controller
         $campos=[
             
             'TipoFoot'=>'required',
-            'Contenido'=> 'required|string|max:1000',
+            'Contenido'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
         ];
         $mensaje=[
@@ -94,7 +94,7 @@ class FooterController extends Controller
         //
         $footer = Footer::findOrFail($id);
 
-        return view('footer.edit',compact('footer'));
+        return view('Footer.edit',compact('footer'));
     }
 
     /**
@@ -110,7 +110,7 @@ class FooterController extends Controller
         $campos=[
             
             'TipoFoot'=>'required',
-            'Contenido'=> 'required|string|max:1000',
+            'Contenido'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             
         ];
@@ -151,15 +151,19 @@ class FooterController extends Controller
      */
     public function destroy($id)
     {
-        //
+
         $footer = Footer::findOrFail($id);
+        Footer::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('footer')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+        // //
+        // $footer = Footer::findOrFail($id);
         
-        if(Storage::delete('public/'.$footer->Imagen)){     
-            Footer::destroy($id);            
-        }else{Footer::destroy($id);          
-        }
+        // if(Storage::delete('public/'.$footer->Imagen)){     
+        //     Footer::destroy($id);            
+        // }else{Footer::destroy($id);          
+        // }
         
         
-        return redirect('footer')->with('mensaje','Footer borrado');
+        // return redirect('footer')->with('mensaje','Footer borrado');
     }
 }

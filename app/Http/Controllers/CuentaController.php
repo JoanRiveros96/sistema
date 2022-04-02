@@ -17,7 +17,7 @@ class CuentaController extends Controller
     public function index()
     {
         $datos['cuentas']=Cuenta::paginate(5);
-        return view('cuenta.index',$datos);
+        return view('Cuenta.index',$datos);
     }
 
     /**
@@ -27,7 +27,7 @@ class CuentaController extends Controller
      */
     public function create()
     {
-        return view('cuenta.create');
+        return view('Cuenta.create');
     }
 
     public function download($id)
@@ -44,8 +44,8 @@ class CuentaController extends Controller
     {
         $campos=[
             'Fecha'=>'required|date',
-            'Titulo'=>'required|string|max:100',
-            'Contenido'=> 'required|string|max:1000',
+            'Titulo'=>'required|string',
+            'Contenido'=> 'required|string',
             'Imagen' =>'required|max:10000|mimes:jpeg,png,jpg',
             'Documento'=> 'nullable|max:10000|mimes:docx,pdf,php',
             
@@ -99,7 +99,7 @@ class CuentaController extends Controller
     {
         $cuenta = Cuenta::findOrFail($id);
 
-        return view('cuenta.edit',compact('cuenta'));
+        return view('Cuenta.edit',compact('cuenta'));
     }
 
     
@@ -107,8 +107,8 @@ class CuentaController extends Controller
     {
         $campos=[
             'Fecha'=>'required|date',
-            'Titulo'=>'required|string|max:100',
-            'Contenido'=> 'required|string|max:1000',
+            'Titulo'=>'required|string',
+            'Contenido'=> 'required|string',
             'Imagen' =>'required|max:10000|mimes:jpeg,png,jpg',
             'Documento'=> 'nullable|max:10000|mimes:docx,pdf,php',
             
@@ -161,16 +161,20 @@ class CuentaController extends Controller
     public function destroy($id)
     {
         $cuenta = Cuenta::findOrFail($id);
+        Cuenta::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('cuenta')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+
+        // $cuenta = Cuenta::findOrFail($id);
         
-        if(Storage::delete('public/'.$cuenta->Imagen)){
-            Cuenta::destroy($id);
+        // if(Storage::delete('public/'.$cuenta->Imagen)){
+        //     Cuenta::destroy($id);
             
-        }if(Storage::delete('public/'.$cuenta->Documento)){
-            Cuenta::destroy($id);
+        // }if(Storage::delete('public/'.$cuenta->Documento)){
+        //     Cuenta::destroy($id);
             
-        }
+        // }
         
         
-        return redirect('cuenta')->with('mensaje','Rendicion de cuentas borrada');
+        // return redirect('cuenta')->with('mensaje','Rendicion de cuentas borrada');
     }
 }

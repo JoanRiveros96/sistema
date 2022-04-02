@@ -254,6 +254,7 @@ section .circulares{
   background: rgb(1, 109, 197);
   font-size: 20px;
   width: 100%;
+  
   max-width: 10000px;
   padding:7px;
   padding-bottom: 15px;
@@ -263,11 +264,14 @@ section .circulares{
 }
 
 footer{
+  
   padding-top: 15px;
     background: #1a1f29;
     color:#ffffff;
     
 }
+
+
 
 
 

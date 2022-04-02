@@ -1,5 +1,6 @@
 <?php
-$mysqli = new mysqli("127.0.0.1", "root", "", "sistema");
+$mysqli = new mysqli("coldivinoamor.com.co", "coldivin", "7)p-z6J4V6hGeG", "coldivin_sistema");
+
 if ($mysqli->connect_errno) {
     echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }

@@ -13,13 +13,13 @@ class ProgramadorController extends Controller
     public function index()
     {
         $datos['programadors']=Programador::paginate(5);
-        return view('programador.index',$datos);
+        return view('Programador.index',$datos);
     }
 
     
     public function create()
     {
-        return view('programador.create');
+        return view('Programador.create');
     }
 
     public function store(Request $request)
@@ -27,8 +27,8 @@ class ProgramadorController extends Controller
         $campos=[
             
                       
-            'Link' =>'required|string|max:100',
-            'Descripcion'=> 'required|string|max:1000',
+            'Link' =>'required|string',
+            'Descripcion'=> 'required|string',
             
         ];
         $mensaje=[
@@ -62,7 +62,7 @@ class ProgramadorController extends Controller
     {
         $programador = Programador::findOrFail($id);
 
-        return view('programador.edit',compact('programador'));
+        return view('Programador.edit',compact('programador'));
     }
 
    
@@ -71,8 +71,8 @@ class ProgramadorController extends Controller
         $campos=[
             
                       
-            'Link' =>'required|string|max:100',
-            'Descripcion'=> 'required|string|max:1000',
+            'Link' =>'required|string',
+            'Descripcion'=> 'required|string',
             
         ];
         $mensaje=[
@@ -95,8 +95,13 @@ class ProgramadorController extends Controller
  
     public function destroy($id)
     {
+
         $programador = Programador::findOrFail($id);
-        Programador::destroy($id);
-        return redirect('programador')->with('mensaje','Programador borrado');
+        Programador::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('programador')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+
+        // $programador = Programador::findOrFail($id);
+        // Programador::destroy($id);
+        // return redirect('programador')->with('mensaje','Programador borrado');
     }
 }

@@ -19,7 +19,7 @@ class NoticiaController extends Controller
     {
         //
         $datos['noticias']=Noticia::paginate(5);
-        return view('noticia.index',$datos);
+        return view('Noticia.index',$datos);
     }
 
     /**
@@ -29,7 +29,7 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        return view('noticia.create');
+        return view('Noticia.create');
     }
 
     /**
@@ -44,10 +44,10 @@ class NoticiaController extends Controller
         //
         $campos=[
             'Fecha'=>'required|date',
-            'Titulo'=>'required|string|max:100',
-            'Contenido'=> 'required|string|max:1000',
+            'Titulo'=>'required|string',
+            'Contenido'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=> 'nullable|string|max:100',
+            'Link'=> 'nullable|string',
             
         
 
@@ -94,7 +94,7 @@ class NoticiaController extends Controller
     {
         $noticia = Noticia::findOrFail($id);
 
-        return view('noticia.edit',compact('noticia'));
+        return view('Noticia.edit',compact('noticia'));
     }
 
     public function update(Request $request, $id)
@@ -103,10 +103,10 @@ class NoticiaController extends Controller
         $campos=[
             
             'Fecha'=>'required|date',
-            'Titulo'=>'required|string|max:100',
-            'Contenido'=> 'required|string|max:1000',
+            'Titulo'=>'required|string',
+            'Contenido'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            'Link'=>'nullable|string|max:100',
+            'Link'=>'nullable|string',
             
         ];
         $mensaje=[
@@ -146,15 +146,19 @@ class NoticiaController extends Controller
      */
     public function destroy($id)
     {
-        //
+
         $noticia = Noticia::findOrFail($id);
+        Noticia::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('noticia')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+        //
+        // $noticia = Noticia::findOrFail($id);
         
-        if(Storage::delete('public/'.$noticia->Imagen)){
-            Noticia::destroy($id);
+        // if(Storage::delete('public/'.$noticia->Imagen)){
+        //     Noticia::destroy($id);
             
-        }else{Noticia::destroy($id);}
+        // }else{Noticia::destroy($id);}
         
         
-        return redirect('noticia')->with('mensaje','Noticia borrada');
+        // return redirect('noticia')->with('mensaje','Noticia borrada');
     }
 }

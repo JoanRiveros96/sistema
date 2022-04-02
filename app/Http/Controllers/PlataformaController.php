@@ -18,7 +18,7 @@ class PlataformaController extends Controller
     {
         //
         $datos['plataformas']=Plataforma::paginate(5);
-        return view('plataforma.index',$datos);
+        return view('Plataforma.index',$datos);
     }
 
     /**
@@ -29,7 +29,7 @@ class PlataformaController extends Controller
     public function create()
     {
         //
-        return view('plataforma.create');
+        return view('Plataforma.create');
     }
 
     /**
@@ -44,8 +44,8 @@ class PlataformaController extends Controller
         $campos=[
             
             'Titulo'=>'required',
-            'Descripcion'=> 'required|string|max:1000',
-            'Link'=> 'required|string|max:1000',
+            'Descripcion'=> 'required|string',
+            'Link'=> 'required|string',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -87,7 +87,7 @@ class PlataformaController extends Controller
         //
         $plataforma = Plataforma::findOrFail($id);
 
-        return view('plataforma.edit',compact('plataforma'));
+        return view('Plataforma.edit',compact('plataforma'));
     }
 
     /**
@@ -103,8 +103,8 @@ class PlataformaController extends Controller
         $campos=[
             
             'TipoInfo'=>'required',
-            'Informacion'=> 'required|string|max:1000',
-            'Link'=> 'nullable|string|max:1000',
+            'Informacion'=> 'required|string',
+            'Link'=> 'nullable|string',
             
         ];
         $mensaje=[
@@ -133,8 +133,11 @@ class PlataformaController extends Controller
     public function destroy($id)
     {       
         $plataforma = Plataforma::findOrFail($id);
-        Plataforma::destroy($id);    
+        Plataforma::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('plataforma')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+        // $plataforma = Plataforma::findOrFail($id);
+        // Plataforma::destroy($id);    
         
-        return redirect('plataforma')->with('mensaje','Plataforma borrada');
+        // return redirect('plataforma')->with('mensaje','Plataforma borrada');
     }
 }

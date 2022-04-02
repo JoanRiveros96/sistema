@@ -13,13 +13,13 @@ class MatriculaController extends Controller
     public function index()
     {
         $datos['matriculas']=Matricula::paginate(5);
-        return view('matricula.index',$datos);
+        return view('Matricula.index',$datos);
     }
 
     
     public function create()
     {
-        return view('matricula.create');
+        return view('Matricula.create');
     }
 
     
@@ -28,11 +28,11 @@ class MatriculaController extends Controller
         $campos=[
             
             'Fecha'=>'required|date',
-            'Requisito'=> 'required|string|max:1000',
-            'Link' =>'required|string|max:100',
-            'Costos' =>'required|string|max:250',
-            'Utiles' =>'required|string|max:2000',
-            'Uniformes' =>'required|string|max:200',
+            'Requisito'=> 'required|string',
+            'Link' =>'required|string',
+            'Costos' =>'required|string',
+            'Utiles' =>'required|string',
+            'Uniformes' =>'required|string',
         ];
         $mensaje=[
             'required'=>'El campo :attribute es requerido',
@@ -65,7 +65,7 @@ class MatriculaController extends Controller
     {
         $matricula = Matricula::findOrFail($id);
 
-        return view('matricula.edit',compact('matricula'));
+        return view('Matricula.edit',compact('matricula'));
     }
 
     public function update(Request $request, $id)
@@ -73,11 +73,11 @@ class MatriculaController extends Controller
         $campos=[
             
             'Fecha'=>'required|date',
-            'Requisito'=> 'required|string|max:1000',
-            'Link' =>'required|string|max:100',
-            'Costos' =>'required|string|max:250',
-            'Utiles' =>'required|string|max:2000',
-            'Uniformes' =>'required|string|max:200',
+            'Requisito'=> 'required|string',
+            'Link' =>'required|string',
+            'Costos' =>'required|string',
+            'Utiles' =>'required|string',
+            'Uniformes' =>'required|string',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -98,8 +98,12 @@ class MatriculaController extends Controller
 
     public function destroy( $id)
     {
+
         $matricula = Matricula::findOrFail($id);
-        Matricula::destroy($id);
-        return redirect('matricula')->with('mensaje','Matricula borrada');
+        Matricula::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('matricula')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+        // $matricula = Matricula::findOrFail($id);
+        // Matricula::destroy($id);
+        // return redirect('matricula')->with('mensaje','Matricula borrada');
     }
 }

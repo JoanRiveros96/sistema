@@ -18,7 +18,7 @@ class HistoriaController extends Controller
     {
         //
         $datos['historias']=Historia::paginate(10);
-        return view('historia.index',$datos);
+        return view('Historia.index',$datos);
     }
 
     /**
@@ -29,7 +29,7 @@ class HistoriaController extends Controller
     public function create()
     {
         //
-        return view('historia.create');
+        return view('Historia.create');
     }
 
     public function store(Request $request)
@@ -37,8 +37,8 @@ class HistoriaController extends Controller
         //
         $campos=[
             
-            'Año'=>'required|integer|max:2021',
-            'Informacion'=> 'required|string|max:2000',
+            'Año'=>'required|integer|max:2022',
+            'Informacion'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
         ];
         $mensaje=[
@@ -77,7 +77,7 @@ class HistoriaController extends Controller
         //
         $historia = Historia::findOrFail($id);
 
-        return view('historia.edit',compact('historia'));
+        return view('Historia.edit',compact('historia'));
     }
 
 
@@ -86,8 +86,8 @@ class HistoriaController extends Controller
         //
         $campos=[
             
-            'Año'=>'required|integer|max:2021',
-            'Informacion'=> 'required|string|max:2000',
+            'Año'=>'required|integer|max:2022',
+            'Informacion'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             
         ];
@@ -124,15 +124,19 @@ class HistoriaController extends Controller
     
     public function destroy($id)
     {
-        //
+
         $historia = Historia::findOrFail($id);
+        Historia::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('historia')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+        //
+        // $historia = Historia::findOrFail($id);
         
-        if(Storage::delete('public/'.$historia->Imagen)){     
-            Historia::destroy($id);            
-        }else{Historia::destroy($id);          
-        }
+        // if(Storage::delete('public/'.$historia->Imagen)){     
+        //     Historia::destroy($id);            
+        // }else{Historia::destroy($id);          
+        // }
         
         
-        return redirect('historia')->with('mensaje','Historia borrada');
+        // return redirect('historia')->with('mensaje','Historia borrada');
     }
 }

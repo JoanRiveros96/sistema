@@ -2,7 +2,7 @@
     include("conexion.php");
     
     //SQL para conocer los ultimos 3 registros modificados de las noticias en la base de datos
-    $contabilidad ="SELECT * FROM `empleados` WHERE Dependencia ='Contabilidad' ";
+    $contabilidad ="SELECT * FROM `empleados`  WHERE Activo = 1 AND Dependencia ='Contabilidad' ";
     
 
 
@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
   <script src ="../public/js/header.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -71,7 +71,7 @@
  
 <div class="navbar">
 
-  <a href="http://localhost/sistema/user/">INICIO</a>
+  <a href="index.php">INICIO</a>
   <div class="subnav">
   
     <button class="subnavbtn">DIVINO AMORE <i class="fa fa-caret-down"></i></button>
@@ -146,7 +146,7 @@
   while($rowNot=mysqli_fetch_assoc($contabilidad)){
     if($i%2==0){?>
     <div class="w3-row w3-margin">
-      <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../public/storage/<?php echo $rowNot["Foto"]?>"  ></div>
+      <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
     <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
       <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"]?></h2>
   <p class ="wrapper">
@@ -173,7 +173,7 @@
 
 
 </div>
-  <div class="w3-third"  style="height:300px; width:300px" > <img class="img-fluid" src="../public/storage/<?php echo $rowNot["Foto"]?>"  ></div>
+  <div class="w3-third"  style="height:300px; width:300px" > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
 
   </div>
 <?php $i=$i+1;
@@ -184,22 +184,7 @@
   
 </section>
 
-
-  <footer  id="footer">
-    <div class="w3-row-padding">
-
-      <div class="w3-col s4 w3-justify w3-left"   style="margin-left:30%">
-        <h3 class="w3-cursive " style="color:white">COINSDA</h3>
-        <p><i class="fa fa-fw fa-map-marker" ></i> Colegio Integrado Nuestra Señora del Divino Amor</p>
-        <p><i class="fa fa-fw fa-phone"></i> Tel 644 9178 </p>
-        <p><i class="fa fa-fw fa-envelope"></i> email: divinoamore@hotmail.com</p>
-        <p><i class="fa fa-fw fa-map-marker"></i>Ubicación</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7693.068112303386!2d-73.13495684229709!3d7.097460624438503!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb4f1d77e53b5aba!2sColegio+Integrado+Nuestra+Se%C3%B1ora+del+Divino+Amor!5e0!3m2!1ses!2sco!4v1537757348958" width="800" height="350" frameborder="0" style="border:0" allowfullscreen></iframe><br><br>
-        <h4><i class="fa fa-fw fa-user" style="margin-left:10%"></i>Desarrollado por: Joan Sebastian Riveros Lozada</h4>
-      </div>
-    </div>
-  </footer>
-
+<iframe src="footer.php" Style="width:100%; height:900px"></iframe>
 
 </body>
 

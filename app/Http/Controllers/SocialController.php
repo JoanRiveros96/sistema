@@ -18,7 +18,7 @@ class SocialController extends Controller
     {
         //
         $datos['socials']=Social::paginate(5);
-        return view('social.index',$datos);
+        return view('Social.index',$datos);
     }
 
     /**
@@ -29,7 +29,7 @@ class SocialController extends Controller
     public function create()
     {
         //
-        return view('social.create');
+        return view('Social.create');
     }
 
     /**
@@ -43,8 +43,8 @@ class SocialController extends Controller
         //
         $campos=[
             
-            'TipoRed'=>'required|string|max:50',
-            'Link'=> 'required|string|max:1000',
+            'TipoRed'=>'required|string',
+            'Link'=> 'required|string',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -85,7 +85,7 @@ class SocialController extends Controller
         //
         $social = Social::findOrFail($id);
 
-        return view('social.edit',compact('social'));
+        return view('Social.edit',compact('social'));
     }
 
     /**
@@ -99,8 +99,8 @@ class SocialController extends Controller
     {
         //
         $campos=[
-            'TipoRed'=>'required|string|max:50',
-            'Link'=> 'required|string|max:1000',
+            'TipoRed'=>'required|string',
+            'Link'=> 'required|string',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -128,11 +128,15 @@ class SocialController extends Controller
      */
     public function destroy($id)
     {
-        //
+
         $social = Social::findOrFail($id);
+        Social::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('social')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+        //
+        // $social = Social::findOrFail($id);
         
         
-            social::destroy($id);
-            return redirect('social')->with('mensaje','Red Social borrada');
+        //     social::destroy($id);
+        //     return redirect('social')->with('mensaje','Red Social borrada');
     }
 }

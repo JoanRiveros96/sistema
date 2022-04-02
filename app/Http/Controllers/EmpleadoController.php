@@ -18,7 +18,7 @@ class EmpleadoController extends Controller
     {
         //
         $datos['empleados']=Empleado::paginate(5);
-        return view('empleado.index',$datos);
+        return view('Empleado.index',$datos);
     }
 
     /**
@@ -29,7 +29,7 @@ class EmpleadoController extends Controller
     public function create()
     {
         //
-        return view('empleado.create');
+        return view('Empleado.create');
     }
 
     /**
@@ -42,9 +42,9 @@ class EmpleadoController extends Controller
     {
         $campos=[
             
-            'Nombre'=>'required|string|max:250',            
+            'Nombre'=>'required|string',            
             'Dependencia' =>'required',
-            'Descripcion' =>'required|string|max:150',
+            'Descripcion' =>'required|string',
             'Correo' => 'required_if:Dependencia,Docente Secundaria',
             'Foto' =>'required|max:10000|mimes:jpeg,png,jpg',
         
@@ -98,7 +98,7 @@ class EmpleadoController extends Controller
         //
         $empleado = Empleado::findOrFail($id);
 
-        return view('empleado.edit',compact('empleado'));
+        return view('Empleado.edit',compact('empleado'));
     }
 
     /**
@@ -113,9 +113,9 @@ class EmpleadoController extends Controller
 
         $campos=[
             
-            'Nombre'=>'required|string|max:250',            
+            'Nombre'=>'required|string',            
             'Dependencia' =>'required',
-            'Descripcion' =>'required|string|max:150',
+            'Descripcion' =>'required|string',
             'Correo' => 'required_if:Dependencia,Docente Secundaria',
             
         
@@ -147,7 +147,7 @@ class EmpleadoController extends Controller
         Empleado::where('id','=',$id)->update($datosEmpleado);
 
         $empleado = Empleado::findOrFail($id);
-        //return view('empleado.edit',compact('empleado'));
+        //return view('Empleado.edit',compact('empleado'));
         return redirect('empleado')->with('mensaje','Empleado modificado');
     }
 
@@ -159,13 +159,17 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $empleado = Empleado::findOrFail($id);
 
-        if(Storage::delete('public/'.$empleado->Foto)){
-            Empleado::destroy($id);
-        }
+        $empleado = Empleado::findOrFail($id);
+        Empleado::where('id','=',$id)->update(['Activo'=>0]);
+        return redirect('empleado')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
+        //
+        // $empleado = Empleado::findOrFail($id);
+
+        // if(Storage::delete('public/'.$empleado->Foto)){
+        //     Empleado::destroy($id);
+        // }
         
-        return redirect('empleado')->with('mensaje','Empleado borrado');
+        // return redirect('empleado')->with('mensaje','Empleado borrado');
     }
 }
