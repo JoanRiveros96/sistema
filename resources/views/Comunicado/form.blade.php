@@ -25,7 +25,12 @@
 
 <div class="form-group">
 <label for="Contenido"> Contenido </label>
-<input type="text" class="form-control" name="Contenido" value="{{isset($comunicado->Contenido)?$comunicado->Contenido:old('Contenido')}}" id="Contenido">
+
+<textarea   cols="135" rows="10" class="form-control" name="Contenido"  id="Contenido" >
+<?php echo isset($comunicado->Contenido)?$comunicado->Contenido:old('Contenido')?>
+</textarea>
+
+
 
 </div>
 
@@ -34,7 +39,7 @@
 <label for="Imagen">Imagen</label>
 
 @if(isset($comunicado->Imagen))
-<img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$comunicado->Imagen }}" alt="" width="300" > 
+<img class="img-thumbnail img-fluid" src="../../../storage/app/public/<?php echo $comunicado->Imagen?>" alt="" width="300" > 
 @endif
 <input type="file" class="form-control" name="Imagen" value="{{isset($comunicado->Imagen)?$comunicado->Imagen:old('Imagen')}}" id="Imagen">
 

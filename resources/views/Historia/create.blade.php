@@ -7,7 +7,7 @@
 <form action="{{url('/historia')}}" method="post"enctype="multipart/form-data">
 @csrf 
 
-@include('historia.form',['modo'=>'Crear'])
+@include('Historia.form',['modo'=>'Crear'])
 
 
 

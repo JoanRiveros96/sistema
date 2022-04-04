@@ -7,7 +7,7 @@
 <form action="{{url('/footer')}}" method="post"enctype="multipart/form-data">
 @csrf 
 
-@include('footer.form',['modo'=>'Crear'])
+@include('Footer.form',['modo'=>'Crear'])
 
 
 

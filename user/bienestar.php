@@ -146,7 +146,7 @@
   while($rowNot=mysqli_fetch_assoc($bienestar)){
     if($i%2==0){?>
     <div class="w3-row w3-margin">
-      <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/ <?php echo $rowNot["Foto"]?>"  ></div>
+      <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
     <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
       <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"]?></h2>
   <p class ="wrapper">

@@ -10,24 +10,7 @@
     @endforeach
     </ul>
     </div>
-@endif 
-
-
-
-<div class="form-group">
-            
-                <input type="radio" name="Titulo" id="Titulo" value="Santillana"> Santillana <br>
-                <input type="radio" name="Titulo" id="Titulo" value="Norma"> Norma <br>
-                <input type="radio" name="Titulo" id="Titulo" value="Milton"> Milton <br>
-                <input type="radio" name="Titulo" id="Titulo" value="Dbs Alumnos"> Dbs Alumnos <br>
-                <input type="radio" name="Titulo" id="Titulo" value="Dbs Padres"> Dbs Padres <br>
-                <input type="radio" name="Titulo" id="Titulo" value="Arukay"> Arukay <br>
-                <input type="radio" name="Titulo" id="Titulo" value="Portal Office"> Portal Office <br>
-                
-           
-</div>
-
-
+@endif
 
 <div class="form-group">
 <label for="Descripcion"> Descripcion </label>
@@ -35,8 +18,6 @@
 <textarea   cols="135" rows="10" class="form-control" name="Descripcion"  id="Descripcion" >
 <?php echo isset($plataforma->Descripcion)?$plataforma->Descripcion:old('Descripcion')?>
 </textarea>
-
-
 
 </div>
 

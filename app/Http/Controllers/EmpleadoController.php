@@ -112,14 +112,9 @@ class EmpleadoController extends Controller
     {
 
         $campos=[
-            
-            'Nombre'=>'required|string',            
-            'Dependencia' =>'required',
+            'Nombre'=>'required|string',   
             'Descripcion' =>'required|string',
             'Correo' => 'required_if:Dependencia,Docente Secundaria',
-            
-        
-
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',

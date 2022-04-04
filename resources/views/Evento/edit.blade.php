@@ -7,7 +7,7 @@
 @csrf
 {{method_field('PATCH')}}
 
-@include('evento.form',['modo'=>'Editar'])
+@include('Evento.form',['modo'=>'Editar'])
 
 </form>
 </div>

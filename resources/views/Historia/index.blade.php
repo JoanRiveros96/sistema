@@ -44,7 +44,7 @@
             <td>{{$historia ->Informacion}}</td>
             
             <td>
-                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$historia->Imagen }}"  width="200" alt="">
+                <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $historia->Imagen?>"  width="200" alt="">
                 
             </td>
             

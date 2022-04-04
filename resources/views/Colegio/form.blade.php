@@ -39,7 +39,10 @@
 
 <div class="form-group">
 <label for="Informacion"> Informacion </label>
-<input type="text" class="form-control" name="Informacion" value="{{isset($colegio->Informacion)?$colegio->Informacion:old('Informacion')}}" id="Informacion">
+
+<textarea   cols="135" rows="10" class="form-control" name="Informacion"  id="Informacion" >
+<?php echo isset($colegio->Informacion)?$colegio->Informacion:old('Informacion')?>
+</textarea>
 
 </div>
 

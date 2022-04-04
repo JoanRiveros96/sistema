@@ -9,7 +9,7 @@
 @csrf
 {{method_field('PATCH')}}
 
-@include('programador.form',['modo'=>'Editar'])
+@include('Programador.form',['modo'=>'Editar'])
 
 </form>
 </div>

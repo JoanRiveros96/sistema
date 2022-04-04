@@ -7,7 +7,7 @@
 <form action="{{url('/social')}}" method="post"enctype="multipart/form-data">
 @csrf 
 
-@include('social.form',['modo'=>'Crear'])
+@include('Social.form',['modo'=>'Crear'])
 
 
 

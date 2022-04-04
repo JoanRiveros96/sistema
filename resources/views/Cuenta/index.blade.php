@@ -47,7 +47,7 @@
             <td>{{$cuenta ->Contenido}}</td>
             
             <td>
-                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$cuenta->Imagen }}"  width="200" alt="">
+                <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $cuenta->Imagen?>"  width="200" alt="">
                 
             </td>
             <td><a href="{{route('docs.download', $cuenta->id)}}">{{$cuenta->Documento}}</a></td>

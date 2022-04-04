@@ -1,4 +1,4 @@
-<h1>{{$modo}} Historia</h1>
+<h1>{{$modo}} Colegio Informacion</h1>
 
  @if(count($errors)>0)
 
@@ -13,17 +13,10 @@
 @endif 
 
 <div class="form-group">
-<label for="Año"> Año </label>
-<input type="text" class="form-control" name="Año" value="{{isset($historia->Año)?$historia->Año:old('Año')}}" id="Año">
-
-</div>
-
-
-<div class="form-group">
 <label for="Informacion"> Informacion </label>
 
 <textarea   cols="135" rows="10" class="form-control" name="Informacion"  id="Informacion" >
-<?php echo isset($historia->Informacion)?$historia->Informacion:old('Informacion')?>
+<?php echo isset($colegio->Informacion)?$colegio->Informacion:old('Informacion')?>
 </textarea>
 
 
@@ -32,15 +25,21 @@
 <div class="form-group">
 <label for="Imagen">Imagen</label>
 
-@if(isset($historia->Imagen))
-<img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$historia->Imagen }}" alt="" width="300" > 
+@if(isset($colegio->Imagen))
+<img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$colegio->Imagen }}" alt="" width="300" > 
 @endif
 <input type="file" class="form-control" name="Imagen" value="" id="Imagen">
 
 </div>
 
+<div class="form-group">
+<label for="Link"> Link </label>
+<input type="text" class="form-control" name="Link" value="{{isset($colegio->Link)?$colegio->Link:old('Link')}}" id="Link">
+
+</div>
+
 <input class="btn btn-success" type="submit" value="{{$modo}} datos" >
 
-<a class="btn btn-primary" href="{{ url('historia')}}"> Regresar </a>
+<a class="btn btn-primary" href="{{ url('colegio')}}"> Regresar </a>
 
 <br>

@@ -7,7 +7,7 @@
 @csrf
 {{method_field('PATCH')}}
 
-@include('historia.form',['modo'=>'Editar'])
+@include('Historia.form',['modo'=>'Editar'])
 
 </form>
 </div>

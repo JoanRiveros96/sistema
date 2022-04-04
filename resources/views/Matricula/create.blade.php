@@ -7,7 +7,7 @@
 <form action="{{url('/matricula')}}" method="post"enctype="multipart/form-data">
 @csrf 
 
-@include('matricula.form',['modo'=>'Crear'])
+@include('Matricula.form',['modo'=>'Crear'])
 
 
 

@@ -26,7 +26,11 @@
 
 <div class="form-group">
 <label for="Contenido"> Contenido </label>
-<input type="text" class="form-control" name="Contenido" value="{{isset($cuenta->Contenido)?$cuenta->Contenido:old('Contenido')}}" id="Contenido">
+
+<textarea   cols="135" rows="10" class="form-control" name="Contenido"  id="Contenido" >
+<?php echo isset($cuenta->Contenido)?$cuenta->Contenido:old('Contenido')?>
+</textarea>
+
 
 </div>
 

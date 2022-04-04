@@ -7,7 +7,7 @@
 <form action="{{url('/egresado')}}" method="post"enctype="multipart/form-data">
 @csrf 
 
-@include('egresado.form',['modo'=>'Crear'])
+@include('Egresado.form',['modo'=>'Crear'])
 
 
 

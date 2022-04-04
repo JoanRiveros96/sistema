@@ -47,7 +47,7 @@
             <td>{{$comunicado ->Contenido}}</td>
 
             <td>
-                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$comunicado->Imagen }}"  width="200" alt="">
+                <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $comunicado->Imagen?>"  width="200" alt="">
                 
             </td>
 

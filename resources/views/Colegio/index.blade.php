@@ -45,7 +45,7 @@
             <td>{{$colegio ->Informacion}}</td>
             
             <td>
-                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$colegio->Imagen }}"  width="200" alt="">
+                <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $colegio->Imagen?>"  width="200" alt="">
                 
             </td>
             <td><a href="{{$colegio->Link}}">{{$colegio->Link}}</a></td>
