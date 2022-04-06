@@ -1,12 +1,6 @@
 <?php 
     include("conexion.php");
-    
-    //SQL para conocer los ultimos 3 registros modificados de las noticias en la base de datos
     $mision ="SELECT * FROM `colegios` WHERE Activo = 1 AND TipoInfo='Mision';";
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -83,6 +77,7 @@
         <li><a href="comunicado.php">Comunicados</a></li>
         <li><a href="plataformas.php">Plataformas</a></li>
         <li><a href="rendicion.php">Rendicion de cuentas</a></li>
+        <li><a href="programador.php">Programador</a></li>
       </ul>
       <!-- <a href="#company">Comunidad (HISTORIA)</a>
       <a href="#team">Colegio</a> -->

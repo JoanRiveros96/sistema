@@ -12,7 +12,7 @@ class ProgramadorController extends Controller
   
     public function index()
     {
-        $datos['programadors']=Programador::paginate(5);
+        $datos['programadors']=Programador::paginate(11);
         return view('Programador.index',$datos);
     }
 
@@ -43,7 +43,7 @@ class ProgramadorController extends Controller
         if($request->hasFile('Imagen')){
             $file=$request->file('Imagen');
             $nombre= $file->getClientOriginalName();
-            $datosProgramador['Imagen']=$request->file('Imagen')->storeAs('uploads',$nombre, 'public');
+            $datosProgramador['Imagen']=$request->file('Imagen')->storeAs('programa',$nombre, 'public');
         }
 
     
@@ -96,7 +96,7 @@ class ProgramadorController extends Controller
 
         if($request->hasFile('Imagen')){
             $Programa = Programador::findOrFail($id);
-            Storage::delete('public/'.$programa->Imagen);
+            Storage::delete('public/'.$Programa->Imagen);
             $file=$request->file('Imagen');
             $nombre= $file->getClientOriginalName();
             $datosProgramador['Imagen']=$request->file('Imagen')->storeAs('uploads',$nombre, 'public');

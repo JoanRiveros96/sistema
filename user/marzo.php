@@ -1,13 +1,6 @@
 <?php 
     include("conexion.php");
-    
-    
-    $docentes ="SELECT * FROM `empleados` WHERE (Activo = 1) AND (Dependencia ='Docente Primaria 'OR Dependencia = 'Docente Secundaria')";
-    
-
-
-
-
+    $programa ="SELECT * FROM `programadors` WHERE Activo = 1 AND Imagen ='programa/03.jpg';";
 ?>
 
 <!DOCTYPE html>
@@ -118,74 +111,58 @@
     </div>
 </section>
 
-<nav class="navbar navbar-expand-sm bg-light justify-content-center navdep" >
-  <ul class="navbar-nav navdep">
-    <li class="nav-item" style="margin-left:447px" >
-      <a class="nav-link" href="dependencias.php">DIRECCION Y COORDINACION</a>
+<nav class="navbar navbar-expand-sm bg-light justify-content-center navcol"style="display: grid; place-content:center;">
+  <ul class="navbar-nav navcol"   >
+    <li class="nav-item itemcol" ">
+      <a class="nav-link linkcol" href="programador.php">FEBRERO</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="docentes.php">DOCENTES</a>
+    <li class="nav-item itemcol">
+      <a class="nav-link linkcol" href="marzo.php">MARZO</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="bienestar.php">BIENESTAR</a>
+    <li class="nav-item itemcol">
+      <a class="nav-link linkcol" href="abril.php">ABRIL</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="contabilidad.php">CONTABILIDAD</a>
+    <li class="nav-item itemcol">
+      <a class="nav-link linkcol" href="mayo.php">MAYO</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="porteriacafe.php">PORTERIA Y CAFETERIA</a>
+    <li class="nav-item itemcol">
+      <a class="nav-link linkcol" href="junio.php">JUNIO</a>
     </li>
-    
+    <li class="nav-item itemcol">
+      <a class="nav-link linkcol" href="julio.php">JULIO</a>
+    </li>
+    <li class="nav-item itemcol">
+      <a class="nav-link linkcol" href="agosto.php">AGOSTO</a>
+    </li>
+    <li class="nav-item itemcol">
+      <a class="nav-link linkcol" href="septiembre.php">SEPTIEMBRE</a>
+    </li>
+    <li class="nav-item itemcol">
+      <a class="nav-link linkcol" href="octubre.php">OCTUBRE</a>
+    </li>
+    <li class="nav-item itemcol">
+      <a class="nav-link linkcol" href="noviembre.php">NOVIEMBRE</a>
+    </li>
+
   </ul>
 </nav>
+
 <section>
-  
-  <div class="w3-container">
-    
-    <?php $docentes = mysqli_query($mysqli,$docentes); 
-  $i=0; 
-  while($rowNot=mysqli_fetch_assoc($docentes)){
-    if($i%2==0){?>
-    <div class="w3-row w3-margin">
-      <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
-    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
-      <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"]?></h2>
-  <p class ="wrapper">
-  <?php echo $rowNot["Descripcion"]?>
-  </p>
-  
-  
+<?php $programa = mysqli_query($mysqli,$programa); 
 
-</div>
-
-  </div>
-    
-<?php $i=$i+1;
-    }
-    else{?>
-    <div class="w3-row w3-margin">
-      
-    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
-      <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"]?></h2>
-  <p class ="wrapper">  <?php echo $rowNot["Descripcion"]?>  </p>
-  
-  
-  
+  while($rowNot=mysqli_fetch_assoc($programa)){?>
 
 
-</div>
-  <div class="w3-third"  style="height:300px; width:300px" > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
+  <div class="title">MARZO</div>
+  <div style="padding-left:70px;padding-right:70px;background:#00477e;">
+  <div style="height:100%; width:100%;background:#00477e;">
+  </div></div>
+  <div class="imgCol"> <img class="img-fluid imgCol" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>" style="  width:1700px; height:950px; "></div>
+  <?php 
+  }?>
+  </section>
 
-  </div>
-<?php $i=$i+1;
-    }
-    
-   }?>
-</div>
-  
-</section>
-
-<iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+  <iframe src="footer.php" Style="width:100%; height:900px"></iframe>
 
 </body>
 

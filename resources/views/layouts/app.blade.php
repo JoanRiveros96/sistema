@@ -47,21 +47,21 @@ img{
             
   </div>
   <div class="w3-padding-64 w3-large w3-text-black " style="font-weight:normal">
-      <a href="{{ route('empleado.index') }}" class="w3-bar-item w3-button ">Empleados</a>
-      <a href="{{ route('banner.index') }}" class="w3-bar-item w3-button ">Banners</a>
-      <a href="{{ route('noticia.index') }}" class="w3-bar-item w3-button">Noticias</a>
-      <a href="{{ route('comunicado.index') }}" class="w3-bar-item w3-button">Comunicados</a>
-      <a href="{{ route('social.index') }}" class="w3-bar-item w3-button">Redes Sociales</a>
-      <a href="{{ route('footer.index') }}" class="w3-bar-item w3-button">Footer</a>
-      <a href="{{ route('historia.index') }}" class="w3-bar-item w3-button">Trayectoria</a>
-      <a href="{{ route('colegio.index') }}" class="w3-bar-item w3-button">Informacion Colegio</a>
-      <a href="{{ route('plataforma.index') }}" class="w3-bar-item w3-button">Plataformas</a>
-      <a href="{{ route('cuenta.index') }}" class="w3-bar-item w3-button">Rendicion de Cuentas</a>
-      <a href="{{ route('egresado.index') }}" class="w3-bar-item w3-button">Egresados</a>
-      <a href="{{ route('evento.index') }}" class="w3-bar-item w3-button">Eventos</a>
       <a href="{{ route('admision.index') }}" class="w3-bar-item w3-button">Admisiones</a>
+      <a href="{{ route('banner.index') }}" class="w3-bar-item w3-button ">Banners</a>
+      <a href="{{ route('colegio.index') }}" class="w3-bar-item w3-button">Colegio</a>
+      <a href="{{ route('comunicado.index') }}" class="w3-bar-item w3-button">Comunicados</a>
+      <a href="{{ route('egresado.index') }}" class="w3-bar-item w3-button">Egresados</a>
+      <a href="{{ route('empleado.index') }}" class="w3-bar-item w3-button ">Empleados</a>
+      <a href="{{ route('evento.index') }}" class="w3-bar-item w3-button">Eventos</a>
+      <a href="{{ route('footer.index') }}" class="w3-bar-item w3-button">Footer</a>
       <a href="{{ route('matricula.index') }}" class="w3-bar-item w3-button">Matriculas</a>
+      <a href="{{ route('noticia.index') }}" class="w3-bar-item w3-button">Noticias</a>
+      <a href="{{ route('plataforma.index') }}" class="w3-bar-item w3-button">Plataformas</a>
       <a href="{{ route('programador.index') }}" class="w3-bar-item w3-button">programador</a>
+      <a href="{{ route('social.index') }}" class="w3-bar-item w3-button">Redes Sociales</a>
+      <a href="{{ route('cuenta.index') }}" class="w3-bar-item w3-button">Rendicion de Cuentas</a>
+      <a href="{{ route('historia.index') }}" class="w3-bar-item w3-button">Trayectoria</a>
   </div>
   <ul class="navbar-nav ml-auto w3-center">
                         <!-- Authentication Links -->
@@ -114,22 +114,9 @@ img{
             @yield('content')
         </main>
 
-        <iframe src="../resources/views/footer.php" style ="width:100%; height:850px"></iframe>
+<iframe src="../user/footer.php" style ="width:100%; height:905px"></iframe>
         
-        <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
-    <div class="w3-row-padding">
 
-      <div class="w3-col s4 w3-justify w3-left">
-        <h3>COINSDA</h3>
-        <p><i class="fa fa-fw fa-map-marker"></i> Colegio Integrado Nuestra Señora del Divino Amor</p>
-        <p><i class="fa fa-fw fa-phone"></i> Tel 644 9178 </p>
-        <p><i class="fa fa-fw fa-envelope"></i> email: divinoamore@hotmail.com</p>
-        <p><i class="fa fa-fw fa-map-marker"></i>Ubicación</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7693.068112303386!2d-73.13495684229709!3d7.097460624438503!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb4f1d77e53b5aba!2sColegio+Integrado+Nuestra+Se%C3%B1ora+del+Divino+Amor!5e0!3m2!1ses!2sco!4v1537757348958" width="800" height="350" frameborder="0" style="border:0" allowfullscreen></iframe><br><br>
-        <h4><i class="fa fa-fw fa-user" style="margin-left:10%"></i>Desarrollado por: Joan Sebastian Riveros Lozada</h4>
-      </div>
-    </div>
-  </footer>
         
 </div>
 
