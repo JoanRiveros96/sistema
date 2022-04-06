@@ -49,7 +49,7 @@
 
             
             <td>
-                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$egresado->Foto }}"  width="200" alt="">
+                <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $egresado->Foto?>"  width="200" alt="">
                 
             </td>
             

@@ -29,7 +29,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
 
 
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
   <script src ="../public/js/header.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -195,7 +195,7 @@
 <div style="text-align:center;">
 
 
-    <form class="formex" action="enviar.php" method="post" enctype="multipart/form-data">
+    <form class="formex" action="" method="post" enctype="multipart/form-data">
   <label for="AñoGrado">¿en qué año te graduaste?</label><br>
   <input type="text" id="AñoGrado" name="AñoGrado"><br>
   <label for="Nombre">¿Cúal es tu nombre?</label><br>
@@ -208,7 +208,11 @@
   <input type="file" id="Foto" name="Foto"><br><br>
   <button type="submit">Enviar</button>
 </form>
+<?php
+   echo $_FILES['Foto']['name'];
+  
 
+?>
 </div>
 </div>
 

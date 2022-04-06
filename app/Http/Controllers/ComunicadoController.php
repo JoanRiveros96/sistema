@@ -70,7 +70,7 @@ class ComunicadoController extends Controller
             $datosComunicado['Imagen'] = '';
         }
         
-        $datosComunicado['Usuario'] = auth()->user()->name; 
+        $datosComunicado['Usuario'] = auth()->user()->id; 
         
         
         Comunicado::create($datosComunicado);
@@ -138,6 +138,7 @@ class ComunicadoController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosComunicado=request()->except(['_token','_method']);
+        $datosComunicado['Usuario'] = auth()->user()->id; 
 
         if($request->hasFile('Imagen')){
             $comunicado = Comunicado::findOrFail($id);

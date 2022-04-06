@@ -40,15 +40,9 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        
-        //
         $campos=[
-            
-            
             'Imagen' =>'required|max:10000|mimes:jpeg,png,jpg',
             'Link'=>'nullable|string',
-        
-
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -60,12 +54,15 @@ class BannerController extends Controller
         $this->validate($request,$campos,$mensaje);
         
         $datosBanner=request()->except('_token');
+        
 
         if($request->hasFile('Imagen')){
-            $datosBanner['Imagen']=$request->file('Imagen')->store('uploads','public');
+            $file=$request->file('Imagen');
+            $nombre= $file->getClientOriginalName();
+            $datosBanner['Imagen']=$request->file('Imagen')->storeAs('uploads',$nombre, 'public');
         }
        
-        $datosBanner['Id_empleado'] = auth()->user()->name; 
+        $datosBanner['Id_empleado'] = auth()->user()->id; 
         Banner::create($datosBanner);
         
        //return response()->json($datosEmpleado);
@@ -108,12 +105,14 @@ class BannerController extends Controller
     {
         //
         $campos=[
+
+            'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             
-            'Link'=>'required|string',
             
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
+            'Imagen.required'=>'La foto es requerida'
 
         ];
 
@@ -126,6 +125,7 @@ class BannerController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosBanner=request()->except(['_token','_method']);
+        $datosBanner['Id_empleado'] = auth()->user()->id;
 
         if($request->hasFile('Imagen')){
             $banner = Banner::findOrFail($id);
@@ -137,7 +137,7 @@ class BannerController extends Controller
         Banner::where('id','=',$id)->update($datosBanner);
 
         $banner = Banner::findOrFail($id);
-        //return view('empleado.edit',compact('empleado'));
+        
         return redirect('banner')->with('mensaje','Banner modificado');
     }
 

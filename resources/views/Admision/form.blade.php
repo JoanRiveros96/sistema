@@ -21,7 +21,11 @@
 
 <div class="form-group">
 <label for="Requisito"> Requisito </label>
-<input type="text" class="form-control" name="Requisito" value="{{isset($admision->Requisito)?$admision->Requisito:old('Requisito')}}" id="Requisito">
+
+<textarea   cols="135" rows="10" class="form-control" name="Requisito"  id="Requisito" >
+<?php echo isset($admision->Requisito)?$admision->Requisito:old('Requisito')?>
+</textarea>
+
 
 </div>
 

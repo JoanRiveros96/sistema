@@ -17,11 +17,8 @@ class CreateProgramadorsTable extends Migration
             $table->id();
 
             $table->string('Usuario');                        
-            $table->string('Link');
-            $table->string('Descripcion');
-
-
-
+            $table->string('Imagen');
+            
             $table->timestamps();
         });
     }

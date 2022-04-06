@@ -80,7 +80,7 @@ class CuentaController extends Controller
             $datosCuenta['Documento'] = '';
         }
         
-        $datosCuenta['Usuario'] = auth()->user()->name; 
+        $datosCuenta['Usuario'] = auth()->user()->id; 
         
         Cuenta::create($datosCuenta);
         
@@ -109,7 +109,7 @@ class CuentaController extends Controller
             'Fecha'=>'required|date',
             'Titulo'=>'required|string',
             'Contenido'=> 'required|string',
-            'Imagen' =>'required|max:10000|mimes:jpeg,png,jpg',
+            'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             'Documento'=> 'nullable|max:10000|mimes:docx,pdf,php',
             
         
@@ -135,6 +135,7 @@ class CuentaController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosCuenta=request()->except(['_token','_method']);
+        $datosCuenta['Usuario'] = auth()->user()->id; 
 
         if($request->hasFile('Imagen')){
             $cuenta = Cuenta::findOrFail($id);

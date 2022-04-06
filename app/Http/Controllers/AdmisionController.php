@@ -41,7 +41,7 @@ class AdmisionController extends Controller
 
     
         
-        $datosAdmision['Usuario'] = auth()->user()->name; 
+        $datosAdmision['Usuario'] = auth()->user()->id; 
         
         
         Admision::create($datosAdmision);
@@ -81,6 +81,8 @@ class AdmisionController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosAdmision=request()->except(['_token','_method']);
+
+        $datosAdmision['Usuario'] = auth()->user()->id;
 
     
         Admision::where('id','=',$id)->update($datosAdmision);

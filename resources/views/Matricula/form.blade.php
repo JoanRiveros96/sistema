@@ -20,7 +20,11 @@
 
 <div class="form-group">
 <label for="Requisito"> Requisito </label>
-<input type="text" class="form-control" name="Requisito" value="{{isset($matricula->Requisito)?$matricula->Requisito:old('Requisito')}}" id="Requisito">
+
+<textarea   cols="135" rows="10" class="form-control" name="Requisito"  id="Requisito" >
+<?php echo isset($matricula->Requisito)?$matricula->Requisito:old('Requisito')?>
+</textarea>
+
 
 </div>
 
@@ -32,19 +36,31 @@
 
 <div class="form-group">
 <label for="Costos"> Costos </label>
-<input type="text" class="form-control" name="Costos" value="{{isset($matricula->Costos)?$matricula->Costos:old('Costos')}}" id="Costos">
+
+<textarea   cols="135" rows="10" class="form-control" name="Costos"  id="Costos" >
+<?php echo isset($matricula->Costos)?$matricula->Costos:old('Costos')?>
+</textarea>
+
 
 </div>
 
 <div class="form-group">
 <label for="Utiles"> Utiles </label>
-<input type="text" class="form-control" name="Utiles" value="{{isset($matricula->Utiles)?$matricula->Utiles:old('Utiles')}}" id="Utiles">
+
+<textarea   cols="135" rows="10" class="form-control" name="Utiles"  id="Utiles" >
+<?php echo isset($matricula->Utiles)?$matricula->Utiles:old('Utiles')?>
+</textarea>
+
 
 </div>
 
 <div class="form-group">
 <label for="Uniformes"> Uniformes </label>
-<input type="text" class="form-control" name="Uniformes" value="{{isset($matricula->Uniformes)?$matricula->Uniformes:old('Uniformes')}}" id="Uniformes">
+
+<textarea   cols="135" rows="10" class="form-control" name="Uniformes"  id="Uniformes" >
+<?php echo isset($matricula->Uniformes)?$matricula->Uniformes:old('Uniformes')?>
+</textarea>
+
 
 </div>
 

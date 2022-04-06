@@ -9,7 +9,7 @@ class Programador extends Model
 {
     
     public $fillable = [
-        'Usuario','Link','Descripcion',
+        'Usuario','Imagen'
         
     ];
     public $timestamps = true;

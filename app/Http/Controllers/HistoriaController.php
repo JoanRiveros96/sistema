@@ -57,7 +57,7 @@ class HistoriaController extends Controller
             $datosHistoria['Imagen'] = '';
         }
         
-        $datosHistoria['Usuario'] = auth()->user()->name; 
+        $datosHistoria['Usuario'] = auth()->user()->id; 
         
         
         Historia::create($datosHistoria);
@@ -106,6 +106,7 @@ class HistoriaController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosHistoria=request()->except(['_token','_method']);
+        $datosHistoria['Usuario'] = auth()->user()->id; 
 
         if($request->hasFile('Imagen')){
             $historia = Historia::findOrFail($id);

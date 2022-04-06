@@ -51,7 +51,7 @@ class EventoController extends Controller
         //     $datosEvento['Imagen'] = '';
         // }
         
-        $datosEvento['Usuario'] = auth()->user()->name; 
+        $datosEvento['Usuario'] = auth()->user()->id; 
         
         Evento::create($datosEvento);
         
@@ -96,6 +96,7 @@ class EventoController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosEvento=request()->except(['_token','_method']);
+        $datosEvento['Usuario'] = auth()->user()->id; 
 
         if($request->hasFile('Imagen')){
             $evento = Evento::findOrFail($id);

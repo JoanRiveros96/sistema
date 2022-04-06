@@ -54,7 +54,7 @@ class SocialController extends Controller
         $this->validate($request,$campos,$mensaje);
         
         $datosSocial=request()->except('_token');        
-        $datosSocial['Usuario'] = auth()->user()->name; 
+        $datosSocial['Usuario'] = auth()->user()->id; 
         
         
         Social::create($datosSocial);
@@ -99,7 +99,7 @@ class SocialController extends Controller
     {
         //
         $campos=[
-            'TipoRed'=>'required|string',
+            
             'Link'=> 'required|string',
         ];
         $mensaje=[
@@ -111,6 +111,7 @@ class SocialController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosSocial=request()->except(['_token','_method']);
+        $datosSocial['Usuario'] = auth()->user()->id; 
 
 
         Social::where('id','=',$id)->update($datosSocial);

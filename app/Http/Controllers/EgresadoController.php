@@ -52,7 +52,7 @@ class EgresadoController extends Controller
             $datosEgresado['Foto'] = '';
         }
         
-        $datosEgresado['Usuario'] = auth()->user()->name; 
+        $datosEgresado['Usuario'] = auth()->user()->id; 
         
         Egresado::create($datosEgresado);
         
@@ -98,6 +98,7 @@ class EgresadoController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosEgresado=request()->except(['_token','_method']);
+        $datosEgresado['Usuario'] = auth()->user()->id; 
 
         if($request->hasFile('Foto')){
             $egresado = Egresado::findOrFail($id);

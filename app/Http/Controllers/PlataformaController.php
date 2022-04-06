@@ -42,7 +42,7 @@ class PlataformaController extends Controller
     {
         //
         $campos=[
-            
+            'TipoInfo'=>'required',
             'Titulo'=>'required',
             'Descripcion'=> 'required|string',
             'Link'=> 'required|string',
@@ -56,7 +56,7 @@ class PlataformaController extends Controller
         
         $datosPlataforma=request()->except('_token'); 
                 
-        $datosPlataforma['Usuario'] = auth()->user()->name; 
+        $datosPlataforma['Usuario'] = auth()->user()->id; 
         
         
         Plataforma::create($datosPlataforma);
@@ -102,8 +102,8 @@ class PlataformaController extends Controller
         //
         $campos=[
             
-            'TipoInfo'=>'required',
-            'Informacion'=> 'required|string',
+            
+            'Descripcion'=> 'required|string',
             'Link'=> 'nullable|string',
             
         ];
@@ -116,6 +116,7 @@ class PlataformaController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosPlataforma=request()->except(['_token','_method']);
+        $datosPlataforma['Usuario'] = auth()->user()->id; 
 
         Plataforma::where('id','=',$id)->update($datosPlataforma);
 

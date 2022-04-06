@@ -68,7 +68,7 @@ class EmpleadoController extends Controller
         if($request->hasFile('Foto')){
             $datosEmpleado['Foto']=$request->file('Foto')->store('uploads','public');
         }
-        $datosEmpleado['Usuario'] = auth()->user()->name;
+        $datosEmpleado['Usuario'] = auth()->user()->id;
 
         Empleado::create($datosEmpleado);
         
@@ -131,6 +131,7 @@ class EmpleadoController extends Controller
         $this->validate($request,$campos,$mensaje);
         //
         $datosEmpleado=request()->except(['_token','_method']);
+        $datosEmpleado['Usuario'] = auth()->user()->id;
 
         if($request->hasFile('Foto')){
             $empleado = Empleado::findOrFail($id);

@@ -45,7 +45,7 @@ class MatriculaController extends Controller
 
     
         
-        $datosMatricula['Usuario'] = auth()->user()->name; 
+        $datosMatricula['Usuario'] = auth()->user()->id; 
         
         
         Matricula::create($datosMatricula);
@@ -87,6 +87,7 @@ class MatriculaController extends Controller
         $this->validate($request,$campos,$mensaje);
         
         $datosMatricula=request()->except(['_token','_method']);
+        $datosMatricula['Usuario'] = auth()->user()->id; 
 
     
         Matricula::where('id','=',$id)->update($datosMatricula);

@@ -65,7 +65,7 @@ class ColegioController extends Controller
             $datosColegio['Imagen'] = '';
         }
         
-        $datosColegio['Usuario'] = auth()->user()->name; 
+        $datosColegio['Usuario'] = auth()->user()->id; 
         
         
         Colegio::create($datosColegio);
@@ -111,7 +111,7 @@ class ColegioController extends Controller
         //
         $campos=[
             
-            'TipoInfo'=>'required',
+            
             'Informacion'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             'Link'=> 'nullable|string',
@@ -131,6 +131,7 @@ class ColegioController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosColegio=request()->except(['_token','_method']);
+        $datosColegio['Usuario'] = auth()->user()->id; 
 
         if($request->hasFile('Imagen')){
             $colegio = Colegio::findOrFail($id);

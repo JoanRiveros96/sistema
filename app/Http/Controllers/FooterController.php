@@ -63,7 +63,7 @@ class FooterController extends Controller
             $datosFooter['Imagen'] = '';
         }
         
-        $datosFooter['Usuario'] = auth()->user()->name; 
+        $datosFooter['Usuario'] = auth()->user()->id; 
         
         
         Footer::create($datosFooter);
@@ -109,7 +109,7 @@ class FooterController extends Controller
         //
         $campos=[
             
-            'TipoFoot'=>'required',
+            
             'Contenido'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             
@@ -128,6 +128,7 @@ class FooterController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosFooter=request()->except(['_token','_method']);
+        $datosFooter['Usuario'] = auth()->user()->id; 
 
         if($request->hasFile('Imagen')){
             $footer = Footer::findOrFail($id);

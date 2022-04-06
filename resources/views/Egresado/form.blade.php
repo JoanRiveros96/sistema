@@ -26,13 +26,21 @@
 
 <div class="form-group">
 <label for="Afinidad"> Afinidad </label>
-<input type="text" class="form-control" name="Afinidad" value="{{isset($egresado->Afinidad)?$egresado->Afinidad:old('Afinidad')}}" id="Afinidad">
+
+<textarea   cols="135" rows="10" class="form-control" name="Afinidad"  id="Afinidad" >
+<?php echo isset($egresado->Afinidad)?$egresado->Afinidad:old('Afinidad')?>
+</textarea>
+
 
 </div>
 
 <div class="form-group">
 <label for="Descripcion"> Descripcion </label>
-<input type="text" class="form-control" name="Descripcion" value="{{isset($egresado->Descripcion)?$egresado->Descripcion:old('Descripcion')}}" id="Descripcion">
+
+<textarea   cols="135" rows="10" class="form-control" name="Descripcion"  id="Descripcion" >
+<?php echo isset($egresado->Descripcion)?$egresado->Descripcion:old('Descripcion')?>
+</textarea>
+
 
 </div>
 
@@ -40,7 +48,7 @@
 <label for="Foto">Foto</label>
 
 @if(isset($egresado->Foto))
-<img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$egresado->Foto }}" alt="" width="300" > 
+<img class="img-thumbnail img-fluid" src="../../../storage/app/public/<?php echo $egresado->Foto?>" alt="" width="300" > 
 @endif
 <input type="file" class="form-control" name="Foto" value="" id="Foto">
 

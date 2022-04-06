@@ -71,7 +71,7 @@ class NoticiaController extends Controller
             $datosNoticia['Imagen'] = '';
         }
         
-        $datosNoticia['Usuario'] = auth()->user()->name; 
+        $datosNoticia['Usuario'] = auth()->user()->id; 
         
         Noticia::create($datosNoticia);
         
@@ -123,6 +123,7 @@ class NoticiaController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosNoticia=request()->except(['_token','_method']);
+        $datosNoticia['Usuario'] = auth()->user()->id; 
 
         if($request->hasFile('Imagen')){
             $noticia = Noticia::findOrFail($id);

@@ -30,8 +30,8 @@
         <tr>
                   
             
-            <th>Link</th>
-            <th>Descripcion</th>
+            <th>Imagen</th>
+            <th>Ubicacion</th>
             
             <th>Acciones</th>
         </tr>
@@ -40,8 +40,12 @@
         @foreach($programadors as $programador)
         <tr>
 
-            <td><a href="{{$programador->Link}}">{{$programador->Link}}</a></td>
-            <td>{{$programador ->Descripcion}}</td>
+        <td>
+                <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $programador->Imagen?>"  width="200" alt="">
+                
+            </td>
+            <td>{{$programador ->Imagen}}</td>
+            
             
             
            

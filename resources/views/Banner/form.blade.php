@@ -17,9 +17,9 @@
 <label for="Imagen">Imagen</label>
 <br>
 @if(isset($banner->Imagen))
-<img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$banner->Imagen }}" alt="" width="300" > 
+<img class="img-thumbnail img-fluid" src="../../../storage/app/public/<?php echo $banner->Imagen?>" alt="" width="300" > 
 @endif
-<input type="file" class="form-control" name="Imagen" value="" id="Imagen">
+<input type="file" class="form-control" id="Imagen" name="Imagen" value="" >
 
 </div>
 
@@ -30,6 +30,7 @@
 </div>
 
 <input class="btn btn-success" type="submit" value="{{$modo}} datos" >
+
 
 <a class="btn btn-primary" href="{{ url('banner')}}"> Regresar </a>
 

@@ -47,7 +47,7 @@
             <th>{{$evento ->Descripcion}}</th>
 
             <td>
-                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$evento->Imagen }}"  width="200" alt="">
+                <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $evento->Imagen?>"  width="200" alt="">
                 
             </td>
             <td><a href="{{$evento->Link}}">{{$evento->Link}}</a></td>

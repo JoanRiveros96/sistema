@@ -14,16 +14,19 @@
 
 
 <div class="form-group">
-<label for="Link"> Link </label>
-<input type="text" class="form-control" name="Link" value="{{isset($programador->Link)?$programador->Link:old('Link')}}" id="Link">
+<label for="Link"> Imagen - NOTA: Debe tener en cuenta que el archivo a subir debe tener el formato de dos digitos, por ejemplo, 02.jpg; en dado caso seria la imagen para el mes de Febrero y 03 para el mes de Marzo </label>
+
+@if(isset($programador->Imagen))
+<img class="img-thumbnail img-fluid" src="../../../storage/app/public/<?php echo $programador->Imagen?>" alt="" width="300" > 
+@endif
+<input type="file" class="form-control" name="Imagen" value="{{isset($programador->Imagen)?$programador->Imagen:old('Imagen')}}" id="Imagen">
+
+
+
 
 </div>
 
-<div class="form-group">
-<label for="Descripcion"> Descripcion </label>
-<input type="text" class="form-control" name="Descripcion" value="{{isset($programador->Descripcion)?$programador->Descripcion:old('Descripcion')}}" id="Descripcion">
 
-</div>
 
 
 

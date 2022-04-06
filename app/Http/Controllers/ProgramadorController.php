@@ -27,8 +27,8 @@ class ProgramadorController extends Controller
         $campos=[
             
                       
-            'Link' =>'required|string',
-            'Descripcion'=> 'required|string',
+            'Imagen' =>'required|max:10000|mimes:jpeg,png,jpg',
+            
             
         ];
         $mensaje=[
@@ -40,9 +40,15 @@ class ProgramadorController extends Controller
         
         $datosProgramador=request()->except('_token'); 
 
+        if($request->hasFile('Imagen')){
+            $file=$request->file('Imagen');
+            $nombre= $file->getClientOriginalName();
+            $datosProgramador['Imagen']=$request->file('Imagen')->storeAs('uploads',$nombre, 'public');
+        }
+
     
         
-        $datosProgramador['Usuario'] = auth()->user()->name; 
+        $datosProgramador['Usuario'] = auth()->user()->id; 
         
         
         Programador::create($datosProgramador);
@@ -68,23 +74,35 @@ class ProgramadorController extends Controller
    
     public function update(Request $request, $id)
     {
-        $campos=[
+        $campos=[ 
+            'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             
-                      
-            'Link' =>'required|string',
-            'Descripcion'=> 'required|string',
             
         ];
         $mensaje=[
             'required'=>'El campo :attribute es requerido',
         ];
 
+        if($request->hasFile('Imagen')){
+            $campos=['Imagen' =>'max:10000|mimes:jpeg,png,jpg'];
+            //$mensaje=['Imagen.required'=>'La foto es requerida'];
+        }
+
 
         $this->validate($request,$campos,$mensaje);
 
         $datosProgramador=request()->except(['_token','_method']);
+        $datosProgramador['Usuario'] = auth()->user()->id;
 
-    
+        if($request->hasFile('Imagen')){
+            $Programa = Programador::findOrFail($id);
+            Storage::delete('public/'.$programa->Imagen);
+            $file=$request->file('Imagen');
+            $nombre= $file->getClientOriginalName();
+            $datosProgramador['Imagen']=$request->file('Imagen')->storeAs('uploads',$nombre, 'public');
+
+        }
+        
         Programador::where('id','=',$id)->update($datosProgramador);
 
         $programador = programador::findOrFail($id);
