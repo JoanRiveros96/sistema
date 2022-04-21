@@ -3,6 +3,7 @@ box-sizing: border-box;}
 
 body{
 background: #fffffa;
+font-size: 16px;
 
 
 }
@@ -219,11 +220,13 @@ section .circulares{
 
 .Año{
   width: 100%;
+  height: 40px;
   max-width: 10000px;
   font-weight: bold;
+  
   padding:5px;
   margin:auto;
-  overflow: hidden;
+  
   color: white;
 }
 
@@ -264,11 +267,13 @@ section .circulares{
 }
 
 footer{
-  
-  padding-top: 15px;
     background: #1a1f29;
     color:#ffffff;
     
+}
+footer p{
+  margin-bottom: 0px !important;
+  font-size: 12px !important;
 }
 
 
@@ -380,7 +385,7 @@ section .header2 .navbar{
         position: absolute;position:fixed; left: 400px; top: 40px; z-index: 2;
     }
     header .logo img{
-        width:150px; height:150px;border-radius:200px;background: #00477e
+        width:160px; height:160px;border-radius:48px;background: #00477e
     }
     header .navbar{
         position: absolute;position:fixed; left: 535px; top: 75px; z-index: 1;border-radius:10px;background: #00477e;
@@ -397,7 +402,7 @@ section .header2 .navbar{
         position: absolute;position:fixed; left: 100px; top: 40px; z-index: 2;
     }
     header .logo img{
-        width:150px; height:150px;border-radius:200px;background: #00477e
+        width:160px; height:160px;border-radius:48px;background: #00477e
     }
     header .navbar{
         position: absolute;position:fixed; left: 243px; top: 100px; z-index: 2;border-radius:10px;background: #00477e;

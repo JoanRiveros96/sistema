@@ -150,7 +150,7 @@
     <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
       <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"]?></h2>
   <p class ="wrapper">
-  <?php echo $rowNot["Descripcion"]?>
+  <?php echo utf8_encode($rowNot["Descripcion"])?>
   </p>
   
   
@@ -166,7 +166,7 @@
       
     <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
       <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"]?></h2>
-  <p class ="wrapper">  <?php echo $rowNot["Descripcion"]?>  </p>
+  <p class ="wrapper">  <?php echo utf8_encode($rowNot["Descripcion"])?>  </p>
   
   
   

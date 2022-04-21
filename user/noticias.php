@@ -125,9 +125,9 @@
     <div class="w3-row w3-margin">
       <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>"  ></div>
     <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
-      <h2 class ="wrapper dep"><?php echo $rowNot["Titulo"]?></h2>
+      <h2 class ="wrapper dep"><?php echo utf8_encode($rowNot["Titulo"])?></h2>
   <p class ="wrapper">
-  <?php echo $rowNot["Contenido"]?>
+  <?php echo utf8_encode($rowNot["Contenido"])?>
   </p>
   
   
@@ -142,8 +142,8 @@
     <div class="w3-row w3-margin">
       
     <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
-      <h2 class ="wrapper dep"><?php echo $rowNot["Titulo"]?></h2>
-  <p class ="wrapper">  <?php echo $rowNot["Contenido"]?>  </p>
+      <h2 class ="wrapper dep"><?php echo utf8_encode($rowNot["Titulo"])?></h2>
+  <p class ="wrapper">  <?php echo utf8_encode($rowNot["Contenido"])?>  </p>
 
 </div>
   <div class="w3-third"  style="height:300px; width:300px" > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>"  ></div>

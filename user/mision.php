@@ -157,15 +157,17 @@
   <div style="padding-left:70px;padding-right:70px;background:#00477e;">
   <div style="height:100%; width:100%;background:#00477e;">
   <p class ="text">
-  <?php echo $rowNot["Informacion"]?>
+  <?php echo utf8_encode($rowNot["Informacion"])?>
   </p>
   </div></div>
+  <?php if($rowNot["Imagen"]!=null){?>
   <div class="imgCol"> <img class="img-fluid imgCol" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>" style=" height:600px; width:600px; "></div>
+  <?php }?>
   <?php 
   }?>
   </section>
 
-  <iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+  <iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
 </body>
 

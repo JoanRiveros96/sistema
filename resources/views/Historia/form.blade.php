@@ -13,8 +13,8 @@
 @endif 
 
 <div class="form-group">
-<label for="Año"> Año </label>
-<input type="text" class="form-control" name="Año" value="{{isset($historia->Año)?$historia->Año:old('Año')}}" id="Año">
+<label for="Anio"> Anio </label>
+<input type="text" class="form-control" name="Anio" value="{{isset($historia->Anio)?$historia->Anio:old('Anio')}}" id="Anio">
 
 </div>
 

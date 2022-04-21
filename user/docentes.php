@@ -150,8 +150,9 @@
       <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
     <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
       <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"]?></h2>
+      <h3 class= ""style="color:black;">Nombre: <?php echo utf8_encode($rowNot["Nombre"])?></h3>
   <p class ="wrapper">
-  <?php echo $rowNot["Descripcion"]?>
+  <?php echo utf8_encode($rowNot["Descripcion"])?>
   </p>
   
   
@@ -167,7 +168,12 @@
       
     <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
       <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"]?></h2>
-  <p class ="wrapper">  <?php echo $rowNot["Descripcion"]?>  </p>
+      <h3 class= ""style="color:black;">Nombre: <?php echo utf8_encode($rowNot["Nombre"])?></h3>
+      <?php if($rowNot["Correo"]!=null){?>
+        <h4 class= ""style="color:black;">Correo de contacto: <?php echo utf8_encode($rowNot["Correo"])?></h4>
+      <?php
+  }?>
+  <p class ="wrapper">  <?php echo utf8_encode($rowNot["Descripcion"])?>  </p>
   
   
   

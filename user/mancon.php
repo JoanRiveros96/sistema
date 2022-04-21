@@ -155,7 +155,7 @@
   </ul>
 </nav>
 
-<section>
+<section Style="text-align:center;">
 <?php $manual = mysqli_query($mysqli,$manual); 
 
   while($rowNot=mysqli_fetch_assoc($manual)){?>
@@ -164,7 +164,7 @@
   <div class="title"><?php echo strtoupper($rowNot["TipoInfo"])?></div>
   <div style="padding-left:70px;padding-right:70px;background:#00477e;">
   <div style="height:100%; width:100%;background:#00477e;">
-  <a class ="text" href="<?php echo $rowNot["Link"]?>" style="margin-left:700px"> 
+  <a class ="text" href="<?php echo $rowNot["Link"]?>" target="_blank" rel="noopener noreferrer"> 
   OBSERVA EL MANUAL COMPLETO AQUI!!!!!
   </a>
   </div></div>
@@ -173,7 +173,7 @@
   }?>
   </section>
 
-  <iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+  <iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
 </body>
 

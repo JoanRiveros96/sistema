@@ -40,7 +40,7 @@
         <tr>
             
             
-            <th>{{$historia ->Año}}</th>
+            <th>{{$historia ->Anio}}</th>
             <td>{{$historia ->Informacion}}</td>
             
             <td>

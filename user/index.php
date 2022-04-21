@@ -1,4 +1,5 @@
 <?php
+header ('Content-type: text/html; charset=utf-8');
     include("conexion.php");
     //SQL seleccionando todos los registros en la base de datos
     $banners = "SELECT * from  banners WHERE Activo = 1";
@@ -14,7 +15,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>COINSDA USER</title>
@@ -57,7 +58,7 @@
 
 
 <header class="header"> 
-  <div class="logo" ><img alt="" src="../public/storage/web/escudo.png">
+  <div class="logo" ><img class="img-fluid" alt="" src="../public/storage/web/escudo.png" >
  </div>
  <div class="redes"><ul>
  <a href="https://www.facebook.com/coinsda?_rdc=2&_rdr" class="fa fa-facebook"></a>
@@ -115,7 +116,9 @@
   <ul class="carousel-indicators">
     <!-- For para conocer cuantos archivos se encuentran almacenados en la base de datos -->
     <?php
+    
     $num = mysqli_query($mysqli,$cantidad);
+    
     $row=mysqli_fetch_array($num);
   
     for($i = 0; $i <= $row[0]; $i++){?>
@@ -169,7 +172,7 @@
     <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
       <h2 class ="wrapper"><?php echo $rowNot["Titulo"]?></h2>
   <p class ="wrapper">
-  <?php echo $rowNot["Contenido"]?>
+  <?php echo utf8_encode($rowNot["Contenido"])?>
   </p>
   <?php if($rowNot["Link"]!=null){?>
     <a href=<?php echo $rowNot["Link"]?> class="wrapper">Conoce más</a>
@@ -189,7 +192,7 @@
       
     <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
       <h2 class ="wrapper"><?php echo $rowNot["Titulo"]?></h2>
-  <p class ="wrapper">  <?php echo $rowNot["Contenido"]?>  </p>
+  <p class ="wrapper">  <?php echo utf8_encode($rowNot["Contenido"])?>  </p>
   <?php if($rowNot["Link"]!=null){?>
     <a  href=<?php echo $rowNot["Link"]?> class="wrapper">Conoce más</a>
 
@@ -228,9 +231,9 @@
       
       <div  class="w3-third"  style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>" ></div>
     <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
-      <h2 class ="wrapper"><?php echo $rowNot["Titulo"]?></h2>
+      <h2 class ="wrapper"><?php echo utf8_encode($rowNot["Titulo"])?></h2>
   <p class ="wrapper">
-  <?php echo $rowNot["Contenido"]?>
+  <?php echo utf8_encode($rowNot["Contenido"])?>
   </p>
   
   
@@ -245,9 +248,9 @@
     <div class="w3-row w3-margin">
       
     <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
-      <h2 class ="wrapper"><?php echo $rowNot["Titulo"]?></h2>
+      <h2 class ="wrapper"><?php echo utf8_encode($rowNot["Titulo"])?></h2>
   <p class ="wrapper">
-  <?php echo $rowNot["Contenido"]?>
+  <?php echo utf8_encode($rowNot["Contenido"])?>
   </p>
   
   
@@ -267,7 +270,7 @@
   
 </section>
 
-<iframe  src="footer.php" Style="width:100%; height:900px"></iframe>
+<iframe  src="footer.php" Style="width:100%; height:600px"></iframe>
 
  
 </body>

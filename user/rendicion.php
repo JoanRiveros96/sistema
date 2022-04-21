@@ -132,15 +132,15 @@
     
      
     <div class="w3-twothird w3-container " style="height:100%; width:100%;background:#00477e;">
-    <h2 class ="Año" ><?php echo $rowNot["Titulo"]?></h2>
+    <h2 class ="Año" ><?php echo utf8_encode($rowNot["Titulo"])?></h2>
   <p class ="text" >
-  <?php echo $rowNot["Contenido"]?>
+  <?php echo utf8_encode($rowNot["Contenido"])?>
   </p>
   
   
   
   <?php if($rowNot["Documento"]!=null){?>
-    <a  href=<?php echo $rowNot["Documento"]?> style="border-radius:50px;background-color:  #41a0d6;padding:15px;">VISITAR</a>
+    <a  href="../storage/app/public/<?php echo $rowNot["Documento"]?>" target="_blank" rel="noopener noreferrer" style="border-radius:50px;background-color:  #41a0d6;padding:15px;">VISITAR</a>
 
 <?php
   }?>
@@ -165,7 +165,7 @@
   
 </section>
 
-<iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+<iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
 </body>
 

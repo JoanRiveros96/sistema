@@ -2,7 +2,7 @@
     include("conexion.php");
     
     //SQL para conocer los ultimos 3 registros modificados de las noticias en la base de datos
-    $historias ="SELECT * FROM `historias` WHERE Activo = 1 ORDER by updated_at asc";
+    $historias ="SELECT * FROM `historias`   WHERE Activo = 1 ORDER BY Anio ASC"
 
 
 
@@ -13,7 +13,7 @@
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>COINSDA USER</title>
@@ -135,9 +135,9 @@
     
      
     <div class="w3-twothird w3-container " style="height:100%; width:100%;background:#00477e;">
-      <h2 class ="Año" ><?php echo $rowNot["Año"]?></h2>
+      <h2 class ="Año" ><?php echo utf8_encode($rowNot["Anio"])?></h2>
   <p class ="text"  >
-  <?php echo $rowNot["Informacion"]?>
+  <?php echo utf8_encode($rowNot["Informacion"])?>
   </p>
   
   

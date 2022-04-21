@@ -189,11 +189,17 @@
 
       <tr>
         <td> <?php echo $row['Fecha'] ?></td>
-        <td> <?php echo $row['Titulo'] ?></td>
-        <td> <?php echo $row['Descripcion'] ?></td>
+        <td> <?php echo utf8_encode($row['Titulo']) ?></td>
+        <td> <?php echo utf8_encode($row['Descripcion']) ?></td>
         <td><img class="img-fluid" src="../storage/app/public/<?php echo $row["Imagen"]?>" style="height:200px;width:200px">
            </td>
-        <td> <?php echo $row['Link'] ?></td>
+           <td>
+           <?php if($row["Link"]!=null){?>
+    <a  href="<?php echo $row["Link"]?>" target="_blank" rel="noopener noreferrer" style="border-radius:50px;background-color:  #41a0d6;padding:15px;">VISITAR</a>
+
+<?php
+  }?>
+      </td>
       </tr>
 
       <?php

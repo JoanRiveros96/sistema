@@ -37,7 +37,7 @@ class HistoriaController extends Controller
         //
         $campos=[
             
-            'Año'=>'required|integer|max:2022',
+            'Anio'=>'required|integer|max:2022',
             'Informacion'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
         ];
@@ -86,7 +86,7 @@ class HistoriaController extends Controller
         //
         $campos=[
             
-            'Año'=>'required|integer|max:2022',
+            'Anio'=>'required|integer|max:2022',
             'Informacion'=> 'required|string',
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             
