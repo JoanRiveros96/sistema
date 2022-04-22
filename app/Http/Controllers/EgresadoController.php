@@ -25,8 +25,8 @@ class EgresadoController extends Controller
         $campos=[
             'AñoGrado'=>'required|string|max:4',
             'Nombre'=>'required|string',
-            'Afinidad'=> 'required|string',
-            'Descripcion'=> 'required|string',
+            'Afinidad'=> 'required|string|max:1000',
+            'Descripcion'=> 'required|string|max:1000',
             'Foto' =>'max:10000|mimes:jpeg,png,jpg',
             
             
@@ -79,8 +79,8 @@ class EgresadoController extends Controller
             
             'AñoGrado'=>'required|string|max:4',
             'Nombre'=>'required|string',
-            'Afinidad'=> 'required|string',
-            'Descripcion'=> 'required|string',
+            'Afinidad'=> 'required|string|max:1000',
+            'Descripcion'=> 'required|string|max:1000',
             'Foto' =>'max:10000|mimes:jpeg,png,jpg',
             
         ];

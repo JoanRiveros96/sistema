@@ -28,7 +28,7 @@ class AdmisionController extends Controller
             
             'Fecha'=>'required|date',
             'Requisito'=> 'required|string',
-            'Link' =>'required|string',
+            'Link' =>'string|nullable',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -71,7 +71,7 @@ class AdmisionController extends Controller
             
             'Fecha'=>'required|date',
             'Requisito'=> 'required|string',
-            'Link' =>'required|string',
+            'Link' =>'string|nullable',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',

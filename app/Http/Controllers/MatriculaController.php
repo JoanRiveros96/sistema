@@ -29,7 +29,7 @@ class MatriculaController extends Controller
             
             'Fecha'=>'required|date',
             'Requisito'=> 'required|string',
-            'Link' =>'required|string',
+            'Link' =>'string|nullable',
             'Costos' =>'required|string',
             'Utiles' =>'required|string',
             'Uniformes' =>'required|string',
@@ -74,7 +74,7 @@ class MatriculaController extends Controller
             
             'Fecha'=>'required|date',
             'Requisito'=> 'required|string',
-            'Link' =>'required|string',
+            'Link' =>'string|nullable',
             'Costos' =>'required|string',
             'Utiles' =>'required|string',
             'Uniformes' =>'required|string',

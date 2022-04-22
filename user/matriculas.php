@@ -119,7 +119,7 @@
 </section>
 
 <section>
-  <div class="title">ADMISIONES</div>
+  <div class="title">MATRICULAS</div>
   </section>
   
 <!-- Seccion de historias en incio -->
@@ -137,23 +137,23 @@
     <div class="w3-twothird w3-container " style="height:100%; width:100%;background:#00477e;">
       <h2 class ="Año" ><?php echo $rowNot["Fecha"]?></h2>
   <p class ="text"  >
-  <?php echo $rowNot["Requisito"]?>
+  <?php echo utf8_encode($rowNot["Requisito"])?>
   </p>
   <div style="padding:10px"></div>
   <p class ="text"  >
-  <?php echo $rowNot["Costos"]?>
+  <?php echo utf8_encode($rowNot["Costos"])?>
   </p>
   <div style="padding:10px"></div>
   <p class ="text"  >
-  <?php echo $rowNot["Utiles"]?>
+  <?php echo utf8_encode($rowNot["Utiles"])?>
   </p>
   <div style="padding:10px"></div>
   <p class ="text"  >
-  <?php echo $rowNot["Uniformes"]?>
+  <?php echo utf8_encode($rowNot["Uniformes"])?>
   </p>
   <div style="padding:10px"></div>
   <?php if($rowNot["Link"]!=null){?>
-    <a  href=<?php echo $rowNot["Link"]?> style="border-radius:50px;background-color:  #41a0d6;padding:15px;">OBTEN LA INFORMACION COMPLETA AQUI!!!!</a>
+    <a  href=<?php echo $rowNot["Link"]?> target="_blank" rel="noopener noreferrer" style="border-radius:50px;background-color:  #41a0d6;padding:15px;">OBTEN LA INFORMACION COMPLETA AQUI!!!!</a>
 
 <?php
   }?>
@@ -171,7 +171,7 @@
   
 </section>
 
-<iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+<iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
 </body>
 

@@ -143,7 +143,7 @@
   <input type="text" id="Mensaje" name="Mensaje"><br><br>
   <label for="Foto">¿Deseas adjuntar alguna evidencia?</label><br>
   <input type="file" id="Foto" name="Foto"><br><br>
-  <button type="submit">Enviar</button>
+  <button type="submit" onclick=" return confirm('¿Deseas enviarnos tu información?')" >Enviar</button>
 </form>
 
 </div>
@@ -151,7 +151,7 @@
 
 </section>
 
-<iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+<iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
 </body>
 

@@ -132,22 +132,22 @@
     if($i%2==0){?>
     <div class="w3-row w3-margin">
       <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
-    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
-      <h2 class ="wrapper dep"><?php echo $rowNot["Nombre"]?></h2>
+    <div class="w3-twothird w3-container w3-light-gray" style="height:500px; width:83%">
+      <h2 class ="wrapper dep"><?php echo utf8_encode($rowNot["Nombre"])?></h2>
       <h5 class="wrapper">AÑO DE GRADUACION</h5>
       <div style="padding:2px"></div>
   <p class ="wrapper">
-  <?php echo $rowNot["AñoGrado"]?>
+  <?php echo utf8_encode($rowNot["AñoGrado"])?>
   </p><div style="padding:2px"></div>
   <h5 class="wrapper">AFINIDAD</h5>
   <div style="padding:2px"></div>
   <p class ="wrapper">
-  <?php echo $rowNot["Afinidad"]?>
+  <?php echo utf8_encode($rowNot["Afinidad"])?>
   </p><div style="padding:2px"></div>
   <h5 class="wrapper">EXPERIENCIA</h5>
   <div style="padding:2px"></div>
   <p class ="wrapper">
-  <?php echo $rowNot["Descripcion"]?>
+  <?php echo utf8_encode($rowNot["Descripcion"])?>
   </p><div style="padding:2px"></div>
   
   
@@ -161,23 +161,23 @@
     else{?>
     <div class="w3-row w3-margin">
       
-    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
-      <h2 class ="wrapper dep"><?php echo $rowNot["Nombre"]?></h2>
+    <div class="w3-twothird w3-container w3-light-gray" style="height:500px; width:83%">
+      <h2 class ="wrapper dep"><?php echo utf8_encode($rowNot["Nombre"])?></h2>
       <p class ="wrapper"> 
       <h5 class="wrapper">AÑO DE GRADUACION</h5>
       <div style="padding:2px"></div>
   <p class ="wrapper">
-  <?php echo $rowNot["AñoGrado"]?>
+  <?php echo utf8_encode($rowNot["AñoGrado"])?>
   </p><div style="padding:2px"></div>
   <h5 class="wrapper">AFINIDAD</h5>
   <div style="padding:2px"></div>
   <p class ="wrapper">
-  <?php echo $rowNot["Afinidad"]?>
+  <?php echo utf8_encode($rowNot["Afinidad"])?>
   </p><div style="padding:2px"></div>
   <h5 class="wrapper">EXPERIENCIA</h5>
   <div style="padding:2px"></div>
   <p class ="wrapper">
-  <?php echo $rowNot["Descripcion"]?>
+  <?php echo utf8_encode($rowNot["Descripcion"])?>
   </p><div style="padding:2px"></div>
 </div>
   <div class="w3-third"  style="height:300px; width:300px" > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
@@ -196,18 +196,29 @@
 <div style="text-align:center;">
 
 
-    <form class="formex" action="" method="post" enctype="multipart/form-data">
+    <form class="formex" action="enviar.php" method="post" enctype="multipart/form-data">
   <label for="AñoGrado">¿en qué año te graduaste?</label><br>
-  <input type="text" id="AñoGrado" name="AñoGrado"><br>
+  <select Name="AñoGrado" id="AñoGrado">
+  <?php 
+  
+    $date= date("Y");
+    for ($i=1980; $i <= $date-1 ; $i++) {?>
+    <option value="<?php echo $i ?>"><?php echo $i?></option>
+      
+   <?php
+    }
+    ?>
+</select ><br>
+  
   <label for="Nombre">¿Cúal es tu nombre?</label><br>
   <input type="text" id="Nombre" name="Nombre"><br><br>
   <label for="Afinidad">¿Cúal es tu afinidad?</label><br>
-  <input type="text" id="Afinidad" name="Afinidad"><br><br>
+  <input type="text" id="Afinidad" name="Afinidad" ><br><br>
   <label for="Descripcion">Cuentanos sobre ti y tu experiencia</label><br>
   <input type="text" id="Descripcion" name="Descripcion"><br><br>
   <label for="Foto">¿Deseas subir alguna foto?</label><br>
   <input type="file" id="Foto" name="Foto"><br><br>
-  <button type="submit">Enviar</button>
+  <button type="submit" onclick=" return confirm('¿Deseas enviarnos tu información?')">Enviar</button>
 </form>
 <?php
    echo $_FILES['Foto']['name'];
@@ -219,7 +230,7 @@
 
 </section>
 
-<iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+<iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
 </body>
 

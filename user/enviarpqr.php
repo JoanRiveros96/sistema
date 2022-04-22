@@ -14,13 +14,13 @@ try{
     $archivo= $_FILES["Foto"];
 
 
-    $desde="joanriveros96@gmail.com";
-    $desdename="joan Sebastian Riveros Lozada";
+    $desde="coldivinamore@gmail.com";
+    $desdename="coldivin divinoamore";
     $host="smtp.gmail.com";
     $port="465";
     $SMTPAuth ="login";
     $_SMTPSecure="ssl";
-    $password="SeRi2020@";
+    $password="Semestre22022";
 
     $message = '
 <h3 align="center">Detalles del informe</h3>
@@ -60,7 +60,7 @@ $mail = new PHPMailer\PHPMailer\PHPMailer();
     $mail->Username= $desde;
     $mail->Password=$password;
     $mail->setFrom($desde,$desdename);
-    $mail->addAddress("joanriveros96@gmail.com");
+    $mail->addAddress("coldivinamore@gmail.com");
     $mail->Subject="Solicitud Nueva";
     $mail->isHTML(true);
     $mail->Body = $message;
