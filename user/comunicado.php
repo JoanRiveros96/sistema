@@ -127,10 +127,19 @@
     if($i%2==0){?>
     <div class="w3-row w3-margin">
       <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>"  ></div>
-    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
+    <div class="w3-twothird w3-container w3-light-gray" style="height:100%; width:100%; padding-bottom:5px;">
       <h2 class ="wrapper dep"><?php echo utf8_encode($rowNot["Titulo"])?></h2>
-  <p class ="wrapper" style="padding:15px;">
-  <?php echo utf8_encode($rowNot["Contenido"])?>
+  <p class ="wrapper">
+  <?php  
+  $info= $rowNot["Contenido"];
+    $separador= "\n";
+    $des = explode($separador, $info);
+    for ($i=0; $i <= count($des)-1 ; $i++) { 
+      echo utf8_encode($des[$i]);
+      ?>
+      <br>
+      <?php
+    }?> 
   </p>
   <?php if($rowNot["Link"]!=null){?>
     <a href=<?php echo $rowNot["Link"]?> class="wrapper">Conoce más</a>
@@ -149,9 +158,19 @@
     else{?>
     <div class="w3-row w3-margin">
       
-    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
+    <div class="w3-twothird w3-container w3-light-gray" style="height: 100%; width:100%; padding-bottom:5px;">
       <h2 class ="wrapper dep"><?php echo utf8_encode($rowNot["Titulo"])?></h2>
-  <p class ="wrapper" style="padding:15px;">  <?php echo utf8_encode($rowNot["Contenido"])?>  </p>
+  <p class ="wrapper" > 
+     <?php  
+  $info= $rowNot["Contenido"];
+    $separador= "\n";
+    $des = explode($separador, $info);
+    for ($i=0; $i <= count($des)-1 ; $i++) { 
+      echo utf8_encode($des[$i]);
+      ?>
+      <br>
+      <?php
+    }?>   </p>
   <?php if($rowNot["Link"]!=null){?>
     <a href=<?php echo $rowNot["Link"]?> style="border-radius:60px;background-color:#41a0d6;padding:5px;">Conoce más</a>
 
@@ -170,7 +189,7 @@
   
 </section>
 
-<iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+<iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
 </body>
 

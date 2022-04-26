@@ -190,7 +190,14 @@
       <tr>
         <td> <?php echo $row['Fecha'] ?></td>
         <td> <?php echo utf8_encode($row['Titulo']) ?></td>
-        <td> <?php echo utf8_encode($row['Descripcion']) ?></td>
+        <td> <?php
+                    $info= $row["Descripcion"];
+                    $separador= "\n";
+                    $des = explode($separador, $info);
+                    for ($i=0; $i <= count($des)-1 ; $i++) { 
+                    echo utf8_encode($des[$i]);?>
+                    <br>
+                    <?php } ?></td>
         <td><img class="img-fluid" src="../storage/app/public/<?php echo $row["Imagen"]?>" style="height:200px;width:200px">
            </td>
            <td>
@@ -234,7 +241,7 @@
 <div style="padding:10px"></div>
 </section>
 
-<iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+<iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
 </body>
 

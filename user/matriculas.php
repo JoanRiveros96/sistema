@@ -136,20 +136,52 @@
      
     <div class="w3-twothird w3-container " style="height:100%; width:100%;background:#00477e;">
       <h2 class ="Año" ><?php echo $rowNot["Fecha"]?></h2>
-  <p class ="text"  >
-  <?php echo utf8_encode($rowNot["Requisito"])?>
+      <h3>REQUISITOS</h3>
+  <p class ="text"  > 
+  <?php
+                    $info= $rowNot["Requisito"];
+                    $separador= "\n";
+                    $des = explode($separador, $info);
+                    for ($i=0; $i <= count($des)-1 ; $i++) { 
+                    echo utf8_encode($des[$i]);?>
+                    <br>
+                    <?php } ?>
   </p>
   <div style="padding:10px"></div>
-  <p class ="text"  >
-  <?php echo utf8_encode($rowNot["Costos"])?>
+  <h3>COSTOS</h3>
+  <p class ="text"  > 
+  <?php
+                    $info= $rowNot["Costos"];
+                    $separador= "\n";
+                    $des = explode($separador, $info);
+                    for ($i=0; $i <= count($des)-1 ; $i++) { 
+                    echo utf8_encode($des[$i]);?>
+                    <br>
+                    <?php } ?>
   </p>
   <div style="padding:10px"></div>
-  <p class ="text"  >
-  <?php echo utf8_encode($rowNot["Utiles"])?>
+  <h3>UTILES</h3>
+  <p class ="text"  > 
+  <?php
+                    $info= $rowNot["Utiles"];
+                    $separador= "\n";
+                    $des = explode($separador, $info);
+                    for ($i=0; $i <= count($des)-1 ; $i++) { 
+                    echo utf8_encode($des[$i]);?>
+                    <br>
+                    <?php } ?>
   </p>
   <div style="padding:10px"></div>
+  <h3>UNIFORMES</h3>
   <p class ="text"  >
-  <?php echo utf8_encode($rowNot["Uniformes"])?>
+  <?php
+                    $info= $rowNot["Uniformes"];
+                    $separador= "\n";
+                    $des = explode($separador, $info);
+                    for ($i=0; $i <= count($des)-1 ; $i++) { 
+                    echo utf8_encode($des[$i]);?>
+                    <br>
+                    <?php } ?>
   </p>
   <div style="padding:10px"></div>
   <?php if($rowNot["Link"]!=null){?>

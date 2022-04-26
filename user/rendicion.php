@@ -134,7 +134,16 @@
     <div class="w3-twothird w3-container " style="height:100%; width:100%;background:#00477e;">
     <h2 class ="Año" ><?php echo utf8_encode($rowNot["Titulo"])?></h2>
   <p class ="text" >
-  <?php echo utf8_encode($rowNot["Contenido"])?>
+  <?php  
+  $info= $rowNot["Contenido"];
+    $separador= "\n";
+    $des = explode($separador, $info);
+    for ($i=0; $i <= count($des)-1 ; $i++) { 
+      echo utf8_encode($des[$i]);
+      ?>
+      <br>
+      <?php
+    }?> 
   </p>
   
   
@@ -155,15 +164,8 @@
     
 <?php 
     }
-    ?>
-    
-      
-
-</div>
-  
-</div>
-  
-</section>
+    ?></div></div>
+  </section>
 
 <iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
@@ -171,8 +173,3 @@
 
 
 </html>
-
-
-
-
-

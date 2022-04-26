@@ -134,7 +134,14 @@
     <div class="w3-twothird w3-container " style="height:100%; width:100%;background:#00477e;">
       <h2 class ="Año" ><?php echo $rowNot["Fecha"]?></h2>
   <p class ="text"  >
-  <?php echo utf8_encode($rowNot["Requisito"])?>
+  <?php
+                    $info= $rowNot["Requisito"];
+                    $separador= "\n";
+                    $des = explode($separador, $info);
+                    for ($i=0; $i <= count($des)-1 ; $i++) { 
+                    echo utf8_encode($des[$i]);?>
+                    <br>
+                    <?php } ?>
   </p>
   <div style="padding:10px"></div>
   <?php if($rowNot["Link"]!=null){?>

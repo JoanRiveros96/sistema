@@ -1,6 +1,6 @@
-<?php 
-    include("conexion.php");
-    $programa ="SELECT * FROM `programadors` WHERE Activo = 1 AND Imagen ='programa/07.jpg';";
+<?php
+include "conexion.php";
+$programa = "SELECT * FROM `programadors` WHERE Activo = 1 AND Imagen ='programa/07.jpg';";
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="../public/js/app.js" defer></script>
 
-  
+
 
 
   <style>
@@ -40,8 +40,8 @@
   a{
     color:white;
   }
-  
- 
+
+
   </style>
 </head>
 <body>
@@ -50,7 +50,7 @@
 <section>
 
 
-<header class="header"> 
+<header class="header">
 
 
   <div class="logo" ><img alt="" src="../public/storage/web/escudo.png">
@@ -61,12 +61,12 @@
  <a href="https://www.instagram.com/coinsda/" class="fa fa-instagram"></a>
  <a href="https://www.instagram.com/coinsda/" class="fa fa-youtube"></a>
 </ul></div>
- 
+
 <div class="navbar">
 
   <a href="index.php">INICIO</a>
   <div class="subnav">
-  
+
     <button class="subnavbtn">DIVINO AMORE <i class="fa fa-caret-down"></i></button>
     <div class="subnav-content">
     <ul>
@@ -81,9 +81,9 @@
       </ul>
       <!-- <a href="#company">Comunidad (HISTORIA)</a>
       <a href="#team">Colegio</a> -->
-      
+
     </div>
-  </div> 
+  </div>
   <a href="eventos.php">EVENTOS</a>
   <div class="subnav">
     <button class="subnavbtn">ADMISIONES & MATRICULAS <i class="fa fa-caret-down"></i></button>
@@ -92,12 +92,12 @@
         <li><a href="admisiones.php">Admisiones</a></li>
         <li><a href="matriculas.php">Matriculas</a></li>
       </ul>
-      </div> 
-    
-  </div> 
-  
+      </div>
+
+  </div>
+
   <a href="exalumnos.php">EXALUMNOS</a>
-  <a href="contacto.php">CONTACTANOS</a> 
+  <a href="contacto.php">CONTACTANOS</a>
 </div>
 
 
@@ -148,18 +148,18 @@
 </nav>
 
 <section>
-<?php $programa = mysqli_query($mysqli,$programa); 
+<?php $programa = mysqli_query($mysqli, $programa);
 
-  while($rowNot=mysqli_fetch_assoc($programa)){?>
+while ($rowNot = mysqli_fetch_assoc($programa)) {?>
 
 
   <div class="title">JULIO</div>
   <div style="padding-left:70px;padding-right:70px;background:#00477e;">
   <div style="height:100%; width:100%;background:#00477e;">
   </div></div>
-  <div class="imgCol"> <img class="img-fluid imgCol" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>" style="  width:1700px; height:950px; "></div>
-  <?php 
-  }?>
+  <div class="imgCol"> <img class="img-fluid imgCol" src="../storage/app/public/<?php echo $rowNot["Imagen"] ?>" style="  width:1700px; height:950px; "></div>
+  <?php
+}?>
   </section>
 
   <iframe src="footer.php" Style="width:100%; height:900px"></iframe>

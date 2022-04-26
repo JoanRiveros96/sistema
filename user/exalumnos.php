@@ -132,7 +132,7 @@
     if($i%2==0){?>
     <div class="w3-row w3-margin">
       <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
-    <div class="w3-twothird w3-container w3-light-gray" style="height:500px; width:83%">
+    <div class="w3-twothird w3-container w3-light-gray" style="height:100%; width:100%">
       <h2 class ="wrapper dep"><?php echo utf8_encode($rowNot["Nombre"])?></h2>
       <h5 class="wrapper">AÑO DE GRADUACION</h5>
       <div style="padding:2px"></div>
@@ -142,12 +142,26 @@
   <h5 class="wrapper">AFINIDAD</h5>
   <div style="padding:2px"></div>
   <p class ="wrapper">
-  <?php echo utf8_encode($rowNot["Afinidad"])?>
+  <?php
+                    $info= $rowNot["Afinidad"];
+                    $separador= "\n";
+                    $des = explode($separador, $info);
+                    for ($i=0; $i <= count($des)-1 ; $i++) { 
+                    echo utf8_encode($des[$i]);?>
+                    <br>
+                    <?php } ?>
   </p><div style="padding:2px"></div>
   <h5 class="wrapper">EXPERIENCIA</h5>
   <div style="padding:2px"></div>
   <p class ="wrapper">
-  <?php echo utf8_encode($rowNot["Descripcion"])?>
+  <?php
+                    $info= $rowNot["Descripcion"];
+                    $separador= "\n";
+                    $des = explode($separador, $info);
+                    for ($i=0; $i <= count($des)-1 ; $i++) { 
+                    echo utf8_encode($des[$i]);?>
+                    <br>
+                    <?php } ?>
   </p><div style="padding:2px"></div>
   
   
@@ -161,7 +175,7 @@
     else{?>
     <div class="w3-row w3-margin">
       
-    <div class="w3-twothird w3-container w3-light-gray" style="height:500px; width:83%">
+    <div class="w3-twothird w3-container w3-light-gray" style="height:100%; width:100%; padding-bottom:5px;">
       <h2 class ="wrapper dep"><?php echo utf8_encode($rowNot["Nombre"])?></h2>
       <p class ="wrapper"> 
       <h5 class="wrapper">AÑO DE GRADUACION</h5>
@@ -172,12 +186,26 @@
   <h5 class="wrapper">AFINIDAD</h5>
   <div style="padding:2px"></div>
   <p class ="wrapper">
-  <?php echo utf8_encode($rowNot["Afinidad"])?>
+  <?php
+                    $info= $rowNot["Afinidad"];
+                    $separador= "\n";
+                    $des = explode($separador, $info);
+                    for ($i=0; $i <= count($des)-1 ; $i++) { 
+                    echo utf8_encode($des[$i]);?>
+                    <br>
+                    <?php } ?>
   </p><div style="padding:2px"></div>
   <h5 class="wrapper">EXPERIENCIA</h5>
   <div style="padding:2px"></div>
   <p class ="wrapper">
-  <?php echo utf8_encode($rowNot["Descripcion"])?>
+  <?php
+                    $info= $rowNot["Descripcion"];
+                    $separador= "\n";
+                    $des = explode($separador, $info);
+                    for ($i=0; $i <= count($des)-1 ; $i++) { 
+                    echo utf8_encode($des[$i]);?>
+                    <br>
+                    <?php } ?>
   </p><div style="padding:2px"></div>
 </div>
   <div class="w3-third"  style="height:300px; width:300px" > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>

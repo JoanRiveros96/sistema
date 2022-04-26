@@ -1,12 +1,8 @@
-<?php 
-    include("conexion.php");
-    
-    //SQL para conocer los ultimos 3 registros modificados de las noticias en la base de datos
-    $portcafe ="SELECT * FROM `empleados` WHERE (Activo = 1) AND (Dependencia ='Porteria'OR Dependencia = 'Cafeteria')";
-    
+<?php
+include "conexion.php";
 
-
-
+//SQL para conocer los ultimos 3 registros modificados de las noticias en la base de datos
+$portcafe = "SELECT * FROM `empleados` WHERE (Activo = 1) AND (Dependencia ='Porteria'OR Dependencia = 'Cafeteria')";
 
 ?>
 
@@ -35,7 +31,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="../public/js/app.js" defer></script>
 
-  
+
 
 
   <style>
@@ -47,8 +43,8 @@
   a{
     color:white;
   }
-  
- 
+
+
   </style>
 </head>
 <body>
@@ -57,7 +53,7 @@
 <section>
 
 
-<header class="header"> 
+<header class="header">
 
 
   <div class="logo" ><img alt="" src="../public/storage/web/escudo.png">
@@ -72,7 +68,7 @@
 
   <a href="index.php">INICIO</a>
   <div class="subnav">
-  
+
     <button class="subnavbtn">DIVINO AMORE <i class="fa fa-caret-down"></i></button>
     <div class="subnav-content">
     <ul>
@@ -87,9 +83,9 @@
       </ul>
       <!-- <a href="#company">Comunidad (HISTORIA)</a>
       <a href="#team">Colegio</a> -->
-      
+
     </div>
-  </div> 
+  </div>
   <a href="eventos.php">EVENTOS</a>
   <div class="subnav">
     <button class="subnavbtn">ADMISIONES & MATRICULAS <i class="fa fa-caret-down"></i></button>
@@ -98,12 +94,12 @@
         <li><a href="admisiones.php">Admisiones</a></li>
         <li><a href="matriculas.php">Matriculas</a></li>
       </ul>
-      </div> 
-    
-  </div> 
-  
+      </div>
+
+  </div>
+
   <a href="exalumnos.php">EXALUMNOS</a>
-  <a href="contacto.php">CONTACTANOS</a> 
+  <a href="contacto.php">CONTACTANOS</a>
 </div>
 
 
@@ -134,57 +130,75 @@
     <li class="nav-item">
       <a class="nav-link" href="porteriacafe.php">PORTERIA Y CAFETERIA</a>
     </li>
-    
+
   </ul>
 </nav>
 <section>
-  
+
   <div class="w3-container">
-    
-    <?php $portcafe = mysqli_query($mysqli,$portcafe); 
-  $i=0; 
-  while($rowNot=mysqli_fetch_assoc($portcafe)){
-    if($i%2==0){?>
+
+    <?php $portcafe = mysqli_query($mysqli, $portcafe);
+$i = 0;
+while ($rowNot = mysqli_fetch_assoc($portcafe)) {
+    if ($i % 2 == 0) {?>
     <div class="w3-row w3-margin">
-      <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
-    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
-      <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"]?></h2>
+      <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"] ?>"  ></div>
+    <div class="w3-twothird w3-container w3-light-gray" style="height: 100%; width:100%; padding-bottom:5px;">
+      <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"] ?></h2>
   <p class ="wrapper">
-  <?php echo utf8_encode($rowNot["Descripcion"])?>
+  <?php
+$info = $rowNot["Descripcion"];
+        $separador = "\n";
+        $des = explode($separador, $info);
+        for ($i = 0; $i <= count($des) - 1; $i++) {
+            echo utf8_encode($des[$i]);
+            ?>
+      <br>
+      <?php
+}?>
   </p>
-  
-  
+
+
 
 </div>
 
   </div>
-    
-<?php $i=$i+1;
-    }
-    else{?>
+
+<?php $i = $i + 1;
+    } else {?>
     <div class="w3-row w3-margin">
-      
-    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
-      <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"]?></h2>
-  <p class ="wrapper">  <?php echo utf8_encode($rowNot["Descripcion"])?>  </p>
-  
-  
-  
+
+    <div class="w3-twothird w3-container w3-light-gray" style="height:100%; width:100%; padding-bottom:5px;">
+      <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"] ?></h2>
+  <p class ="wrapper">
+  <?php
+$info = $rowNot["Descripcion"];
+        $separador = "\n";
+        $des = explode($separador, $info);
+        for ($i = 0; $i <= count($des) - 1; $i++) {
+            echo utf8_encode($des[$i]);
+            ?>
+      <br>
+      <?php
+}?>   </p>
+
+
+
 
 
 </div>
-  <div class="w3-third"  style="height:300px; width:300px" > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
+  <div class="w3-third"  style="height:300px; width:300px" > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"] ?>"  ></div>
 
   </div>
-<?php $i=$i+1;
+<?php $i = $i + 1;
     }
-    
-   }?>
+
+}?>
 </div>
-  
+
 </section>
 
-<iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+<iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
 </body>
 

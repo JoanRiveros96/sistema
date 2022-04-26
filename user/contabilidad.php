@@ -148,10 +148,19 @@
     if($i%2==0){?>
     <div class="w3-row w3-margin">
       <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
-    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
+    <div class="w3-twothird w3-container w3-light-gray" style="height:100%; width:100%; padding-bottom:5px">
       <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"]?></h2>
   <p class ="wrapper">
-  <?php echo utf8_encode($rowNot["Descripcion"])?>
+  <?php  
+  $info= $rowNot["Descripcion"];
+    $separador= "\n";
+    $des = explode($separador, $info);
+    for ($i=0; $i <= count($des)-1 ; $i++) { 
+      echo utf8_encode($des[$i]);
+      ?>
+      <br>
+      <?php
+    }?> 
   </p>
   
   
@@ -165,9 +174,22 @@
     else{?>
     <div class="w3-row w3-margin">
       
-    <div class="w3-twothird w3-container w3-light-gray" style="height:300px; width:83%">
+    <div class="w3-twothird w3-container w3-light-gray" style="height:100%; width:100%; padding-bottom:5px">
       <h2 class ="wrapper dep"><?php echo $rowNot["Dependencia"]?></h2>
-  <p class ="wrapper">  <?php echo $rowNot["Descripcion"]?>  </p>
+  <p class ="wrapper">  
+
+  <?php  
+  $info= $rowNot["Descripcion"];
+    $separador= "\n";
+    $des = explode($separador, $info);
+    for ($i=0; $i <= count($des)-1 ; $i++) { 
+      echo utf8_encode($des[$i]);
+      ?>
+      <br>
+      <?php
+    }?> 
+    
+</p>
   
   
   
@@ -185,7 +207,7 @@
   
 </section>
 
-<iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+<iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
 </body>
 
