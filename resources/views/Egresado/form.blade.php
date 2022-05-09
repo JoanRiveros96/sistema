@@ -45,7 +45,7 @@
 </div>
 
 <div class="form-group">
-<label for="Foto">Foto</label>
+<label for="Foto">Foto. NOTA: las dimensiones maximas de la foto son: 150px * 183px </label>
 
 @if(isset($egresado->Foto))
 <img class="img-thumbnail img-fluid" src="../../../storage/app/public/<?php echo $egresado->Foto?>" alt="" width="300" > 

@@ -30,9 +30,9 @@ class MatriculaController extends Controller
             'Fecha'=>'required|date',
             'Requisito'=> 'required|string',
             'Link' =>'string|nullable',
-            'Costos' =>'required|string',
-            'Utiles' =>'required|string',
-            'Uniformes' =>'required|string',
+            'Costos' =>'string|nullable',
+            'Utiles' =>'string|nullable',
+            'Uniformes' =>'string|nullable',
         ];
         $mensaje=[
             'required'=>'El campo :attribute es requerido',
@@ -75,9 +75,9 @@ class MatriculaController extends Controller
             'Fecha'=>'required|date',
             'Requisito'=> 'required|string',
             'Link' =>'string|nullable',
-            'Costos' =>'required|string',
-            'Utiles' =>'required|string',
-            'Uniformes' =>'required|string',
+            'Utiles' =>'string|nullable',
+            'Costos' =>'string|nullable',
+            'Uniformes' =>'string|nullable',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',

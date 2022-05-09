@@ -31,6 +31,7 @@
 
   <script src="https://code.jquery.com/jquery-latest.js"></script>
   <script src ="../public/js/header.js"></script>
+  <script src ="../public/js/submenu.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -114,6 +115,53 @@
 </section>
 
 <section>
+<div id="myNavDes" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <a href="index.php">INICIO</a>
+
+    <div id="Submenu" class="overlay2" >
+  <a href="javascript:void(0)" class="closebtn" onclick="closesubmenu()">&times;</a>
+  <div class="overlay-content">
+    
+        <a href="trayectoria.php">Trayectoria institucional</a>
+        <a href="mision.php">Colegio</a>
+        <a href="dependencias.php">Dependencias</a>
+        <a href="noticias.php">Noticias</a>
+        <a href="comunicado.php">Comunicados</a>
+        <a href="plataformas.php">Plataformas</a>
+        <a href="rendicion.php">Rendicion de cuentas</a>
+        <a href="programador.php">Programador</a>
+
+    </div>
+</div>
+<a  style="cursor:pointer;color:#818181" onclick="opensubmenu()"> DIVINO AMORE </a>
+
+<div id="Submenu2" class="overlay2" >
+  <a href="javascript:void(0)" class="closebtn" onclick="closesubmenu2()">&times;</a>
+  <div class="overlay-content">
+    
+  <a href="admisiones.php">Admisiones</a>
+        <a href="matriculas.php">Matriculas</a>
+
+    </div>
+</div>
+<a  style="cursor:pointer;color:#818181" onclick="opensubmenu2()"> ADMISIONES & MATRICULAS </a>
+
+    
+    <a href="eventos.php">EVENTOS</a>
+    <a href="exalumnos.php">EXALUMNOS</a>
+  <a href="contacto.php">CONTACTANOS</a> 
+  </div>
+</div>
+
+
+<span class="click" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú principal</span>
+
+
+</section>
+
+<section>
 <div >
       <img class="img-fluid" src="../public/storage/uploads/WBVuvVTvAABKwWBmwRm3l3lACK4VJII46gXJglcE.jpg" alt="" width="2000" height="1500">
     </div>
@@ -130,9 +178,9 @@
   $i=0; 
   while($rowNot=mysqli_fetch_assoc($exalumno)){
     if($i%2==0){?>
-    <div class="w3-row w3-margin">
-      <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
-    <div class="w3-twothird w3-container w3-light-gray" style="height:100%; width:100%">
+    <div class="rowinfo">
+      <div class="info1" > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
+    <div class="info2">
       <h2 class ="wrapper dep"><?php echo utf8_encode($rowNot["Nombre"])?></h2>
       <h5 class="wrapper">AÑO DE GRADUACION</h5>
       <div style="padding:2px"></div>
@@ -146,8 +194,8 @@
                     $info= $rowNot["Afinidad"];
                     $separador= "\n";
                     $des = explode($separador, $info);
-                    for ($i=0; $i <= count($des)-1 ; $i++) { 
-                    echo utf8_encode($des[$i]);?>
+                    for ($n=0; $n <= count($des)-1 ; $n++) { 
+                    echo utf8_encode($des[$n]);?>
                     <br>
                     <?php } ?>
   </p><div style="padding:2px"></div>
@@ -158,8 +206,8 @@
                     $info= $rowNot["Descripcion"];
                     $separador= "\n";
                     $des = explode($separador, $info);
-                    for ($i=0; $i <= count($des)-1 ; $i++) { 
-                    echo utf8_encode($des[$i]);?>
+                    for ($m=0; $m <= count($des)-1 ; $m++) { 
+                    echo utf8_encode($des[$m]);?>
                     <br>
                     <?php } ?>
   </p><div style="padding:2px"></div>
@@ -173,9 +221,9 @@
 <?php $i=$i+1;
     }
     else{?>
-    <div class="w3-row w3-margin">
+    <div class="rowinfo">
       
-    <div class="w3-twothird w3-container w3-light-gray" style="height:100%; width:100%; padding-bottom:5px;">
+    <div class="info2">
       <h2 class ="wrapper dep"><?php echo utf8_encode($rowNot["Nombre"])?></h2>
       <p class ="wrapper"> 
       <h5 class="wrapper">AÑO DE GRADUACION</h5>
@@ -190,8 +238,8 @@
                     $info= $rowNot["Afinidad"];
                     $separador= "\n";
                     $des = explode($separador, $info);
-                    for ($i=0; $i <= count($des)-1 ; $i++) { 
-                    echo utf8_encode($des[$i]);?>
+                    for ($l=0; $l <= count($des)-1 ; $l++) { 
+                    echo utf8_encode($des[$l]);?>
                     <br>
                     <?php } ?>
   </p><div style="padding:2px"></div>
@@ -202,13 +250,13 @@
                     $info= $rowNot["Descripcion"];
                     $separador= "\n";
                     $des = explode($separador, $info);
-                    for ($i=0; $i <= count($des)-1 ; $i++) { 
-                    echo utf8_encode($des[$i]);?>
+                    for ($k=0; $k <= count($des)-1 ; $k++) { 
+                    echo utf8_encode($des[$k]);?>
                     <br>
                     <?php } ?>
   </p><div style="padding:2px"></div>
 </div>
-  <div class="w3-third"  style="height:300px; width:300px" > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
+  <div class="info1" > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Foto"]?>"  ></div>
 
   </div>
 <?php $i=$i+1;
@@ -224,13 +272,13 @@
 <div style="text-align:center;">
 
 
-    <form class="formex" action="enviar.php" method="post" enctype="multipart/form-data">
+    <form class="formex" action="enviar.php" id="formulario" method="post" enctype="multipart/form-data">
   <label for="AñoGrado">¿en qué año te graduaste?</label><br>
   <select Name="AñoGrado" id="AñoGrado">
   <?php 
   
     $date= date("Y");
-    for ($i=1980; $i <= $date-1 ; $i++) {?>
+    for ($i=$date-1 ; $i >= 1980 ; $i--) {?>
     <option value="<?php echo $i ?>"><?php echo $i?></option>
       
    <?php
@@ -245,14 +293,98 @@
   <label for="Descripcion">Cuentanos sobre ti y tu experiencia</label><br>
   <input type="text" id="Descripcion" name="Descripcion"><br><br>
   <label for="Foto">¿Deseas subir alguna foto?</label><br>
-  <input type="file" id="Foto" name="Foto"><br><br>
+  <input type="file" id="Foto" name="Foto"  onchange="ValidarTamaño(this);"><br><br>
+  <!-- Image preview -->
+<div id="imagePreview" style="width:150px; height:183px"></div><br><br>
   <button type="submit" onclick=" return confirm('¿Deseas enviarnos tu información?')">Enviar</button>
 </form>
-<?php
-   echo $_FILES['Foto']['name'];
+
+<script>
+
+
+
+  var patron = /^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙñ\s/,/]+$/;
+  // var experiencia = /^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙñ\s/,//./]+$/;
+  document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("formulario").addEventListener('submit', validarFormulario); 
+});
+
+function validarFormulario(evento) {
+  evento.preventDefault();
+  var nombre = document.getElementById('Nombre').value;
+  if(nombre.length == 0) {
+    alert('El campo nombre no puede estar vacio');
+    return;
+  }
+  if(!patron.test(nombre)){
+    alert("Solo puede ingresas letras y espacios en el campo nombre");
+    return;
+  }
   
 
-?>
+  var afinidad = document.getElementById('Afinidad').value;
+  if (afinidad.length == 0) {
+    alert('el campo afinidad no puede ser vacio');
+    return;
+  }
+  if(!patron.test(afinidad)){
+    alert("Solo puede ingresas letras y espacios en el campo afinidad");
+    return;
+  }
+
+  var descripcion = document.getElementById('Descripcion').value;
+  if (descripcion.length == 0) {
+    alert('el campo experiencia no puede ser vacio');
+    return;
+  }
+  
+  
+
+
+  this.submit();
+}
+
+
+</script>
+<script>
+
+function ValidarTamaño(obj)
+{
+  var fileInput = document.getElementById('Foto');
+  var uploadFile = obj.files[0];
+  var img = new Image();
+  img.onload = function () 
+  {
+    var allowedExtensions = /(.jpg)$/i;
+     if(!allowedExtensions.exec(fileInput.value)){
+         alert('Por favor solo cargue imagenes jpg ');
+         $('#Foto').val("");
+         document.getElementById('imagePreview').innerHTML = '<img class="img-fluid" src=""/>';
+         
+     }else{
+     var h = this.width.toFixed(0);
+     var w = this.height.toFixed(0);
+    if (this.width.toFixed(0) > 150 && this.height.toFixed(0) > 183) 
+    {
+      
+      alert("El tamaño de tu imagen es " + w +"px por "+h+"px");
+      alert("La imagen debe ser de tamaño maximo 150px por 183px.");
+      $('#Foto').val("");
+      document.getElementById('imagePreview').innerHTML = '<img class="img-fluid" src=""/>';
+      
+    }else{document.getElementById('imagePreview').innerHTML = '<img class="img-fluid" src="'+img.src+'"/>';}
+  }
+   
+  };
+   img.src = URL.createObjectURL(uploadFile); 
+  
+
+}
+
+ </script>
+
+
+
 </div>
 </div>
 

@@ -41,6 +41,7 @@
 
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src ="../public/js/header.js"></script>
+  <script src ="../public/js/submenu.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -123,6 +124,54 @@
 
 </section>
 
+
+<section>
+<div id="myNavDes" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <a href="index.php">INICIO</a>
+
+    <div id="Submenu" class="overlay2" >
+  <a href="javascript:void(0)" class="closebtn" onclick="closesubmenu()">&times;</a>
+  <div class="overlay-content">
+    
+        <a href="trayectoria.php">Trayectoria institucional</a>
+        <a href="mision.php">Colegio</a>
+        <a href="dependencias.php">Dependencias</a>
+        <a href="noticias.php">Noticias</a>
+        <a href="comunicado.php">Comunicados</a>
+        <a href="plataformas.php">Plataformas</a>
+        <a href="rendicion.php">Rendicion de cuentas</a>
+        <a href="programador.php">Programador</a>
+
+    </div>
+</div>
+<a  style="cursor:pointer;color:#818181" onclick="opensubmenu()"> DIVINO AMORE </a>
+
+<div id="Submenu2" class="overlay2" >
+  <a href="javascript:void(0)" class="closebtn" onclick="closesubmenu2()">&times;</a>
+  <div class="overlay-content">
+    
+  <a href="admisiones.php">Admisiones</a>
+        <a href="matriculas.php">Matriculas</a>
+
+    </div>
+</div>
+<a  style="cursor:pointer;color:#818181" onclick="opensubmenu2()"> ADMISIONES & MATRICULAS </a>
+
+    
+    <a href="eventos.php">EVENTOS</a>
+    <a href="exalumnos.php">EXALUMNOS</a>
+  <a href="contacto.php">CONTACTANOS</a> 
+  </div>
+</div>
+
+
+<span class="click" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú principal</span>
+
+
+</section>
+
 <section>
 <div >
       <img class="img-fluid" src="../public/storage/uploads/WBVuvVTvAABKwWBmwRm3l3lACK4VJII46gXJglcE.jpg" alt="" width="2000" height="1500">
@@ -188,9 +237,9 @@
       ?>
 
       <tr>
-        <td> <?php echo $row['Fecha'] ?></td>
-        <td> <?php echo utf8_encode($row['Titulo']) ?></td>
-        <td> <?php
+        <td style="vertical-align:top;width:6%"> <?php echo $row['Fecha'] ?></td>
+        <td style="vertical-align:top;width:6%"> <?php echo utf8_encode($row['Titulo']) ?></td>
+        <td style="width:50%"> <?php
                     $info= $row["Descripcion"];
                     $separador= "\n";
                     $des = explode($separador, $info);
@@ -198,7 +247,7 @@
                     echo utf8_encode($des[$i]);?>
                     <br>
                     <?php } ?></td>
-        <td><img class="img-fluid" src="../storage/app/public/<?php echo $row["Imagen"]?>" style="height:200px;width:200px">
+        <td style="width:30%; text-align:center"> <img class="img-fluid" src="../storage/app/public/<?php echo $row["Imagen"]?>" style="width:275px;height:222px;">
            </td>
            <td>
            <?php if($row["Link"]!=null){?>

@@ -30,7 +30,7 @@
 </div>
 
 <div class="form-group">
-<label for="Imagen">Imagen</label>
+<label for="Imagen">Imagen NOTA: Dimensiones maximas de la imagen (2380px * 500px)</label>
 
 @if(isset($historia->Imagen))
 <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$historia->Imagen }}" alt="" width="300" > 

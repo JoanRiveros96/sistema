@@ -36,7 +36,7 @@
 
 
 <div class="form-group">
-<label for="Imagen">Imagen</label>
+<label for="Imagen">Imagen NOTA: Dimensiones minimas de la imagen (350px * 350px)</label>
 
 @if(isset($comunicado->Imagen))
 <img class="img-thumbnail img-fluid" src="../../../storage/app/public/<?php echo $comunicado->Imagen?>" alt="" width="300" > 

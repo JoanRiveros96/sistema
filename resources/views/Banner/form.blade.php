@@ -14,7 +14,7 @@
 
 
 <div class="form-group">
-<label for="Imagen">Imagen</label>
+<label for="Imagen">Imagen. NOTA: subir imagen con dimensiones maximas de 1875px * 480px</label>
 <br>
 @if(isset($banner->Imagen))
 <img class="img-thumbnail img-fluid" src="../../../storage/app/public/<?php echo $banner->Imagen?>" alt="" width="300" > 

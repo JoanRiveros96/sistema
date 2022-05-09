@@ -27,7 +27,7 @@ class EgresadoController extends Controller
             'Nombre'=>'required|string',
             'Afinidad'=> 'required|string|max:1000',
             'Descripcion'=> 'required|string|max:1000',
-            'Foto' =>'max:10000|mimes:jpeg,png,jpg',
+            'Foto' =>'dimensions:max_width=150,max_height=183|max:10000|mimes:jpg',
             
             
         
@@ -35,6 +35,7 @@ class EgresadoController extends Controller
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
+            'dimensions'=> 'las dimensiones maximas para las fotos son: 150px * 183px',
             
 
         ];
@@ -81,11 +82,12 @@ class EgresadoController extends Controller
             'Nombre'=>'required|string',
             'Afinidad'=> 'required|string|max:1000',
             'Descripcion'=> 'required|string|max:1000',
-            'Foto' =>'max:10000|mimes:jpeg,png,jpg',
+            'Foto' =>'dimensions:max_width=150,max_height=183|max:10000|mimes:jpg',
             
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
+            'dimensions'=> 'las dimensiones maximas para las fotos son: 150px * 183px',
 
         ];
 

@@ -26,6 +26,7 @@ section .title{
   letter-spacing: 50px;
   text-shadow: 2px 2px 15px #ffffff;
   padding: 25px;
+  width:100%;
   
 
 }
@@ -77,8 +78,6 @@ section .circulares{
   background:#00477e;
   height: 100%;
   width: 100%;
-  
-
 }
 .redes{
   width: 70px;
@@ -195,7 +194,28 @@ section .circulares{
   }
   /* FIN NAVBAR */
 
+.rowinfo{
+  background-color: lightgray;
+  width: 100%;
+  display: flex;
+  padding: 16px;
+  margin: 16px 0 16px 0;
 
+
+}
+.info1{
+  margin: auto;
+  display: block;
+  height: 100%;
+  width: 20%;
+  
+
+}
+.info2{
+  height: 100%;
+  width: 80%;
+  padding: 0 0 5px 10px;
+}
 
 
 .dep{
@@ -380,7 +400,71 @@ section .header2 .navbar{
 
 
 
-@media(max-width:1920px){
+/* //menu desplegable */
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+.overlay2 {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+
+/* Fin del menu desplegable */
+@media(max-width:1905px){
     header .logo{
         position: absolute;position:fixed; left: 400px; top: 40px; z-index: 2;
     }
@@ -391,25 +475,179 @@ section .header2 .navbar{
         position: absolute;position:fixed; left: 535px; top: 75px; z-index: 1;border-radius:10px;background: #00477e;
     }
     header .redes{
-      position: absolute;position:fixed; left: 1820px; top: 150px; z-index: 2;
+      position: absolute;position:fixed;left: 95%;  top: 150px; z-index: 2;
 
     }
+    /* .overlay{
+      display: none !important;
+    }
+    .click{
+      display: none !important;
+    } */
     
     
+}
+@media(max-width:1600px){
+  header .logo{
+    position: absolute;position:fixed; left: 200px; top: 40px; z-index: 2;
+}
+header .logo img{
+    width:160px; height:160px;border-radius:48px;background: #00477e
+}
+header .navbar{
+    position: absolute;position:fixed; left: 335px; top: 75px; z-index: 1;border-radius:10px;background: #00477e;
+}
+header .redes{
+  position: absolute;position:fixed;left: 95%;  top: 150px; z-index: 2;
+
+}
+
+
 }
 @media(max-width:1400px){
     header .logo{
-        position: absolute;position:fixed; left: 100px; top: 40px; z-index: 2;
+        position: absolute;position:fixed; left: 175px; top: 40px; z-index: 2;
     }
     header .logo img{
-        width:160px; height:160px;border-radius:48px;background: #00477e
+        width:120px; height:120px;border-radius:42px;background: #00477e
     }
     header .navbar{
-        position: absolute;position:fixed; left: 243px; top: 100px; z-index: 2;border-radius:10px;background: #00477e;
+        position: absolute;position:fixed; left: 287px; top: 75px; z-index: 1;border-radius:10px;background: #00477e;
     }
     header .redes{
-      position: absolute;position:fixed; left: 1250px; top: 200px; z-index: 2;
+      position: absolute;position:fixed; left: 94%; top: 150px; z-index: 2;
   }
+  .navbar a {
+    /* float: left; */
+    font-size: 12px;
+    
+   
+    padding: 7px 8px;
+    
+    
+  }
+  .subnav .subnavbtn {
+    font-size: 12px;  
+    
+    padding: 4px 5px;
+    
+  }
+  .header2 .logo img{
+    width:100px; height:100px; 
+}
+ 
     
 }
-@media(max-width:726px){}
+@media(max-width:1615px){
+  section .title{
+    letter-spacing: 35px;
+  }
+  .info2 p{
+    text-align: left;
+  }
+
+
+}
+@media(max-width:1284px){
+  section .title{
+    letter-spacing: 5px;
+  }
+  .rowinfo{
+    text-align: center;
+    display: block;
+  }
+  .info1{
+    width:400px;
+    height: 80%;
+
+
+  }
+  
+  .info2{
+    width: 100%;
+
+  }
+  header .redes{
+    position: absolute;position:fixed; left: 92%; top: 150px; z-index: 2;
+}
+
+
+}
+@media(max-width:1024px){
+  header .logo{
+    position: absolute;position:fixed; left: 12px; top: 8px; z-index: 2;
+}
+header .logo img{
+    width:95px; height:100px;border-radius:28px;background: #00477e
+}
+header .navbar{
+    display: none !important;
+}
+.desplegable{
+  position: absolute;
+  position:fixed;
+  
+  z-index: 2;
+}
+.rowinfo{
+  text-align: center;
+  display: block;
+}
+.info1{
+  width:250px;
+  height: 60%;
+
+}
+
+.info2{
+  width: 100%;
+
+}
+
+}
+
+@media(max-width:684px){
+  section .title{
+    letter-spacing: 4px;
+    font-size:16px;
+    padding: 2px;
+  }
+  .rowinfo{
+    text-align: center;
+    display: block;
+  }
+  .info1{
+    width:100%;
+  
+
+  }
+  .info2{
+    width: 100%;
+
+  }
+
+
+}
+@media(max-width:250px){
+  section .title{
+    letter-spacing: 0px;
+    font-size:16px;
+    padding: 2px;
+  }
+  .rowinfo{
+    text-align: center;
+    display: block;
+  }
+  .info1{
+    width:100%;
+  
+
+  }
+  .info2{
+    width: 100%;
+
+  }
+
+
+}
+

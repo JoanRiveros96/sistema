@@ -58,7 +58,7 @@
 </div>
 
 <div class="form-group">
-<label for="Foto">Foto</label>
+<label for="Foto">Foto NOTA: Dimensiones minimas de la imagen (350px * 350px)</label>
 <br>
 @if(isset($empleado->Foto))
 <img class="img-thumbnail img-fluid" src="../../../storage/app/public/<?php echo $empleado->Foto?>" alt="" width="300" > 

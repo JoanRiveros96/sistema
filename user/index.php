@@ -31,6 +31,7 @@ header ('Content-type: text/html; charset=utf-8');
 
   <script src="https://code.jquery.com/jquery-latest.js"></script>
   <script src ="../public/js/header.js"></script>
+  <script src ="../public/js/submenu.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -54,7 +55,7 @@ header ('Content-type: text/html; charset=utf-8');
 </head>
 <body>
   
-<section>
+<section class="Menu">
 
 
 <header class="header"> 
@@ -107,6 +108,53 @@ header ('Content-type: text/html; charset=utf-8');
 
 
 </header>
+
+</section>
+
+<section>
+<div id="myNavDes" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <a href="index.php">INICIO</a>
+
+    <div id="Submenu" class="overlay2" >
+  <a href="javascript:void(0)" class="closebtn" onclick="closesubmenu()">&times;</a>
+  <div class="overlay-content">
+    
+        <a href="trayectoria.php">Trayectoria institucional</a>
+        <a href="mision.php">Colegio</a>
+        <a href="dependencias.php">Dependencias</a>
+        <a href="noticias.php">Noticias</a>
+        <a href="comunicado.php">Comunicados</a>
+        <a href="plataformas.php">Plataformas</a>
+        <a href="rendicion.php">Rendicion de cuentas</a>
+        <a href="programador.php">Programador</a>
+
+    </div>
+</div>
+<a  style="cursor:pointer;color:#818181" onclick="opensubmenu()"> DIVINO AMORE </a>
+
+<div id="Submenu2" class="overlay2" >
+  <a href="javascript:void(0)" class="closebtn" onclick="closesubmenu2()">&times;</a>
+  <div class="overlay-content">
+    
+  <a href="admisiones.php">Admisiones</a>
+        <a href="matriculas.php">Matriculas</a>
+
+    </div>
+</div>
+<a  style="cursor:pointer;color:#818181" onclick="opensubmenu2()"> ADMISIONES & MATRICULAS </a>
+
+    
+    <a href="eventos.php">EVENTOS</a>
+    <a href="exalumnos.php">EXALUMNOS</a>
+  <a href="contacto.php">CONTACTANOS</a> 
+  </div>
+</div>
+
+
+<span class="click" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú principal</span>
+
 
 </section>
 
@@ -167,17 +215,17 @@ header ('Content-type: text/html; charset=utf-8');
   $i=0; 
   while($rowNot=mysqli_fetch_assoc($noticias)){
     if($i%2==0){?>
-    <div class="w3-row w3-margin">
-      <div class="w3-third" style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>"  ></div>
-    <div class="w3-twothird w3-container w3-light-gray" style="height:100%; width:100%; padding-bottom:5px;">
+    <div class="rowinfo">
+      <div class="info1"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>"  ></div>
+    <div class="info2">
       <h2 class ="wrapper"><?php echo $rowNot["Titulo"]?></h2>
   <p class ="wrapper">
   <?php  
   $info= $rowNot["Contenido"];
     $separador= "\n";
     $des = explode($separador, $info);
-    for ($i=0; $i <= count($des)-1 ; $i++) { 
-      echo utf8_encode($des[$i]);
+    for ($n=0; $n <= count($des)-1 ; $n++) { 
+      echo utf8_encode($des[$n]);
       ?>
       <br>
       <?php
@@ -197,16 +245,16 @@ header ('Content-type: text/html; charset=utf-8');
 <?php $i=$i+1;
     }
     else{?>
-    <div class="w3-row w3-margin">
+    <div class="rowinfo">
       
-    <div class="w3-twothird w3-container w3-light-gray" style="height:100%; width:100%; padding-bottom:5px;">
+    <div class="info2">
       <h2 class ="wrapper"><?php echo $rowNot["Titulo"]?></h2>
   <p class ="wrapper">  <?php  
   $info= $rowNot["Contenido"];
     $separador= "\n";
     $des = explode($separador, $info);
-    for ($i=0; $i <= count($des)-1 ; $i++) { 
-      echo utf8_encode($des[$i]);
+    for ($m=0; $m <= count($des)-1 ; $m++) { 
+      echo utf8_encode($des[$m]);
       ?>
       <br>
       <?php
@@ -221,7 +269,7 @@ header ('Content-type: text/html; charset=utf-8');
 
 
 </div>
-  <div class="w3-third"  style="height:300px; width:300px" > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>"  ></div>
+  <div class="info1"   > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>"  ></div>
 
   </div>
 <?php $i=$i+1;
@@ -242,21 +290,21 @@ header ('Content-type: text/html; charset=utf-8');
   <div class="w3-container">
     
     <?php $comunicados = mysqli_query($mysqli,$comunicados); 
-  $i=0; 
+  $c=0; 
   while($rowNot=mysqli_fetch_assoc($comunicados)){
-    if($i%2==0){?>
-    <div class="w3-row w3-margin">
+    if($c%2==0){?>
+    <div class="rowinfo">
       
-      <div  class="w3-third"  style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>" ></div>
-    <div class="w3-twothird w3-container w3-light-gray" style="height:100%; width:100%; padding-bottom:5px;">
+      <div  class="info1" > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>" ></div>
+    <div class="info2">
       <h2 class ="wrapper"><?php echo utf8_encode($rowNot["Titulo"])?></h2>
   <p class ="wrapper">
   <?php  
   $info= $rowNot["Contenido"];
     $separador= "\n";
     $des = explode($separador, $info);
-    for ($i=0; $i <= count($des)-1 ; $i++) { 
-      echo utf8_encode($des[$i]);
+    for ($n=0; $n <= count($des)-1 ; $n++) { 
+      echo utf8_encode($des[$n]);
       ?>
       <br>
       <?php
@@ -269,20 +317,20 @@ header ('Content-type: text/html; charset=utf-8');
 
   </div>
     
-<?php $i=$i+1;
+<?php $c=$c+1;
     }
     else{?>
-    <div class="w3-row w3-margin">
+    <div class="rowinfo">
       
-    <div class="w3-twothird w3-container w3-light-gray" style="height:100%; width:100%; padding-bottom:5px">
+    <div class="info2" >
       <h2 class ="wrapper"><?php echo utf8_encode($rowNot["Titulo"])?></h2>
   <p class ="wrapper">
   <?php  
   $info= $rowNot["Contenido"];
     $separador= "\n";
     $des = explode($separador, $info);
-    for ($i=0; $i <= count($des)-1 ; $i++) { 
-      echo utf8_encode($des[$i]);
+    for ($m=0; $m <= count($des)-1 ; $m++) { 
+      echo utf8_encode($des[$m]);
       ?>
       <br>
       <?php
@@ -293,10 +341,10 @@ header ('Content-type: text/html; charset=utf-8');
 
 </div>
     
-  <div class="w3-third"  style="height:300px; width:300px"> <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>" ></div>
+  <div class="info1"  > <img class="img-fluid" src="../storage/app/public/<?php echo $rowNot["Imagen"]?>" ></div>
 
   </div>
-<?php $i=$i+1;
+<?php $c=$c+1;
     }
     
    }?>

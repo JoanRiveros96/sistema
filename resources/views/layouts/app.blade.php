@@ -114,7 +114,7 @@ img{
             @yield('content')
         </main>
 
-<iframe src="../user/footer.php" style ="width:100%; height:905px"></iframe>
+<iframe src="https://coldivinoamor.com.co/sistema/user/footer.php" style ="width:100%; height:600px"></iframe>
         
 
         
