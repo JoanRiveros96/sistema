@@ -168,41 +168,18 @@
     </div>
 </section>
 
-<nav class="navbar navbar-expand-sm bg-light justify-content-center navcol" >
-  <ul class="navbar-nav navcol">
-    <li class="nav-item itemcol" >
-      <a class="nav-link linkcol" href="mision.php">MISION</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="vision.php">VISION</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="filosofia.php">FILOSOFIA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="simbolos.php">SIMBOLOS</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="org.php">ORGANIGRAMA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="finob.php">FINES Y OBJETIVOS</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="valores.php">VALORES</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="estped.php">ESTRATEGIA PEDAGOGICA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="mancon.php">MANUAL DE CONVIVENCIA</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="gescal.php">GESTION DE CALIDAD</a>
-    </li>
-
-  </ul>
-</nav>
+<div class="scrollmenu">
+      <a  href="mision.php">MISION</a>      
+      <a  href="vision.php">VISION</a>
+      <a  href="filosofia.php">FILOSOFIA</a>    
+      <a  href="simbolos.php">SIMBOLOS</a>    
+      <a  href="org.php">ORGANIGRAMA</a>    
+      <a  href="finob.php">FINES Y OBJETIVOS</a>   
+      <a  href="valores.php">VALORES</a>    
+      <a  href="estped.php">ESTRATEGIA PEDAGOGICA</a>    
+      <a  href="mancon.php">MANUAL DE CONVIVENCIA</a>    
+      <a  href="gescal.php">GESTION DE CALIDAD</a>
+  </div>
 
 <section Style="text-align:center;">
 <?php $manual = mysqli_query($mysqli,$manual); 

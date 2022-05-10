@@ -111,7 +111,7 @@ header ('Content-type: text/html; charset=utf-8');
 
 </section>
 
-<section>
+<section class="Menu">
 <div id="myNavDes" class="overlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <div class="overlay-content">
@@ -153,7 +153,7 @@ header ('Content-type: text/html; charset=utf-8');
 </div>
 
 
-<span class="click" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú principal</span>
+<span class="click" style="font-size:30px;cursor:pointer;color:white" onclick="openNav()">&#9776; Menú principal</span>
 
 
 </section>
