@@ -137,7 +137,7 @@
 
     </div>
 </div>
-<a  style="cursor:pointer;color:#818181" onclick="opensubmenu()"> DIVINO AMORE </a>
+<a  style="cursor:pointer;color:white" onclick="opensubmenu()"> DIVINO AMORE </a>
 
 <div id="Submenu2" class="overlay2" >
   <a href="javascript:void(0)" class="closebtn" onclick="closesubmenu2()">&times;</a>
@@ -148,7 +148,7 @@
 
     </div>
 </div>
-<a  style="cursor:pointer;color:#818181" onclick="opensubmenu2()"> ADMISIONES & MATRICULAS </a>
+<a  style="cursor:pointer;color:white" onclick="opensubmenu2()"> ADMISIONES & MATRICULAS </a>
 
     
     <a href="eventos.php">EVENTOS</a>
@@ -158,7 +158,7 @@
 </div>
 
 
-<span class="click" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú principal</span>
+<span class="click" style="font-size:30px;cursor:pointer;color:white" onclick="openNav()">&#9776; Menú principal</span>
 
 
 </section>
@@ -210,9 +210,9 @@
     $bandera = mysqli_query($mysqli,$bandera);
 
     while($row=mysqli_fetch_assoc($bandera)){?>
-    <h2 id="simbolos" style="padding:50px 50px;" ><?php echo $row["TipoInfo"]?></h2>
+    <h2 id="simbolos" style="padding:50px 50px;" ><?php echo utf8_encode($row["TipoInfo"])?></h2>
       
-      <p id="simbolos" > <?php echo $row["Informacion"]?></p>
+      <p id="simbolos" > <?php echo utf8_encode($row["Informacion"])?></p>
   <div id="simbolos"> <img id="simbolos" class="img-fluid imgCol" src="../storage/app/public/<?php echo $row["Imagen"]?>" style="width:200px; height:200px; "></div>
       
       <?php
@@ -225,9 +225,9 @@
     $escudo = mysqli_query($mysqli,$escudo);
 
     while($row=mysqli_fetch_assoc($escudo)){?>
-    <h2 id="simbolos" style="padding:50px 50px;" ><?php echo $row["TipoInfo"]?></h2>
+    <h2 id="simbolos" style="padding:50px 50px;" ><?php echo utf8_encode($row["TipoInfo"])?></h2>
       
-      <p id="simbolos"> <?php echo $row["Informacion"]?></p>
+      <p id="simbolos"> <?php echo utf8_encode($row["Informacion"])?></p>
   <div > <img id="simbolos" class="img-fluid imgCol" src="../storage/app/public/<?php echo $row["Imagen"]?>" style="width:200px; height:200px; "></div>
       
       <?php
@@ -243,7 +243,7 @@
 
   </section>
 
-  <iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+  <iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
 </body>
 

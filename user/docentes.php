@@ -135,7 +135,7 @@
 
     </div>
 </div>
-<a  style="cursor:pointer;color:#818181" onclick="opensubmenu()"> DIVINO AMORE </a>
+<a  style="cursor:pointer;color:white" onclick="opensubmenu()"> DIVINO AMORE </a>
 
 <div id="Submenu2" class="overlay2" >
   <a href="javascript:void(0)" class="closebtn" onclick="closesubmenu2()">&times;</a>
@@ -146,7 +146,7 @@
 
     </div>
 </div>
-<a  style="cursor:pointer;color:#818181" onclick="opensubmenu2()"> ADMISIONES & MATRICULAS </a>
+<a  style="cursor:pointer;color:white" onclick="opensubmenu2()"> ADMISIONES & MATRICULAS </a>
 
     
     <a href="eventos.php">EVENTOS</a>
@@ -156,7 +156,7 @@
 </div>
 
 
-<span class="click" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú principal</span>
+<span class="click" style="font-size:30px;cursor:pointer;color:white" onclick="openNav()">&#9776; Menú principal</span>
 
 
 </section>
@@ -167,26 +167,14 @@
     </div>
 </section>
 
-<nav class="navbar navbar-expand-sm bg-light justify-content-center navdep" >
-  <ul class="navbar-nav navdep">
-    <li class="nav-item" style="margin-left:447px" >
-      <a class="nav-link" href="dependencias.php">DIRECCION Y COORDINACION</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="docentes.php">DOCENTES</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="bienestar.php">BIENESTAR</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="contabilidad.php">CONTABILIDAD</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="porteriacafe.php">PORTERIA Y CAFETERIA</a>
-    </li>
-    
-  </ul>
-</nav>
+<div class="scrollmenu">
+      <a  href="dependencias.php">DIRECCION Y COORDINACION</a>      
+      <a  href="docentes.php">DOCENTES</a>
+      <a  href="bienestar.php">BIENESTAR</a>    
+      <a  href="contabilidad.php">CONTABILIDAD</a>    
+      <a  href="porteriacafe.php">PORTERIA Y CAFETERIA</a>    
+      
+  </div>
 <section>
   
   <div class="w3-container">

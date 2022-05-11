@@ -132,7 +132,7 @@ header ('Content-type: text/html; charset=utf-8');
 
     </div>
 </div>
-<a  style="cursor:pointer;color:#818181" onclick="opensubmenu()"> DIVINO AMORE </a>
+<a  style="cursor:pointer;color:white" onclick="opensubmenu()"> DIVINO AMORE </a>
 
 <div id="Submenu2" class="overlay2" >
   <a href="javascript:void(0)" class="closebtn" onclick="closesubmenu2()">&times;</a>
@@ -143,7 +143,7 @@ header ('Content-type: text/html; charset=utf-8');
 
     </div>
 </div>
-<a  style="cursor:pointer;color:#818181" onclick="opensubmenu2()"> ADMISIONES & MATRICULAS </a>
+<a  style="cursor:pointer;color:white;" onclick="opensubmenu2()"> ADMISIONES & MATRICULAS </a>
 
     
     <a href="eventos.php">EVENTOS</a>

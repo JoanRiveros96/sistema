@@ -128,7 +128,7 @@
 
     </div>
 </div>
-<a  style="cursor:pointer;color:#818181" onclick="opensubmenu()"> DIVINO AMORE </a>
+<a  style="cursor:pointer;color:white" onclick="opensubmenu()"> DIVINO AMORE </a>
 
 <div id="Submenu2" class="overlay2" >
   <a href="javascript:void(0)" class="closebtn" onclick="closesubmenu2()">&times;</a>
@@ -139,7 +139,7 @@
 
     </div>
 </div>
-<a  style="cursor:pointer;color:#818181" onclick="opensubmenu2()"> ADMISIONES & MATRICULAS </a>
+<a  style="cursor:pointer;color:white" onclick="opensubmenu2()"> ADMISIONES & MATRICULAS </a>
 
     
     <a href="eventos.php">EVENTOS</a>
@@ -149,7 +149,7 @@
 </div>
 
 
-<span class="click" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú principal</span>
+<span class="click" style="font-size:30px;cursor:pointer;color:white" onclick="openNav()">&#9776; Menú principal</span>
 
 
 </section>
@@ -160,41 +160,20 @@
     </div>
 </section>
 
-<nav class="navbar navbar-expand-sm bg-light justify-content-center navcol"style="display: grid; place-content:center;">
-  <ul class="navbar-nav navcol"   >
-    <li class="nav-item itemcol" ">
-      <a class="nav-link linkcol" href="programador.php">FEBRERO</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="marzo.php">MARZO</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="abril.php">ABRIL</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="mayo.php">MAYO</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="junio.php">JUNIO</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="julio.php">JULIO</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="agosto.php">AGOSTO</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="septiembre.php">SEPTIEMBRE</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="octubre.php">OCTUBRE</a>
-    </li>
-    <li class="nav-item itemcol">
-      <a class="nav-link linkcol" href="noviembre.php">NOVIEMBRE</a>
-    </li>
 
-  </ul>
-</nav>
+<div class="scrollmenu">
+      <a  href="programador.php">FEBRERO</a>      
+      <a  href="marzo.php">MARZO</a>
+      <a  href="abril.php">ABRIL</a>    
+      <a  href="mayo.php">MAYO</a>    
+      <a  href="junio.php">JUNIO</a>
+      <a  href="julio.php">JULIO</a>
+      <a  href="agosto.php">AGOSTO</a>
+      <a  href="septiembre.php">SEPTIEMBRE</a>
+      <a  href="octubre.php">OCTUBRE</a>
+      <a  href="noviembre.php">NOVIEMBRE</a>
+      
+  </div>
 
 <section>
 <?php $programa = mysqli_query($mysqli,$programa); 
@@ -211,7 +190,7 @@
   }?>
   </section>
 
-  <iframe src="footer.php" Style="width:100%; height:900px"></iframe>
+  <iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 
 </body>
 
