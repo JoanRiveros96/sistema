@@ -33,9 +33,11 @@ class AuditoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Array $request)
+
     {
-        //
+        
+        return "llegando al nuevo controller XD";
     }
 
     /**

@@ -3,6 +3,7 @@
     
     //SQL para conocer los ultimos 3 registros modificados de las noticias en la base de datos
     $admision ="SELECT * FROM `admisions` WHERE Activo = 1 ORDER by updated_at asc";
+    $redes = "SELECT * FROM `socials` WHERE Activo = 1 ;";
 ?>
 
 <!DOCTYPE html>
@@ -59,10 +60,15 @@
   <div class="logo" ><img alt="" src="../public/storage/web/escudo.png">
  </div>
  <div class="redes"><ul>
- <a href="https://www.facebook.com/coinsda?_rdc=2&_rdr" class="fa fa-facebook"></a>
- <a href="https://twitter.com/coinsda" class="fa fa-twitter"></a>
- <a href="https://www.instagram.com/coinsda/" class="fa fa-instagram"></a>
- <a href="https://www.instagram.com/coinsda/" class="fa fa-youtube"></a>
+ <?php $redes = mysqli_query($mysqli,$redes);
+
+    while($rowRedes=mysqli_fetch_assoc($redes)){ 
+      if( $rowRedes["TipoRed"] == "Facebook"){ ?> <a href=" <?php echo $rowRedes["Link"] ?>" target="_blank" class="fa fa-facebook"></a> <?php }
+      if( $rowRedes["TipoRed"] == "Twitter"){ ?> <a href=" <?php echo $rowRedes["Link"] ?>" target="_blank" class="fa fa-twitter"></a> <?php }
+      if( $rowRedes["TipoRed"] == "Instagram"){ ?> <a href=" <?php echo $rowRedes["Link"] ?>" target="_blank" class="fa fa-instagram"></a> <?php }
+      if( $rowRedes["TipoRed"] == "Youtube"){ ?> <a href=" <?php echo $rowRedes["Link"] ?>" target="_blank" class="fa fa-youtube"></a> <?php }
+    } 
+  ?>
 </ul></div>
  
 <div class="navbar">

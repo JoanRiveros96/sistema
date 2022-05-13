@@ -20,7 +20,11 @@
 
 
 <br>
-<a href="{{ url('admision/create')}}" class="btn btn-primary btn-lg"> Registrar Admision </a>
+<a href="{{ url('admision/create')}}" class="btn btn-primary btn-lg" > Registrar Admision </a>
+<br><br>
+<span>A continuacion, la informacion que se encuentre en la fila cuyo valor en el campo "Activo" 
+      sea uno (1) y el color sea verde; será la información que se encuentre visible en la vitrina
+</span>
 <br>
 <br>
 <table class="table table-light">
@@ -28,7 +32,7 @@
 			
     <thead class="thead-light">
         <tr>
-                  
+            <th>Activo</th>      
             <th>Fecha</th>               
             <th>Requisito</th>
             <th>Link</th>
@@ -37,8 +41,18 @@
     </thead>
     <tbody>
         @foreach($admisiones as $admision)
-        <tr>
-            
+        <tr >
+            <?php 
+                if ( $admision->Activo ==1 ) { ?>
+                    <th style="text-align:center;background:#A1F367" >{{$admision ->Activo}}</th>
+                <?php }
+
+                else{ ?>
+                    <th style="text-align:center;background:#F36767" >{{$admision ->Activo}}</th>
+                <?php }
+               
+
+            ?>
             
             <th>{{$admision ->Fecha}}</th>
             <td>{{$admision ->Requisito}}</td>

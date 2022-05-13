@@ -21,12 +21,15 @@
 
 <br>
 <a href="{{ url('empleado/create')}}" class="btn btn-primary btn-lg"> Registro nuevo </a>
-<br>
-<br>
+<br><br>
+<span>A continuacion, la informacion que se encuentre en la fila cuyo valor en el campo "Activo" 
+      sea uno (1) y el color sea verde; será la información que se encuentre visible en la vitrina
+</span>
+<br><br>
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
-       
+            <th>Activo</th>
             <th>Foto</th>
             <th>Nombre</th>            
             <th>Dependencia</th>
@@ -38,6 +41,19 @@
     <tbody>
         @foreach($empleados as $empleado)
         <tr>
+
+            <?php 
+                if ( $empleado->Activo ==1 ) { ?>
+                    <td style="text-align:center;background:#A1F367" >{{$empleado ->Activo}}</td>
+                <?php }
+
+                else{ ?>
+                    <td style="text-align:center;background:#F36767" >{{$empleado ->Activo}}</td>
+                <?php }
+               
+
+            ?>
+
         
 
             <td>

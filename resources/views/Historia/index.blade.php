@@ -21,14 +21,17 @@
 
 <br>
 <a href="{{ url('historia/create')}}" class="btn btn-primary btn-lg"> Registrar Historia </a>
-<br>
-<br>
+<br><br>
+<span>A continuacion, la informacion que se encuentre en la fila cuyo valor en el campo "Activo" 
+      sea uno (1) y el color sea verde; será la información que se encuentre visible en la vitrina
+</span>
+<br><br>
 <table class="table table-light">
 
 			
     <thead class="thead-light">
         <tr>
-                  
+            <th>Activo</th>      
             <th>Año</th>               
             <th>Informacion</th>
             <th>Imagen</th>
@@ -38,7 +41,17 @@
     <tbody>
         @foreach($historias as $historia)
         <tr>
-            
+        <?php 
+                if ( $historia->Activo ==1 ) { ?>
+                    <td style="text-align:center;background:#A1F367" >{{$historia ->Activo}}</td>
+                <?php }
+
+                else{ ?>
+                    <td style="text-align:center;background:#F36767" >{{$historia ->Activo}}</td>
+                <?php }
+               
+
+            ?>
             
             <th>{{$historia ->Anio}}</th>
             <td>{{$historia ->Informacion}}</td>

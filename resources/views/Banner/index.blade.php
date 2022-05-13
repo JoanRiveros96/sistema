@@ -21,12 +21,15 @@
 
 <br>
 <a href="{{ url('banner/create')}}" class="btn btn-primary btn-lg"> Registrar banner </a>
-<br>
-<br>
+<br><br>
+<span>A continuacion, la informacion que se encuentre en la fila cuyo valor en el campo "Activo" 
+      sea uno (1) y el color sea verde; será la información que se encuentre visible en la vitrina
+</span>
+<br><br>
 <table class="table table-light">
     <thead class="thead-light">
-        <tr>
-            
+        <tr style="text-align:center">
+            <th>Activo</th>
             <th>Imagen</th>
             <th>Link</th>
             <th>Acciones</th>
@@ -35,10 +38,19 @@
     <tbody>
         @foreach($banners as $banner)
         <tr>
-            
+            <?php 
+                if ( $banner->Activo ==1 ) { ?>
+                    <td style="text-align:center;background:#A1F367" >{{$banner ->Activo}}</td>
+                <?php }
 
-            <td>
-                <img class="img-thumbnail img-fluid" src="../../../storage/app/public/{{$banner->Imagen}}"  width="200" alt="">
+                else{ ?>
+                    <td style="text-align:center;background:#F36767" >{{$banner ->Activo}}</td>
+                <?php }
+               
+
+            ?>
+            <td style="width:300px; height:150px; text-align:center">
+                <img class="img-thumbnail img-fluid" src="../storage/app/public/{{$banner->Imagen}}"  width="300" alt="">
                 
             </td>
 

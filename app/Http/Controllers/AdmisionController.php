@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\AuditoriaController;
 use App\Models\Admision;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
 
 class AdmisionController extends Controller
 {
@@ -24,6 +25,7 @@ class AdmisionController extends Controller
     
     public function store(Request $request)
     {
+        $auditoria = new AuditoriaController();
         $campos=[
             
             'Fecha'=>'required|date',
@@ -45,9 +47,9 @@ class AdmisionController extends Controller
         
         
         Admision::create($datosAdmision);
-        
-       
-       return redirect('admision')->with('mensaje','Admision agregada con exito');
+         return $datosAdmision;
+        $auditoria->store($datosAdmision);
+    //   return redirect('admision')->with('mensaje','Admision agregada con exito');
     }
 
     

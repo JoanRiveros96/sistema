@@ -21,15 +21,18 @@
 
 <br>
 <a href="{{ url('programador/create')}}" class="btn btn-primary btn-lg"> Registrar Programador </a>
-<br>
-<br>
+<br><br>
+<span>A continuacion, la informacion que se encuentre en la fila cuyo valor en el campo "Activo" 
+      sea uno (1) y el color sea verde; será la información que se encuentre visible en la vitrina
+</span>
+<br><br>
 <table class="table table-light">
 
 			
     <thead class="thead-light">
         <tr>
                   
-            
+            <th>Activo</th>
             <th>Imagen</th>
             <th>Ubicacion</th>
             
@@ -39,6 +42,17 @@
     <tbody>
         @foreach($programadors as $programador)
         <tr>
+        <?php 
+                if ( $programador->Activo ==1 ) { ?>
+                    <td style="text-align:center;background:#A1F367" >{{$programador ->Activo}}</td>
+                <?php }
+
+                else{ ?>
+                    <td style="text-align:center;background:#F36767" >{{$programador ->Activo}}</td>
+                <?php }
+               
+
+            ?>
 
         <td>
                 <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $programador->Imagen?>"  width="200" alt="">

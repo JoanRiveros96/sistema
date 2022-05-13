@@ -21,14 +21,17 @@
 
 <br>
 <a href="{{ url('plataforma/create')}}" class="btn btn-primary btn-lg"> Registrar Plataforma </a>
-<br>
-<br>
+<br><br>
+<span>A continuacion, la informacion que se encuentre en la fila cuyo valor en el campo "Activo" 
+      sea uno (1) y el color sea verde; será la información que se encuentre visible en la vitrina
+</span>
+<br><br>
 <table class="table table-light">
 
 			
     <thead class="thead-light">
         <tr>
-               
+            <th>Activo</th>   
             <th>Titulo</th>               
             <th>Descripcion</th>
             <th>Link</th>
@@ -39,7 +42,17 @@
         @foreach($plataformas as $plataforma)
         <tr>
             
-            
+            <?php 
+                if ( $plataforma->Activo ==1 ) { ?>
+                    <td style="text-align:center;background:#A1F367" >{{$plataforma ->Activo}}</td>
+                <?php }
+
+                else{ ?>
+                    <td style="text-align:center;background:#F36767" >{{$plataforma ->Activo}}</td>
+                <?php }
+               
+
+            ?>
             <th>{{$plataforma ->Titulo}}</th>
             <td>{{$plataforma ->Descripcion}}</td>
             <td><a href="{{$plataforma->Link}}">{{$plataforma->Link}}</a></td>        

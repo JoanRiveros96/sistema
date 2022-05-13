@@ -21,14 +21,17 @@
 
 <br>
 <a href="{{ url('noticia/create')}}" class="btn btn-primary btn-lg"> Registrar noticia </a>
-<br>
-<br>
+<br><br>
+<span>A continuacion, la informacion que se encuentre en la fila cuyo valor en el campo "Activo" 
+      sea uno (1) y el color sea verde; será la información que se encuentre visible en la vitrina
+</span>
+<br><br>
 <table class="table table-light">
 
 			
     <thead class="thead-light">
         <tr>
-            
+            <th>Activo</th>
             <th>Fecha</th>
             <th>Titulo</th>
             <th>Contenido</th>
@@ -41,7 +44,17 @@
         @foreach($noticias as $noticia)
         <tr>
             
-            
+            <?php 
+                if ( $noticia->Activo ==1 ) { ?>
+                    <td style="text-align:center;background:#A1F367" >{{$noticia ->Activo}}</td>
+                <?php }
+
+                else{ ?>
+                    <td style="text-align:center;background:#F36767" >{{$noticia ->Activo}}</td>
+                <?php }
+               
+
+            ?>
             <th>{{$noticia ->Fecha}}</th>
             <td>{{$noticia ->Titulo}}</td>
             <td>{{$noticia ->Contenido}}</td>

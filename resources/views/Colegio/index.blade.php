@@ -21,14 +21,17 @@
 
 <br>
 <a href="{{ url('colegio/create')}}" class="btn btn-primary btn-lg"> Registrar Colegio Informacion </a>
-<br>
-<br>
+<br><br>
+<span>A continuacion, la informacion que se encuentre en la fila cuyo valor en el campo "Activo" 
+      sea uno (1) y el color sea verde; será la información que se encuentre visible en la vitrina
+</span>
+<br><br>
 <table class="table table-light">
 
 			
     <thead class="thead-light">
         <tr>
-                 
+            <th>Activo</th>     
             <th>TipoInfo</th>               
             <th>Informacion</th>
             <th>Imagen</th>
@@ -40,7 +43,17 @@
         @foreach($colegios as $colegio)
         <tr>
             
-            
+            <?php 
+                if ( $colegio->Activo ==1 ) { ?>
+                    <td style="text-align:center;background:#A1F367" >{{$colegio ->Activo}}</td>
+                <?php }
+
+                else{ ?>
+                    <td style="text-align:center;background:#F36767" >{{$colegio ->Activo}}</td>
+                <?php }
+               
+
+            ?>
             <th>{{$colegio ->TipoInfo}}</th>
             <td>{{$colegio ->Informacion}}</td>
             
