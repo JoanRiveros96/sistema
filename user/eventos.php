@@ -252,9 +252,9 @@
                     echo utf8_encode($des[$i]);?>
                     <br>
                     <?php } ?></td>
-        <td style="width:30%; text-align:center"> <img class="img-fluid" src="../storage/app/public/<?php echo $row["Imagen"]?>" style="width:275px;height:222px;">
+        <td style="width:30%; text-align:center;vertical-align:top;"> <img class="img-fluid" src="../storage/app/public/<?php echo $row["Imagen"]?>" style="width:275px;height:222px;">
            </td>
-           <td>
+           <td style="vertical-align:top;padding:20px">
            <?php if($row["Link"]!=null){?>
     <a  href="<?php echo $row["Link"]?>" target="_blank" rel="noopener noreferrer" style="border-radius:50px;background-color:  #41a0d6;padding:15px;">VISITAR</a>
 

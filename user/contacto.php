@@ -171,16 +171,6 @@
     </div>
 </section>
 
-<section>
-  <div class="title">PREGUNTAS FRECUENTES</div>
-  </section>
-<section>
-  
-  <div class="w3-container" style="width:100%; height:500px; background:#00477e">
-   
-</div>
-  
-</section>
 
 <section class=""style="background:rgb(0, 142, 204);text-align:center;" >
 <h2 style="color:black;">¿Deseas ponerte en contacto con nosotros? Envianos tu solicitud</h2>
@@ -291,6 +281,19 @@ function ValidarTamaño(obj)
 </div>
 
 </section>
+
+<section>
+  <div class="title">PREGUNTAS FRECUENTES</div>
+  </section>
+<section>
+  
+  <div class="w3-container" style="width:100%; height:500px; background:#00477e">
+   
+</div>
+  
+</section>
+
+
 
 <iframe src="footer.php" Style="width:100%; height:600px"></iframe>
 

@@ -60,7 +60,7 @@
                 <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $historia->Imagen?>"  width="200" alt="">
                 
             </td>
-            
+            <?php if( $historia ->Activo == 1){ ?>
             <td>
                 
             <a href="{{url('/historia/'.$historia->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
@@ -75,6 +75,7 @@
             <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
             </form>
             </td>
+            <?php } ?>
         </tr>
         @endforeach
     </tbody>

@@ -56,7 +56,8 @@
 
             <td><a href="{{$banner->Link}}">{{$banner->Link}}</a></td>
             
-            
+            <?php if( $banner ->Activo == 1){ ?> 
+
             <td>
                 
             <a href="{{url('/banner/'.$banner->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
@@ -71,6 +72,7 @@
             <input class="btn btn-outline-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
             </form>
             </td>
+            <?php } ?>
         </tr>
         @endforeach
     </tbody>

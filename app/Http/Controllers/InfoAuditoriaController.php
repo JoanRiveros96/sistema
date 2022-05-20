@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\auditoria;
+use App\Models\info_auditoria;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\InfoAuditoriaController;
 
-class AuditoriaController extends Controller
+class InfoAuditoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,31 +33,20 @@ class AuditoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Array $auditoria, Array $detalleAuditoria)
-
-    { 
+    public function store(Array $request)
+    {
         
-        $detalle = new InfoAuditoriacontroller();
-        $id = DB::table('INFORMATION_SCHEMA.TABLES')
-        ->select('AUTO_INCREMENT AS ID')
-        ->where('TABLE_SCHEMA','=','coldivin_sistema')
-        ->where('TABLE_NAME','=','auditorias')
-        ->first();
-        
-        $detalleAuditoria['id_auditoria']= $id->{'ID'};
-        auditoria::create($auditoria);
-        $detalle->store($detalleAuditoria);
-         
-       
+        info_auditoria::create($request);
+        //return $request;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\auditoria  $auditoria
+     * @param  \App\Models\info_auditoria  $info_auditoria
      * @return \Illuminate\Http\Response
      */
-    public function show(auditoria $auditoria)
+    public function show(info_auditoria $info_auditoria)
     {
         //
     }
@@ -67,10 +54,10 @@ class AuditoriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\auditoria  $auditoria
+     * @param  \App\Models\info_auditoria  $info_auditoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(auditoria $auditoria)
+    public function edit(info_auditoria $info_auditoria)
     {
         //
     }
@@ -79,10 +66,10 @@ class AuditoriaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\auditoria  $auditoria
+     * @param  \App\Models\info_auditoria  $info_auditoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, auditoria $auditoria)
+    public function update(Request $request, info_auditoria $info_auditoria)
     {
         //
     }
@@ -90,10 +77,10 @@ class AuditoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\auditoria  $auditoria
+     * @param  \App\Models\info_auditoria  $info_auditoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(auditoria $auditoria)
+    public function destroy(info_auditoria $info_auditoria)
     {
         //
     }

@@ -6,7 +6,7 @@ use App\Models\Admision;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\DB;
 
 class AdmisionController extends Controller
 {
@@ -25,7 +25,10 @@ class AdmisionController extends Controller
     
     public function store(Request $request)
     {
-        $auditoria = new AuditoriaController();
+        
+        $infoAuditoria = [];
+        
+
         $campos=[
             
             'Fecha'=>'required|date',
@@ -44,11 +47,14 @@ class AdmisionController extends Controller
     
         
         $datosAdmision['Usuario'] = auth()->user()->id; 
-        
+        $infoAuditoria['id_responsable'] = auth()->user()->id;
+        $infoAuditoria['tabla_modificada'] = "Admisions";
+        $infoAuditoria['info_registrada'] = $datosAdmision;
         
         Admision::create($datosAdmision);
-         return $datosAdmision;
-        $auditoria->store($datosAdmision);
+        return $datosAdmision;
+        
+        
     //   return redirect('admision')->with('mensaje','Admision agregada con exito');
     }
 
@@ -69,6 +75,9 @@ class AdmisionController extends Controller
     
     public function update(Request $request, $id)
     {
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
         $campos=[
             
             'Fecha'=>'required|date',
@@ -83,26 +92,43 @@ class AdmisionController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosAdmision=request()->except(['_token','_method']);
-
         $datosAdmision['Usuario'] = auth()->user()->id;
 
-    
-        Admision::where('id','=',$id)->update($datosAdmision);
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "admisions";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // $detalleAuditoria['id_auditoria'] = ;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
 
-        $admision = Admision::findOrFail($id);
-        //return view('empleado.edit',compact('empleado'));
+
+        $Auditoria['detalles'] = "Fecha: ". $datosAdmision['Fecha'] .", Requisito: ". $datosAdmision['Requisito'] .", Link: " . $datosAdmision['Link'];
+
+         
+      
+
+        Admision::where('id','=',$id)->update($datosAdmision);
+        
+        $auditoria->store($Auditoria, $detalleAuditoria);
+        // return $detalleAuditoria;
         return redirect('admision')->with('mensaje','Admision modificada');
     }
 
    
     public function destroy($id)
     {
-
         $admision = Admision::findOrFail($id);
         Admision::where('id','=',$id)->update(['Activo'=>0]);
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "admisions";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en admisiones, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('admision')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
-        // $admision = Admision::findOrFail($id);
-        // Admision::destroy($id);
-        
     }
 }

@@ -2,7 +2,7 @@
     include("conexion.php");
     
     //SQL para conocer los ultimos 3 registros modificados de las noticias en la base de datos
-    $himno ="SELECT * FROM `colegios` WHERE Activo = 1 AND TipoInfo='HIMNO DEL COLEGIO INTEGRADO NUESTRA SEÑORA DEL DIVINO AMOR';";
+    $himno ="SELECT * FROM `colegios` WHERE Activo = 1 AND TipoInfo LIKE BINARY 'HIMNO DEL COLEGIO INTEGRADO NUESTRA SEÑORA DEL DIVINO AMOR';";
     $bandera ="SELECT * FROM `colegios` WHERE Activo = 1 AND TipoInfo='Bandera del Colegio';";
     $escudo ="SELECT * FROM `colegios` WHERE Activo = 1 AND TipoInfo='Escudo del Colegio';";
     $redes = "SELECT * FROM `socials` WHERE Activo = 1 ;";
@@ -191,16 +191,31 @@
 <section>
   <div class="title">SIMBOLOS</div>
   </section>
-<section >
-  
-<div id="simbolos" style="width:50%; height:1031px;float:left;">
+
+<section style="display:flex;background:rgb(1, 109, 197)" >
+
+<div id="simbolos" style="width:50%;float:left;">
 <?php
     $himno = mysqli_query($mysqli,$himno);
 
     while($row=mysqli_fetch_assoc($himno)){?>
-    <h2 id="simbolos" style=";padding:50px 50px;" ><?php echo $row["TipoInfo"]?></h2>
+    <h2 id="simbolos" style=";padding:50px 50px;" ><?php echo utf8_encode($row["TipoInfo"])?></h2>
       
-      <p id="simbolos"style="padding:10px 240px;"> <?php echo $row["Informacion"]?></p>
+      <p id="himno">
+
+      <?php  
+  $info= $row["Informacion"];
+    $separador= "\n";
+    $des = explode($separador, $info);
+    for ($n=0; $n <= count($des)-1 ; $n++) { 
+      echo utf8_encode($des[$n]);
+      ?>
+      <br>
+      <?php
+    }?> 
+    
+    
+    </p>
 
       <?php
     }
@@ -210,7 +225,7 @@
 </div>
 
 
-<div id="simbolos" style="width:50%; height:1031px;float:left;">
+<div id="simbolos" style="width:50%; float:left;">
 <?php
     $bandera = mysqli_query($mysqli,$bandera);
 

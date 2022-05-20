@@ -66,7 +66,7 @@
             <td><a href="{{$evento->Link}}">{{$evento->Link}}</a></td>
             
             
-            
+            <?php if( $evento ->Activo == 1){ ?> 
             
             <td>
                 
@@ -82,6 +82,7 @@
             <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
             </form>
             </td>
+            <?php } ?>
         </tr>
         @endforeach
     </tbody>

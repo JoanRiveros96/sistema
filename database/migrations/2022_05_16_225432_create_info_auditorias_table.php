@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAuditoriasTable extends Migration
+class CreateInfoAuditoriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateAuditoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('auditorias', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('detalles');
+        Schema::create('info_auditorias', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ class CreateAuditoriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('auditorias');
+        Schema::dropIfExists('info_auditorias');
     }
 }

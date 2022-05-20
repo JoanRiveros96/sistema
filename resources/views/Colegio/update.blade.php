@@ -26,7 +26,7 @@
 <label for="Imagen">Imagen NOTA: Dimensiones minimas de la imagen (350px * 350px)</label>
 
 @if(isset($colegio->Imagen))
-<img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$colegio->Imagen }}" alt="" width="300" > 
+<img class="img-thumbnail img-fluid" src="../../../storage/app/public/<?php echo $colegio->Imagen?>" alt="" width="300" > 
 @endif
 <input type="file" class="form-control" name="Imagen" value="" id="Imagen">
 

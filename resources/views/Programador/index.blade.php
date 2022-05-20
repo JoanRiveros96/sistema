@@ -63,7 +63,7 @@
             
             
            
-            
+            <?php if( $programador ->Activo == 1){ ?> 
             <td>
                 
             <a href="{{url('/programador/'.$programador->id.'/edit')}}" class="btn btn-outline-primary btn-lg">
@@ -78,6 +78,7 @@
             <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
             </form>
             </td>
+            <?php } ?>
         </tr>
         @endforeach
     </tbody>

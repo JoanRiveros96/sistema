@@ -296,7 +296,10 @@ section .circulares{
   padding: 15px;
   
 }
+#himno{
 
+  padding:10px 150px;
+}
 #simbolos{
   background: rgb(1, 109, 197);
   font-size: 20px;
@@ -600,6 +603,10 @@ header .redes{
 
 
   }
+  #himno{
+
+    padding:10px 70px;
+  }
   
   .info2{
     width: 100%;
@@ -628,6 +635,8 @@ header .navbar{
 .click{
   display: block !important;
 }
+
+
 
 header .redes{
   left: 90%; top: 120px; z-index: 2;
@@ -674,6 +683,10 @@ header .logo img{
   header .redes{
      left: 85%; top: 100px; z-index: 2;
   }
+  #himno{
+
+    padding:10px 35px;
+  }
   
   .rowinfo{
     text-align: center;
@@ -702,6 +715,10 @@ header .logo img{
 }
 .header2 .logo{
   left: 75%; top: 8px; z-index: 4;
+}
+#himno{
+
+  padding:10px 5px;
 }
 
 }

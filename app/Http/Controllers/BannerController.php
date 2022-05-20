@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class BannerController extends Controller
 {
@@ -103,41 +104,43 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Auditoria = [];
+        $imagen = DB::table('banners')->select('Imagen')->where('id','=',$id)->first();
         $campos=[
-
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
-            
-            
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
             'Imagen.required'=>'La foto es requerida'
-
         ];
-
         if($request->hasFile('Imagen')){
             $campos=['Imagen' =>'required|max:10000|mimes:jpeg,png,jpg'];
             $mensaje=['Imagen.required'=>'La foto es requerida'];
         }
-        
-
         $this->validate($request,$campos,$mensaje);
-
         $datosBanner=request()->except(['_token','_method']);
         $datosBanner['Id_empleado'] = auth()->user()->id;
-
         if($request->hasFile('Imagen')){
             $banner = Banner::findOrFail($id);
             Storage::delete('public/'.$banner->Imagen);
             $datosBanner['Imagen']=$request->file('Imagen')->store('uploads','public');
+            $Auditoria['detalles'] = "Ubicacion Imagen: ". $datosBanner['Imagen'] ." link: ". $datosBanner['Link'];
         }
-
-
+        else{
+            $Auditoria['detalles'] = "Ubicacion Imagen: ". $imagen->{'Imagen'} ." link: ". $datosBanner['Link'];
+        }
         Banner::where('id','=',$id)->update($datosBanner);
-
-        $banner = Banner::findOrFail($id);
+        $auditoria = new AuditoriaController();
         
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "banners";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
+        
+        $auditoria->store($Auditoria, $detalleAuditoria);
+
         return redirect('banner')->with('mensaje','Banner modificado');
     }
 
@@ -152,12 +155,17 @@ class BannerController extends Controller
 
         $banner = Banner::findOrFail($id);
         Banner::where('id','=',$id)->update(['Activo'=>0]);
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "banners";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en banners, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('banner')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
-        //
-        // $banner = Banner::findOrFail($id);
-        // if(Storage::delete('public/'.$banner->Imagen)){
-        //     Banner::destroy($id);
-        // }
-        // return redirect('banner')->with('mensaje','Banner borrado');
+        
     }
 }
