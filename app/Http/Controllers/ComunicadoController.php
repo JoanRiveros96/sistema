@@ -6,6 +6,7 @@ use App\Models\Comunicado;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ComunicadoController extends Controller
 {
@@ -114,7 +115,8 @@ class ComunicadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Auditoria = [];
+        $imagen = DB::table('comunicados')->select('Imagen')->where('id','=',$id)->first();
         $campos=[
             
             'Fecha'=>'required|date',
@@ -144,13 +146,27 @@ class ComunicadoController extends Controller
             $comunicado = Comunicado::findOrFail($id);
             Storage::delete('public/'.$comunicado->Imagen);
             $datosComunicado['Imagen']=$request->file('Imagen')->store('uploads','public');
+
+            $Auditoria['detalles'] = "Fecha: ". $datosComunicado['Fecha'] ." Titulo: ". $datosComunicado['Titulo'] ." Contenido: ". $datosComunicado['Contenido'] ."Imagen: ". $datosComunicado['Imagen'];
+        }else{
+            $Auditoria['detalles'] = "Fecha: ". $datosComunicado['Fecha'] ." Titulo: ". $datosComunicado['Titulo'] ." Contenido: ". $datosComunicado['Contenido'] ."Imagen: ". $imagen->{'Imagen'};
+
         }
 
 
         Comunicado::where('id','=',$id)->update($datosComunicado);
 
-        $comunicado = Comunicado::findOrFail($id);
-        //return view('empleado.edit',compact('empleado'));
+        
+
+$auditoria = new AuditoriaController();
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "comunicados";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
+        
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('comunicado')->with('mensaje','Comunicado modificado');
     }
 
@@ -165,16 +181,18 @@ class ComunicadoController extends Controller
 
         $comunicado = Comunicado::findOrFail($id);
         Comunicado::where('id','=',$id)->update(['Activo'=>0]);
+
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "comunicados";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en comunicados, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('comunicado')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
-        //
-        // $comunicado = Comunicado::findOrFail($id);
         
-        // if(Storage::delete('public/'.$comunicado->Imagen)){
-        //     Comunicado::destroy($id);
-        //     return redirect('comunicado')->with('mensaje','Comunicado borrado');
-        // }
-        
-        
-        // return redirect('comunicado');
     }
 }

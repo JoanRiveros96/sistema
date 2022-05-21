@@ -6,6 +6,7 @@ use App\Models\Noticia;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class NoticiaController extends Controller
@@ -99,7 +100,8 @@ class NoticiaController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $Auditoria = [];
+        $imagen = DB::table('noticias')->select('Imagen')->where('id','=',$id)->first();
         $campos=[
             
             'Fecha'=>'required|date',
@@ -129,13 +131,24 @@ class NoticiaController extends Controller
             $noticia = Noticia::findOrFail($id);
             Storage::delete('public/'.$noticia->Imagen);
             $datosNoticia['Imagen']=$request->file('Imagen')->store('uploads','public');
+            $Auditoria['detalles'] = "Fecha: ". $datosNoticia['Fecha'] ." Titulo: ". $datosNoticia['Titulo'] ." Contenido: " .$datosNoticia["Contenido"] ." Imagen: " . $datosNoticia['Imagen'] ." Link" . $datosNoticia['Link'];
+        }else{
+            $Auditoria['detalles'] = "Fecha: ". $datosNoticia['Fecha'] ." Titulo: ". $datosNoticia['Titulo'] ." Contenido: " .$datosNoticia["Contenido"] ." Imagen: " . $imagen->{'Imagen'} ." Link" . $datosNoticia['Link'];
+
         }
 
 
         Noticia::where('id','=',$id)->update($datosNoticia);
+        
+        $auditoria = new AuditoriaController();
 
-        $noticia = Noticia::findOrFail($id);
-        //return view('empleado.edit',compact('empleado'));
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "noticias";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
+        $auditoria->store($Auditoria, $detalleAuditoria);
+
         return redirect('noticia')->with('mensaje','Noticia modificada');
     }
 
@@ -150,16 +163,17 @@ class NoticiaController extends Controller
 
         $noticia = Noticia::findOrFail($id);
         Noticia::where('id','=',$id)->update(['Activo'=>0]);
+        
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "noticias";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en noticias, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('noticia')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
-        //
-        // $noticia = Noticia::findOrFail($id);
-        
-        // if(Storage::delete('public/'.$noticia->Imagen)){
-        //     Noticia::destroy($id);
-            
-        // }else{Noticia::destroy($id);}
-        
-        
-        // return redirect('noticia')->with('mensaje','Noticia borrada');
     }
 }

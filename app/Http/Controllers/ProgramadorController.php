@@ -6,6 +6,7 @@ use App\Models\Programador;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ProgramadorController extends Controller
 {
@@ -74,6 +75,9 @@ class ProgramadorController extends Controller
    
     public function update(Request $request, $id)
     {
+        $Auditoria = [];
+        
+        $imagen =DB::table('programadors')->select('Imagen')->where('id','=',$id)->first();
         $campos=[ 
             'Imagen' =>'max:10000|mimes:jpeg,png,jpg',
             
@@ -99,14 +103,20 @@ class ProgramadorController extends Controller
             Storage::delete('public/'.$Programa->Imagen);
             $file=$request->file('Imagen');
             $nombre= $file->getClientOriginalName();
-            $datosProgramador['Imagen']=$request->file('Imagen')->storeAs('uploads',$nombre, 'public');
-
+            $datosProgramador['Imagen']=$request->file('Imagen')->storeAs('programa',$nombre, 'public');
+            $Auditoria['detalles'] = "Imagen: ".  $datosProgramador['Imagen'];
+        }else{
+            $Auditoria['detalles'] = "Imagen: ".  $imagen->{'Imagen'};
         }
-        
         Programador::where('id','=',$id)->update($datosProgramador);
+        $auditoria = new AuditoriaController();
 
-        $programador = programador::findOrFail($id);
-        //return view('empleado.edit',compact('empleado'));
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "programadors";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('programador')->with('mensaje','Programador modificado');
     }
 
@@ -116,10 +126,17 @@ class ProgramadorController extends Controller
 
         $programador = Programador::findOrFail($id);
         Programador::where('id','=',$id)->update(['Activo'=>0]);
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "programadors";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en programadors, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('programador')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
 
-        // $programador = Programador::findOrFail($id);
-        // Programador::destroy($id);
-        // return redirect('programador')->with('mensaje','Programador borrado');
     }
 }

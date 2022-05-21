@@ -6,6 +6,7 @@ use App\Models\Matricula;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class MatriculaController extends Controller
 {
@@ -70,6 +71,8 @@ class MatriculaController extends Controller
 
     public function update(Request $request, $id)
     {
+        $Auditoria = [];
+        
         $campos=[
             
             'Fecha'=>'required|date',
@@ -91,9 +94,20 @@ class MatriculaController extends Controller
 
     
         Matricula::where('id','=',$id)->update($datosMatricula);
+        $Auditoria['detalles'] = "Fecha: ". $datosMatricula['Fecha'] ." Requisito: ". $datosMatricula['Requisito'] ." Link: " .$datosMatricula["Link"] ." Costos: " . $datosMatricula['Costos'] ." Utiles" . $datosMatricula['Utiles'] ." Uniformes" . $datosMatricula['Uniformes'];
 
-        $matricula = Matricula::findOrFail($id);
-        //return view('empleado.edit',compact('empleado'));
+        
+        $auditoria = new AuditoriaController();
+
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "matriculas";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
+        
+        $auditoria->store($Auditoria, $detalleAuditoria);
+
         return redirect('matricula')->with('mensaje','Matricula modificada');
     }
 
@@ -102,9 +116,19 @@ class MatriculaController extends Controller
 
         $matricula = Matricula::findOrFail($id);
         Matricula::where('id','=',$id)->update(['Activo'=>0]);
+
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "matriculas";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en matriculas, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
+
         return redirect('matricula')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
-        // $matricula = Matricula::findOrFail($id);
-        // Matricula::destroy($id);
-        // return redirect('matricula')->with('mensaje','Matricula borrada');
+        
     }
 }

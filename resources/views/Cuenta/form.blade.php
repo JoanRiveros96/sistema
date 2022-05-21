@@ -38,7 +38,7 @@
 <label for="Imagen">Imagen NOTA: Dimensiones minimas de la imagen (350px * 350px)</label>
 
 @if(isset($cuenta->Imagen))
-<img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$cuenta->Imagen }}" alt="" width="300" > 
+<img class="img-thumbnail img-fluid" src="../../../storage/app/public/<?php echo $cuenta->Imagen?>" alt="" width="300" > 
 @endif
 <input type="file" class="form-control" name="Imagen" value="" id="Imagen">
 
@@ -48,7 +48,7 @@
 <label for="Documento">Documento</label>
 
 @if(isset($cuenta->Documento))
-<img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$cuenta->Documento }}" alt="" width="300" > 
+<img class="img-thumbnail img-fluid" src="../../../storage/app/public/<?php echo $cuenta->Documento?>" alt="" width="300" > 
 @endif
 <input type="file" class="form-control" name="Documento" value="" id="Documento">
 

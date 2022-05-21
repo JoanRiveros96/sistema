@@ -6,6 +6,7 @@ use App\Models\Cuenta;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class CuentaController extends Controller
 {
@@ -105,6 +106,9 @@ class CuentaController extends Controller
     
     public function update(Request $request, $id)
     {
+        $Auditoria = [];
+        $Imagen =DB::table('cuentas')->select('Imagen')->where('id','=',$id)->first();
+        $Doc =DB::table('cuentas')->select('Documento')->where('id','=',$id)->first();
         $campos=[
             'Fecha'=>'required|date',
             'Titulo'=>'required|string',
@@ -135,24 +139,49 @@ class CuentaController extends Controller
         $this->validate($request,$campos,$mensaje);
 
         $datosCuenta=request()->except(['_token','_method']);
-        $datosCuenta['Usuario'] = auth()->user()->id; 
+        $datosCuenta['Usuario'] = auth()->user()->id;
+        
+        if($request->hasFile('Imagen') && $request->hasFile('Documento')){
+            $cuenta = Cuenta::findOrFail($id);
+            Storage::delete('public/'.$cuenta->Imagen);
+            Storage::delete('public/'.$cuenta->Documento);
+            $datosCuenta['Imagen']=$request->file('Imagen')->store('uploads','public');
+            $datosCuenta['Documento']=$request->file('Documento')->store('docs','public');
+            $Auditoria['detalles'] = "Fecha: ".  $datosCuenta['Fecha'] ."Titulo: " . $datosCuenta['Titulo'] ."Contenido: " . $datosCuenta['Contenido'] ."Ubicacion Imagen: " . $datosCuenta['Imagen'] ."Ubicacion Documento: " . $datosCuenta['Documento'];
 
-        if($request->hasFile('Imagen')){
+        }elseif ($request->hasFile('Imagen') OR $request->hasFile('Documento')) {
+            if($request->hasFile('Imagen')){
             $cuenta = Cuenta::findOrFail($id);
             Storage::delete('public/'.$cuenta->Imagen);
             $datosCuenta['Imagen']=$request->file('Imagen')->store('uploads','public');
-        }
-        if($request->hasFile('Documento')){
+            $Auditoria['detalles'] = "Fecha: ".  $datosCuenta['Fecha'] ."Titulo: " . $datosCuenta['Titulo'] ."Contenido: " . $datosCuenta['Contenido'] ."Ubicacion Imagen: " . $datosCuenta['Imagen'] ."Ubicacion Documento: " . $Doc->{'Documento'};
+            }
+            if($request->hasFile('Documento')){
             $cuenta = Cuenta::findOrFail($id);
             Storage::delete('public/'.$cuenta->Documento);
             $datosCuenta['Documento']=$request->file('Documento')->store('docs','public');
+            $Auditoria['detalles'] = "Fecha: ".  $datosCuenta['Fecha'] ."Titulo: " . $datosCuenta['Titulo'] ."Contenido: " . $datosCuenta['Contenido'] ."Ubicacion Imagen: " . $Imagen->{'Imagen'} ."Ubicacion Documento: " . $datosCuenta['Documento'];
+            }
+        }else{
+            $Auditoria['detalles'] = "Fecha: ".  $datosCuenta['Fecha'] ."Titulo: " . $datosCuenta['Titulo'] ."Contenido: " . $datosCuenta['Contenido'] ."Ubicacion Imagen: " . $Imagen->{'Imagen'} ."Ubicacion Documento: " . $Doc->{'Documento'};
+
         }
 
 
         Cuenta::where('id','=',$id)->update($datosCuenta);
 
-        $cuenta = Cuenta::findOrFail($id);
-        //return view('empleado.edit',compact('empleado'));
+        
+
+       
+                
+        $auditoria = new AuditoriaController();
+        
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "cuentas";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('cuenta')->with('mensaje','Rendicion de cuenta modificada');
 
 
@@ -163,19 +192,19 @@ class CuentaController extends Controller
     {
         $cuenta = Cuenta::findOrFail($id);
         Cuenta::where('id','=',$id)->update(['Activo'=>0]);
+
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "cuentas";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en cuentas, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('cuenta')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
 
-        // $cuenta = Cuenta::findOrFail($id);
         
-        // if(Storage::delete('public/'.$cuenta->Imagen)){
-        //     Cuenta::destroy($id);
-            
-        // }if(Storage::delete('public/'.$cuenta->Documento)){
-        //     Cuenta::destroy($id);
-            
-        // }
-        
-        
-        // return redirect('cuenta')->with('mensaje','Rendicion de cuentas borrada');
     }
 }

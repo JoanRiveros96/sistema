@@ -6,6 +6,7 @@ use App\Models\Plataforma;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class PlataformaController extends Controller
 {
@@ -99,7 +100,9 @@ class PlataformaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Auditoria = [];
+        
+        $Titulo =DB::table('plataformas')->select('Titulo')->where('id','=',$id)->first();
         $campos=[
             
             
@@ -120,8 +123,17 @@ class PlataformaController extends Controller
 
         Plataforma::where('id','=',$id)->update($datosPlataforma);
 
-        $plataforma = Plataforma::findOrFail($id);
-        //return view('empleado.edit',compact('empleado'));
+        $Auditoria['detalles'] = "Titulo: ". $Titulo->{'Titulo'} ." Descripcion: ". $datosPlataforma['Descripcion'] ." Link" . $datosPlataforma['Link'];
+
+        
+        $auditoria = new AuditoriaController();
+
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "plataformas";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('plataforma')->with('mensaje','Plataforma modificada');
     }
 
@@ -135,10 +147,17 @@ class PlataformaController extends Controller
     {       
         $plataforma = Plataforma::findOrFail($id);
         Plataforma::where('id','=',$id)->update(['Activo'=>0]);
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "plataformas";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en plataformas, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('plataforma')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
-        // $plataforma = Plataforma::findOrFail($id);
-        // Plataforma::destroy($id);    
         
-        // return redirect('plataforma')->with('mensaje','Plataforma borrada');
     }
 }

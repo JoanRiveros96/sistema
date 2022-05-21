@@ -6,6 +6,7 @@ use App\Models\Footer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class FooterController extends Controller
 {
@@ -106,7 +107,9 @@ class FooterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Auditoria = [];
+        $imagen = DB::table('footers')->select('Imagen')->where('id','=',$id)->first();
+        $tipoFoot =DB::table('footers')->select('TipoFoot')->where('id','=',$id)->first();
         $campos=[
             
             
@@ -134,13 +137,25 @@ class FooterController extends Controller
             $footer = Footer::findOrFail($id);
             Storage::delete('public/'.$footer->Imagen);
             $datosFooter['Imagen']=$request->file('Imagen')->store('uploads','public');
+            $Auditoria['detalles'] = "Tipo Foot: ". $tipoFoot->{'TipoFoot'}." Contenido: ". $datosFooter['Contenido'] ." Imagen: " .$datosFooter["Imagen"];
+        }else{
+            $Auditoria['detalles'] = "Tipo Foot: ". $tipoFoot->{'TipoFoot'} ." Contenido: ". $datosFooter['Contenido'] ." Imagen: " .$imagen->{'Imagen'};
+
         }
 
 
         Footer::where('id','=',$id)->update($datosFooter);
+        $auditoria = new AuditoriaController();
 
-        $footer = Footer::findOrFail($id);
-        //return view('empleado.edit',compact('empleado'));
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "footers";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
+        
+        $auditoria->store($Auditoria, $detalleAuditoria);
+
         return redirect('footer')->with('mensaje','Footer modificado');
     }
 
@@ -155,16 +170,18 @@ class FooterController extends Controller
 
         $footer = Footer::findOrFail($id);
         Footer::where('id','=',$id)->update(['Activo'=>0]);
+
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "footers";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en footers, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('footer')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
-        // //
-        // $footer = Footer::findOrFail($id);
         
-        // if(Storage::delete('public/'.$footer->Imagen)){     
-        //     Footer::destroy($id);            
-        // }else{Footer::destroy($id);          
-        // }
-        
-        
-        // return redirect('footer')->with('mensaje','Footer borrado');
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Empleado;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 class EmpleadoController extends Controller
 {
     
@@ -110,7 +111,9 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $Auditoria = [];
+        $foto = DB::table('empleados')->select('Foto')->where('id','=',$id)->first();
+        $dependencia = DB::table('empleados')->select('Dependencia')->where('id','=', $id)->first();
         $campos=[
             'Nombre'=>'required|string',   
             'Descripcion' =>'required|string',
@@ -137,13 +140,22 @@ class EmpleadoController extends Controller
             $empleado = Empleado::findOrFail($id);
             Storage::delete('public/'.$empleado->Foto);
             $datosEmpleado['Foto']=$request->file('Foto')->store('uploads','public');
+            $Auditoria['detalles'] = "Nombre: ". $datosEmpleado['Nombre'] ." Dependencia: ". $dependencia->{'Dependencia'} ." Descripcion: ". $datosEmpleado['Descripcion']  ." Foto: " . $datosEmpleado['Foto'] ."Correo: " . $datosEmpleado['Correo'];
+        }else{
+            $Auditoria['detalles'] = "Nombre: ". $datosEmpleado['Nombre'] ." Dependencia: ". $dependencia->{'Dependencia'} ." Descripcion: ". $datosEmpleado['Descripcion'] ." Foto: " . $foto->{'Foto'} ."Correo: " . $datosEmpleado['Correo'];
+
         }
 
-
         Empleado::where('id','=',$id)->update($datosEmpleado);
-
-        $empleado = Empleado::findOrFail($id);
-        //return view('Empleado.edit',compact('empleado'));
+        $auditoria = new AuditoriaController();
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "empleados";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
+        
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('empleado')->with('mensaje','Empleado modificado');
     }
 
@@ -158,14 +170,18 @@ class EmpleadoController extends Controller
 
         $empleado = Empleado::findOrFail($id);
         Empleado::where('id','=',$id)->update(['Activo'=>0]);
-        return redirect('empleado')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
-        //
-        // $empleado = Empleado::findOrFail($id);
 
-        // if(Storage::delete('public/'.$empleado->Foto)){
-        //     Empleado::destroy($id);
-        // }
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "empleados";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en empleados, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
+        return redirect('empleado')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
         
-        // return redirect('empleado')->with('mensaje','Empleado borrado');
     }
 }

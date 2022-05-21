@@ -57,7 +57,7 @@
             <td>{{$footer ->Contenido}}</td>
             
             <td>
-                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$footer->Imagen }}"  width="200" alt="">
+                <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $footer->Imagen?>"  width="200" alt="">
                 
             </td>
             <?php if( $footer ->Activo == 1){ ?> 

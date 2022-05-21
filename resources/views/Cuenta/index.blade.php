@@ -63,7 +63,7 @@
                 <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $cuenta->Imagen?>"  width="200" alt="">
                 
             </td>
-            <td><a href="{{route('docs.download', $cuenta->id)}}">{{$cuenta->Documento}}</a></td>
+            <td><a href="../storage/app/public/<?php echo $cuenta->Documento?>">{{$cuenta->Documento}}</a></td>
             <?php if( $cuenta ->Activo == 1){ ?>
             <td>
                 

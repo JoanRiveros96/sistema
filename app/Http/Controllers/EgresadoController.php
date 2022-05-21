@@ -6,6 +6,7 @@ use App\Models\Egresado;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class EgresadoController extends Controller
 {
@@ -76,6 +77,8 @@ class EgresadoController extends Controller
 
     public function update(Request $request, $id)
     {
+        $Auditoria = [];
+        $foto = DB::table('egresados')->select('Foto')->where('id','=',$id)->first();
         $campos=[
             
             'AñoGrado'=>'required|string|max:4',
@@ -106,13 +109,26 @@ class EgresadoController extends Controller
             $egresado = Egresado::findOrFail($id);
             Storage::delete('public/'.$egresado->Foto);
             $datosEgresado['Foto']=$request->file('Foto')->store('uploads','public');
+            $Auditoria['detalles'] = "Año Grado: ". $datosEgresado['AñoGrado'] ." Nombre: ". $datosEgresado['Nombre'] ." Afinidad: ". $datosEgresado['Afinidad'] ."Descripcion: ". $datosEgresado['Descripcion'] ." Foto: " . $datosEgresado['Foto'];
+        }else{
+            $Auditoria['detalles'] = "Año Grado: ". $datosEgresado['AñoGrado'] ." Nombre: ". $datosEgresado['Nombre'] ." Afinidad: ". $datosEgresado['Afinidad'] ."Descripcion: ". $datosEgresado['Descripcion'] ." Foto: " . $foto->{'Foto'};
+
         }
 
 
         Egresado::where('id','=',$id)->update($datosEgresado);
 
-        $egresado = Egresado::findOrFail($id);
-        //return view('empleado.edit',compact('empleado'));
+        
+
+        $auditoria = new AuditoriaController();
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "egresados";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
+        
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('egresado')->with('mensaje','Egresado modificado');
     }
 
@@ -121,16 +137,17 @@ class EgresadoController extends Controller
 
         $egresado = Egresado::findOrFail($id);
         Egresado::where('id','=',$id)->update(['Activo'=>0]);
+        
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "egresados";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en egresados, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('egresado')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
-        
-        // $egresado = Egresado::findOrFail($id);
-        
-        // if(Storage::delete('public/'.$egresado->Foto)){     
-        //     Egresado::destroy($id);            
-        // }else{Egresado::destroy($id);          
-        // }
-        
-        
-        // return redirect('egresado')->with('mensaje','Egresado borrado');
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Social;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class SocialController extends Controller
 {
@@ -97,7 +98,8 @@ class SocialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Auditoria = [];
+        $red =DB::table('socials')->select('TipoRed')->where('id','=',$id)->first();
         $campos=[
             
             'Link'=> 'required|string',
@@ -116,7 +118,19 @@ class SocialController extends Controller
 
         Social::where('id','=',$id)->update($datosSocial);
 
-        $social = Social::findOrFail($id);
+        
+        
+        
+        $Auditoria['detalles'] = "Red Social: ".  $red->{'TipoRed'} ."Link: " . $datosSocial['Link'];
+                
+        $auditoria = new AuditoriaController();
+        
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "socials";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         
         return redirect('social')->with('mensaje','Red Social modificada');
     }
@@ -132,12 +146,17 @@ class SocialController extends Controller
 
         $social = Social::findOrFail($id);
         Social::where('id','=',$id)->update(['Activo'=>0]);
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "socials";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en socials, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('social')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
-        //
-        // $social = Social::findOrFail($id);
         
-        
-        //     social::destroy($id);
-        //     return redirect('social')->with('mensaje','Red Social borrada');
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Evento;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class EventoController extends Controller
 {
@@ -76,6 +77,9 @@ class EventoController extends Controller
     
     public function update(Request $request,$id)
     {
+        $Auditoria = [];
+        $imagen = DB::table('eventos')->select('Imagen')->where('id','=',$id)->first();
+        
         $campos=[
             'Fecha'=>'required|date',
             'Titulo'=>'required|string',
@@ -84,8 +88,6 @@ class EventoController extends Controller
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
-            
-
         ];
         if($request->hasFile('Imagen')){
             $campos=['Imagen' =>'max:10000|mimes:jpeg,png,jpg'];
@@ -102,13 +104,25 @@ class EventoController extends Controller
             $evento = Evento::findOrFail($id);
             Storage::delete('public/'.$evento->Imagen);
             $datosEvento['Imagen']=$request->file('Imagen')->store('uploads','public');
+            $Auditoria['detalles'] = "Fecha: ". $datosEvento['Fecha'] ." Titulo: ". $datosEvento['Titulo'] ." Descripcion: ". $datosEvento['Descripcion'] ." Imagen: " . $datosEvento['Imagen'];
+        }else{
+            $Auditoria['detalles'] = "Fecha: ". $datosEvento['Fecha'] ." Titulo: ". $datosEvento['Titulo'] ." Descripcion: ". $datosEvento['Descripcion'] ." Imagen: " .$imagen->{'Imagen'};
+
         }
 
 
         Evento::where('id','=',$id)->update($datosEvento);
 
-        $evento = Evento::findOrFail($id);
-        //return view('empleado.edit',compact('empleado'));
+        $auditoria = new AuditoriaController();
+
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "eventos";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Actualizacion";
+        
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('evento')->with('mensaje','Evento modificado');
     }
 
@@ -117,16 +131,18 @@ class EventoController extends Controller
 
         $evento = Evento::findOrFail($id);
         Evento::where('id','=',$id)->update(['Activo'=>0]);
+
+        $auditoria = new AuditoriaController();
+        $Auditoria = [];
+        $detalleAuditoria = [];
+        $detalleAuditoria['id_responsable']= auth()->user()->id;
+        $detalleAuditoria['nombre_tabla']= "eventos";
+        $detalleAuditoria['id_tabla']= (int)$id;
+        // codigo de actualizacion = 1
+        $detalleAuditoria['tipo_modificacion']= "Eliminacion";
+        $Auditoria['detalles'] = "Ha sido eliminada la informacion en eventos, cambio de estado Activo a cero (0)";
+        $auditoria->store($Auditoria, $detalleAuditoria);
         return redirect('evento')->with('mensaje','Cambio de estado a inactivo, no visible en vitrina');
 
-        // $evento = Evento::findOrFail($id);
-        
-        // if(Storage::delete('public/'.$evento->Imagen)){     
-        //     Evento::destroy($id);            
-        // }else{Evento::destroy($id);          
-        // }
-        
-        
-        // return redirect('evento')->with('mensaje','Evento borrado');
     }
 }
