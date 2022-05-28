@@ -48,6 +48,7 @@ img{
   </div>
   <div class="w3-padding-64 w3-large w3-text-black " style="font-weight:normal">
       <a href="{{ route('admision.index') }}" class="w3-bar-item w3-button">Admisiones</a>
+      <a href="{{ route('auditoria.index') }}" class="w3-bar-item w3-button">Auditorias</a>
       <a href="{{ route('banner.index') }}" class="w3-bar-item w3-button ">Banners</a>
       <a href="{{ route('colegio.index') }}" class="w3-bar-item w3-button">Colegio</a>
       <a href="{{ route('comunicado.index') }}" class="w3-bar-item w3-button">Comunicados</a>

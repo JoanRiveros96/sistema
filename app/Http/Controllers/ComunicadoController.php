@@ -18,7 +18,9 @@ class ComunicadoController extends Controller
     public function index()
     {
         //
-        $datos['comunicados']=Comunicado::paginate(5);
+        $datos['comunicados']=Comunicado::JOIN('users','comunicados.Usuario','=','users.id')
+        ->select('users.name','comunicados.*')
+        ->paginate(10);
         return view('Comunicado.index',$datos);
     }
 

@@ -12,7 +12,9 @@ class EgresadoController extends Controller
 {
     public function index()
     {
-        $datos['egresados']=Egresado::paginate(5);
+        $datos['egresados']=Egresado::JOIN('users','egresados.Usuario','=','users.id')
+        ->select('users.name','egresados.*')
+        ->paginate(10);
         return view('Egresado.index',$datos);
     }
 

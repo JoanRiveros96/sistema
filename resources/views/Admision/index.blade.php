@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div style ="width:90%; padding:0 100px 0">
 
 <br>
 
@@ -36,7 +36,9 @@
             <th>Fecha</th>               
             <th>Requisito</th>
             <th>Link</th>
+            <th>Usuario</th>
             <th>Acciones</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -57,6 +59,9 @@
             <th>{{$admision ->Fecha}}</th>
             <td>{{$admision ->Requisito}}</td>
             <td><a href="{{$admision->Link}}">{{$admision->Link}}</a></td>
+            <td>{{$admision ->name}}</td>
+
+
             
             
            

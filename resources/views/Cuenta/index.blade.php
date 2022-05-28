@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div style ="width:100%; padding:0 100px 0">
 
 <br>
 
@@ -37,6 +37,7 @@
             <th>Contenido</th>
             <th>Imagen</th>
             <th>Documento</th>
+            <th>Usuario</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -64,6 +65,7 @@
                 
             </td>
             <td><a href="../storage/app/public/<?php echo $cuenta->Documento?>">{{$cuenta->Documento}}</a></td>
+            <td>{{$cuenta ->name}}</td>
             <?php if( $cuenta ->Activo == 1){ ?>
             <td>
                 

@@ -12,7 +12,9 @@ class EventoController extends Controller
 {
     public function index()
     {
-        $datos['eventos']=Evento::paginate(10);
+        $datos['eventos']=Evento::JOIN('users','eventos.Usuario','=','users.id')
+        ->select('users.name','eventos.*')
+        ->paginate(10);
         return view('Evento.index',$datos);
     }
 

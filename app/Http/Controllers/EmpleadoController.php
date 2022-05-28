@@ -18,7 +18,9 @@ class EmpleadoController extends Controller
     public function index()
     {
         //
-        $datos['empleados']=Empleado::paginate(5);
+        $datos['empleados']=Empleado::JOIN('users','empleados.Usuario','=','users.id')
+        ->select('users.name','empleados.*')
+        ->paginate(10);
         return view('Empleado.index',$datos);
     }
 

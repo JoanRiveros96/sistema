@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div style ="width:100%; padding:0 100px 0">
 
 <br>
 
@@ -35,6 +35,7 @@
             <th>TipoFoot</th>               
             <th>Contenido</th>
             <th>Imagen</th>
+            <th>Usuario</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -60,6 +61,7 @@
                 <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $footer->Imagen?>"  width="200" alt="">
                 
             </td>
+            <td>{{$footer ->name}}</td>
             <?php if( $footer ->Activo == 1){ ?> 
             <td>
                 

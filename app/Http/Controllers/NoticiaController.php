@@ -19,7 +19,9 @@ class NoticiaController extends Controller
     public function index()
     {
         //
-        $datos['noticias']=Noticia::paginate(5);
+        $datos['noticias']=Noticia::JOIN('users','noticias.Usuario','=','users.id')
+        ->select('users.name','noticias.*')
+        ->paginate(10);
         return view('Noticia.index',$datos);
     }
 

@@ -18,7 +18,9 @@ class PlataformaController extends Controller
     public function index()
     {
         //
-        $datos['plataformas']=Plataforma::paginate(5);
+        $datos['plataformas']=Plataforma::JOIN('users','plataformas.Usuario','=','users.id')
+        ->select('users.name','plataformas.*')
+        ->paginate(10);
         return view('Plataforma.index',$datos);
     }
 

@@ -13,7 +13,10 @@ class AdmisionController extends Controller
    
     public function index()
     {
-        $datos['admisiones']=Admision::paginate(5);
+        $datos['admisiones']=DB::table('admisions')
+        ->JOIN('users','admisions.Usuario','=','users.id')
+        ->select('users.name', 'admisions.*')
+        ->paginate(10);
         return view('Admision.index',$datos);
     }
 

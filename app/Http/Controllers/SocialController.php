@@ -18,7 +18,9 @@ class SocialController extends Controller
     public function index()
     {
         //
-        $datos['socials']=Social::paginate(5);
+        $datos['socials']=Social::JOIN('users','socials.Usuario','=','users.id')
+        ->select('users.name','socials.*')
+        ->paginate(10);
         return view('Social.index',$datos);
     }
 

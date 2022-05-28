@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div style ="width:100%; padding:0 100px 0">
 
 <br>
 
@@ -35,7 +35,7 @@
             <th>Activo</th>
             <th>Imagen</th>
             <th>Ubicacion</th>
-            
+            <th>Usuario</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -60,7 +60,7 @@
             </td>
             <td>{{$programador ->Imagen}}</td>
             
-            
+            <td>{{$programador ->name}}</td>
             
            
             <?php if( $programador ->Activo == 1){ ?> 

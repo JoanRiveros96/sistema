@@ -13,7 +13,9 @@ class ProgramadorController extends Controller
   
     public function index()
     {
-        $datos['programadors']=Programador::paginate(11);
+        $datos['programadors']=Programador::JOIN('users','programadors.Usuario','=','users.id')
+        ->select('users.name','programadors.*')
+        ->paginate(10);
         return view('Programador.index',$datos);
     }
 

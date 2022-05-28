@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div style ="width:100%; padding:0 100px 0">
 
 <br>
 
@@ -35,6 +35,7 @@
             <th>Titulo</th>               
             <th>Descripcion</th>
             <th>Link</th>
+            <th>Usuario</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -56,7 +57,7 @@
             <th>{{$plataforma ->Titulo}}</th>
             <td>{{$plataforma ->Descripcion}}</td>
             <td><a href="{{$plataforma->Link}}">{{$plataforma->Link}}</a></td>        
-            
+            <td>{{$plataforma ->name}}</td>
             <?php if( $plataforma ->Activo == 1){ ?> 
             <td>
                 

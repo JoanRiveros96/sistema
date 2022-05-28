@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div style ="width:100%; padding:0 100px 0">
 
 <br>
 
@@ -34,7 +34,7 @@
             <th>Activo</th>           
             <th>TipoRed</th>
             <th>Link</th>
-            
+            <th>Usuario</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -55,7 +55,7 @@
            
             <th>{{$social ->TipoRed}}</th>
             <td><a href="{{$social->Link}}">{{$social->Link}}</a></td>
-           
+           <td>{{$social ->name}}</td>
             <?php if( $social ->Activo == 1){ ?> 
             <td>
                 

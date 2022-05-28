@@ -18,7 +18,9 @@ class FooterController extends Controller
     public function index()
     {
         //
-        $datos['footers']=Footer::paginate(5);
+        $datos['footers']=Footer::JOIN('users','footers.Usuario','=','users.id')
+        ->select('users.name','footers.*')
+        ->paginate(10);
         return view('Footer.index',$datos);
     }
 

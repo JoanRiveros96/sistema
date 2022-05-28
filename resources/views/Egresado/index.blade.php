@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div style ="width:100%; padding:0 100px 0">
 
 <br>
 
@@ -37,6 +37,7 @@
             <th>Afinidad</th>
             <th>Descripcion</th>
             <th>Foto</th>
+            <th>Usuario</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -65,6 +66,7 @@
                 <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $egresado->Foto?>"  width="200" alt="">
                 
             </td>
+            <td>{{$egresado ->name}}</td>
             <?php if( $egresado ->Activo == 1){ ?> 
             <td>
                 

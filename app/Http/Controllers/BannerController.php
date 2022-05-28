@@ -18,7 +18,9 @@ class BannerController extends Controller
     public function index()
     {
         //
-        $datos['banners']=Banner::paginate(5);
+        $datos['banners']=Banner::JOIN('users','banners.Id_empleado','=','users.id')
+        ->select('users.name','banners.*')
+        ->paginate(10);
         return view('Banner.index',$datos);
     }
 

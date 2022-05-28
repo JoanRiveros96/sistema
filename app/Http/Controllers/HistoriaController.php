@@ -18,7 +18,9 @@ class HistoriaController extends Controller
     public function index()
     {
         //
-        $datos['historias']=Historia::paginate(10);
+        $datos['historias']=Historia::JOIN('users','historias.Usuario','=','users.id')
+        ->select('users.name','historias.*')
+        ->paginate(15);
         return view('Historia.index',$datos);
     }
 

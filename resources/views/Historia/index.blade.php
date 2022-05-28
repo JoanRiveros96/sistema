@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div style ="width:100%; padding:0 100px 0">
 
 <br>
 
@@ -35,6 +35,7 @@
             <th>Año</th>               
             <th>Informacion</th>
             <th>Imagen</th>
+            <th>Usuario</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -60,6 +61,7 @@
                 <img class="img-thumbnail img-fluid" src="../storage/app/public/<?php echo $historia->Imagen?>"  width="200" alt="">
                 
             </td>
+            <td>{{$historia ->name}}</td>
             <?php if( $historia ->Activo == 1){ ?>
             <td>
                 

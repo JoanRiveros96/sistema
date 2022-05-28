@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\auditoria;
+use App\Models\info_auditoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\InfoAuditoriaController;
@@ -16,7 +17,14 @@ class AuditoriaController extends Controller
      */
     public function index()
     {
-        //
+        //$datos['auditorias']=auditoria::paginate(5);
+        $datos['auditorias'] = DB::table('info_auditorias')
+        ->join('auditorias','info_auditorias.id_auditoria','=','auditorias.id')
+        ->join('users','info_auditorias.id_responsable','=','users.id')
+        ->select('users.name', 'info_auditorias.nombre_tabla','tipo_modificacion', 'auditorias.detalles')
+        ->paginate(20);
+        //return $datos;
+         return view('Auditoria.index',$datos);
     }
 
     /**

@@ -17,7 +17,9 @@ class CuentaController extends Controller
      */
     public function index()
     {
-        $datos['cuentas']=Cuenta::paginate(5);
+        $datos['cuentas']=Cuenta::JOIN('users','cuentas.Usuario','=','users.id')
+        ->select('users.name','cuentas.*')
+        ->paginate(10);
         return view('Cuenta.index',$datos);
     }
 

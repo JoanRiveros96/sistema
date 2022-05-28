@@ -18,7 +18,9 @@ class ColegioController extends Controller
     public function index()
     {
         //
-        $datos['colegios']=Colegio::paginate(5);
+        $datos['colegios']=Colegio::JOIN('users','colegios.Usuario','=','users.id')
+        ->select('users.name','colegios.*')
+        ->paginate(10);
         return view('Colegio.index',$datos);
     }
 

@@ -13,7 +13,9 @@ class MatriculaController extends Controller
 
     public function index()
     {
-        $datos['matriculas']=Matricula::paginate(5);
+        $datos['matriculas']=Matricula::JOIN('users','matriculas.Usuario','=','users.id')
+        ->select('users.name','matriculas.*')
+        ->paginate(10);
         return view('Matricula.index',$datos);
     }
 

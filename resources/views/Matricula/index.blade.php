@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div style ="width:100%; padding:0 100px 0">
 
 <br>
 
@@ -38,6 +38,7 @@
             <th>Costos Educativos</th>
             <th>Listado Utiles</th>
             <th>Uniformes</th>
+            <th>Usuario</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -62,7 +63,7 @@
             <th>{{$matricula ->Costos}}</th>
             <td>{{$matricula ->Utiles}}</td>
             <td>{{$matricula ->Uniformes}}</td>
-            
+            <td>{{$matricula ->name}}</td>
            
             <?php if( $matricula ->Activo == 1){ ?> 
             <td>
