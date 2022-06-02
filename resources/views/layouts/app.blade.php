@@ -46,7 +46,7 @@ img{
     
             
   </div>
-  <div class="w3-padding-64 w3-large w3-text-black " style="font-weight:normal">
+  <div class="w3-padding-10 w3-large w3-text-black " style="font-weight:normal">
       <a href="{{ route('admision.index') }}" class="w3-bar-item w3-button">Admisiones</a>
       <a href="{{ route('auditoria.index') }}" class="w3-bar-item w3-button">Auditorias</a>
       <a href="{{ route('banner.index') }}" class="w3-bar-item w3-button ">Banners</a>
@@ -64,7 +64,7 @@ img{
       <a href="{{ route('cuenta.index') }}" class="w3-bar-item w3-button">Rendicion de Cuentas</a>
       <a href="{{ route('historia.index') }}" class="w3-bar-item w3-button">Trayectoria</a>
   </div>
-  <ul class="navbar-nav ml-auto w3-center">
+  <ul >
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
